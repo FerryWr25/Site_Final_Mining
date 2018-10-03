@@ -155,7 +155,7 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <asp:Button ID="btn_Profile_member" Text="Profile" CssClass="btn btn-default btn-flat" runat="server" OnClick="profile_Click" />
                                         </div>
                                         <div class="pull-right">
                                             <asp:Button ID="btnKeluar_dashAdmin" Text="Sign out" CssClass="btn btn-default btn-flat" runat="server" OnClick="keluar_Click" />
@@ -273,7 +273,7 @@
                             </ul>
                         </li>
                         <li>
-                            <li class="header">Timeframe Berita</li>
+                            <li class="header">TIMEFRAME BERITA</li>
                             <li class="treeview" id="timeFrameBerita" runat="server">
                                 <a href="#">
                                     <i class="fa fa-pie-chart"></i><span>Konten Berita</span>
@@ -317,9 +317,9 @@
 
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.4.0
+                    <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+                <strong>Copyright &copy; 2018-2019 <a href="https://adminlte.io">Ferry wiranto</a>.</strong> All rights
     reserved.
             </footer>
 

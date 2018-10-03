@@ -2159,6 +2159,7 @@
     <Content Include="UDC\Member\kategoriBerita\kategoriLain.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriOlahraga.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriPemerintahan.ascx" />
+    <Content Include="UDC\Member\profile\memberProfile.ascx" />
     <Content Include="Welcome[Here_AdminPanel].aspx" />
     <Content Include="Welcome[Here_MemberPanel].aspx" />
     <Content Include="Welcome_to[Site_Mining].aspx" />
@@ -2562,6 +2563,13 @@
     </Compile>
     <Compile Include="UDC\Member\kategoriBerita\kategoriPemerintahan.ascx.designer.cs">
       <DependentUpon>kategoriPemerintahan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\profile\memberProfile.ascx.cs">
+      <DependentUpon>memberProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\profile\memberProfile.ascx.designer.cs">
+      <DependentUpon>memberProfile.ascx</DependentUpon>
     </Compile>
     <Compile Include="Welcome[Here_AdminPanel].aspx.cs">
       <DependentUpon>Welcome[Here_AdminPanel].aspx</DependentUpon>

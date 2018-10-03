@@ -13,6 +13,15 @@ namespace Site_Final_Mining {
     public partial class Welcome_Here_Member_ {
         
         /// <summary>
+        /// btn_Profile_member control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Profile_member;
+        
+        /// <summary>
         /// btnKeluar_dashAdmin control.
         /// </summary>
         /// <remarks>

@@ -101,6 +101,15 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Member/kategoriBerita/kategoriLain.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
+        protected void profile_Click(object sender, EventArgs e)
+        {
+            changeActiveMenu("profile");
+            Control profile = Page.LoadControl("~/UDC/Member/profile/memberProfile.ascx");
+            Content_Member.Controls.Clear();
+            Content_Member.Controls.Add(profile);
+            ViewState["userControl"] = "~/UDC/Member/profile/memberProfile.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+        }
         private void changeActiveMenu(string menu)
         {
             switch (menu)
@@ -202,6 +211,19 @@ namespace Site_Final_Mining
                     kategori_berita_kecelakaan.Attributes["class"] = "threeview";
                     kategori_berita_kejahatan.Attributes["class"] = "threeview";
                     kategori_berita_lain_lainnya.Attributes["class"] = "threeview active";
+                    break;
+                case "profile":
+                    menu_dashboard.Attributes["class"] = "";
+                    menu_all_konten_berita.Attributes["class"] = "";
+                    menu_dashboard.Attributes["class"] = "";
+                    menu_all_konten_berita.Attributes["class"] = "";
+                    menu_kategori_berita.Attributes["class"] = "treeview menu";
+                    kategori_berita_olahraga.Attributes["class"] = "threeview";
+                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
+                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
+                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
+                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
+                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
                     break;
             }
         }
