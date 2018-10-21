@@ -27,6 +27,9 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+     <!--chart -->
+    <link href="chart/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="chart/js/Chart.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

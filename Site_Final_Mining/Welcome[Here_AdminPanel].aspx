@@ -9,10 +9,12 @@
     <title>siteMining | Admin</title>
      <link rel="icon" href="admin-lte/img/Research.ico" />
     <link href="Other_component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="Content/font-awesome.min.css">
+    <link rel="stylesheet" href="Content/font-awesome.min.css"/>
     <link href="Ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="admin-lte/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+         <!--chart -->
+    <script src="chart/js/Chart.min.js"></script>
 </head>
 <body class="hold-transition skin-blue fixed sidebar-mini">
     <form runat="server">
