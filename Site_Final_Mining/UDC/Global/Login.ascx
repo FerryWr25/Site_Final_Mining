@@ -25,7 +25,12 @@
                 <label class="checkbox-inline">
                     <input type="checkbox" value="true" required>I agree to the terms and conditions
                 </label>
-                <span style="margin-bottom:10px" class="label label-danger">Login eroor!, Please check email or password again &nbsp; <a href="#" style="color:white ; text-decoration:none" >&times;</a></span>
+
+                <div class="hidden" runat="server" id="message_error">
+                    <span style="margin-bottom: 10px" class="label label-danger">Login eroor!, Please check email or password again &nbsp; <asp:LinkButton ID="messageError"   
+                        runat="server" OnClick="dissmissMessage_click" style="text-decoration:none ; color:white ; font-size:13px">&times;</asp:LinkButton></span>
+                </div>
+
             </div>
             <div class="form-group has-feedback">
                 <asp:Button ID="ButtonSubmit" runat="server" Text="Submit" CssClass="btn-primary" type="submit" OnClick="Masuk_Click" />
@@ -33,14 +38,3 @@
         </form>
     </div>
 </section>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#ButtonSubmit').click(function () {
-            $('#myAlert_Login').show('fade');
-        })
-        $('#closeAlert').click(function () {
-            $('#myAlert_Login').hide('fade');
-        })
-    });
-</script>

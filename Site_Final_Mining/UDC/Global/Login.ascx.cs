@@ -22,7 +22,7 @@ namespace Site_Final_Mining.UDC.Login
         }
         private void getDataUser(string email, string password)
         {
-            Site_Please_Login_ parrent = (Site_Please_Login_)this.Page;
+
 
             this.con = new connectionClass();
             string query = "SELECT * FROM public.user " +
@@ -31,7 +31,7 @@ namespace Site_Final_Mining.UDC.Login
             DataTable result = this.con.getResult(query);
             if (result.Rows.Count == 0)
             {
-                parrent.LoadAlert("warning", "Email / Password Yang Anda Masukkan Salah");
+                message_error.Attributes["class"] = "";
             }
             else
             {
@@ -48,6 +48,10 @@ namespace Site_Final_Mining.UDC.Login
                     Response.Redirect("Welcome[Here_MemberPanel].aspx");
                 }
             }
+        }
+        protected void dissmissMessage_click(object sender, EventArgs e)
+        {
+            message_error.Attributes["class"] = "hidden";
         }
     }
 }

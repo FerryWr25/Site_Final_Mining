@@ -31,6 +31,24 @@ namespace Site_Final_Mining.UDC.Login {
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword password;
         
         /// <summary>
+        /// message_error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl message_error;
+        
+        /// <summary>
+        /// messageError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton messageError;
+        
+        /// <summary>
         /// ButtonSubmit control.
         /// </summary>
         /// <remarks>
