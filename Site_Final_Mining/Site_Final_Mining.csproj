@@ -189,6 +189,7 @@
     <Content Include="admin-lte\img\img_frontPage\cta-img.jpg" />
     <Content Include="admin-lte\img\img_frontPage\element.jpg" />
     <Content Include="admin-lte\img\img_frontPage\favicon.ico" />
+    <Content Include="admin-lte\img\img_frontPage\front.jpg" />
     <Content Include="admin-lte\img\img_frontPage\header-bg-1.jpg" />
     <Content Include="admin-lte\img\img_frontPage\header-bg-2.jpg" />
     <Content Include="admin-lte\img\img_frontPage\header-bg.jpg" />
@@ -211,6 +212,8 @@
     <Content Include="admin-lte\img\img_frontPage\icon\light\5.png" />
     <Content Include="admin-lte\img\img_frontPage\icon\light\6.png" />
     <Content Include="admin-lte\img\img_frontPage\intro.png" />
+    <Content Include="admin-lte\img\img_frontPage\irFront.png" />
+    <Content Include="admin-lte\img\img_frontPage\klasifikasi.png" />
     <Content Include="admin-lte\img\img_frontPage\logo.png" />
     <Content Include="admin-lte\img\img_frontPage\portfolio\1.jpg" />
     <Content Include="admin-lte\img\img_frontPage\portfolio\2.jpg" />
@@ -229,6 +232,7 @@
     <Content Include="admin-lte\img\img_frontPage\team\1.jpg" />
     <Content Include="admin-lte\img\img_frontPage\team\2.jpg" />
     <Content Include="admin-lte\img\img_frontPage\team\3.jpg" />
+    <Content Include="admin-lte\img\img_frontPage\vsmFront.png" />
     <Content Include="admin-lte\img\lul.jpg" />
     <Content Include="admin-lte\img\photo1.png" />
     <Content Include="admin-lte\img\photo2.png" />
@@ -257,6 +261,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css_frontPage\animate.css" />
     <Content Include="Content\css_frontPage\bootstrap.min.css" />
+    <Content Include="Content\css_frontPage\business-frontpage.css" />
     <Content Include="Content\css_frontPage\font-awesome.min.css" />
     <Content Include="Content\css_frontPage\footer-distributed-with-address-and-phones.css" />
     <Content Include="Content\css_frontPage\magnific-popup.css" />
@@ -287,6 +292,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="admin-lte\css\adminlte.min.css.map" />
     <Content Include="admin-lte\css\adminlte.css.map" />
+    <Content Include="admin-lte\img\img_frontPage\front.png" />
     <Content Include="Ionicons\cheatsheet.html" />
     <Content Include="Ionicons\css\ionicons.css" />
     <Content Include="Ionicons\css\ionicons.min.css" />
@@ -2013,10 +2019,12 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\js_dashBoard\jquery.min.js" />
     <Content Include="Scripts\js_dashBoard\jquery.slimscroll.minTP.js" />
+    <Content Include="Scripts\js_frontPage\bootstrap.bundle.min.js" />
     <Content Include="Scripts\js_frontPage\bootstrap.min.js" />
     <Content Include="Scripts\js_frontPage\circle-progress.min.js" />
     <Content Include="Scripts\js_frontPage\isotope.pkgd.min.js" />
     <Content Include="Scripts\js_frontPage\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\js_frontPage\jquery.min.js" />
     <Content Include="Scripts\js_frontPage\jquery.owl-filter.js" />
     <Content Include="Scripts\js_frontPage\magnific-popup.min.js" />
     <Content Include="Scripts\js_frontPage\main.js" />
@@ -2154,6 +2162,10 @@
     <Content Include="UDC\Global\Alert.ascx" />
     <Content Include="UDC\Global\allSitus_Berita.ascx" />
     <Content Include="UDC\Global\Login.ascx" />
+    <Content Include="UDC\Guest\homeGuest.ascx" />
+    <Content Include="UDC\Guest\InformationRetrieval_page.ascx" />
+    <Content Include="UDC\Guest\Klasifikasi_Page.ascx" />
+    <Content Include="UDC\Guest\vectorSpaceModel_Page.ascx" />
     <Content Include="UDC\Member\Dashboard.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriBencana.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriKecelakaan.ascx" />
@@ -2517,6 +2529,34 @@
     <Compile Include="UDC\Global\Login.ascx.designer.cs">
       <DependentUpon>Login.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UDC\Guest\homeGuest.ascx.cs">
+      <DependentUpon>homeGuest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Guest\homeGuest.ascx.designer.cs">
+      <DependentUpon>homeGuest.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Guest\InformationRetrieval_page.ascx.cs">
+      <DependentUpon>InformationRetrieval_page.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Guest\InformationRetrieval_page.ascx.designer.cs">
+      <DependentUpon>InformationRetrieval_page.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Guest\Klasifikasi_Page.ascx.cs">
+      <DependentUpon>Klasifikasi_Page.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Guest\Klasifikasi_Page.ascx.designer.cs">
+      <DependentUpon>Klasifikasi_Page.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Guest\vectorSpaceModel_Page.ascx.cs">
+      <DependentUpon>vectorSpaceModel_Page.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Guest\vectorSpaceModel_Page.ascx.designer.cs">
+      <DependentUpon>vectorSpaceModel_Page.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UDC\Member\Dashboard.ascx.cs">
       <DependentUpon>Dashboard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2620,7 +2660,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configure_API\" />
-    <Folder Include="UDC\Guest\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

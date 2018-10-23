@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
-	font: bold 16px sans-serif;
+	font: bold 16px Calibri;
 
 	padding: 55px 50px;
 	margin-top: 80px;
@@ -148,9 +148,9 @@
 
 @media (max-width: 880px) {
 
-	.footer-distributed{
-		font: bold 14px sans-serif;
-	}
+    .footer-distributed {
+        font: bold 14px Calibri;
+    }
 
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-center,
