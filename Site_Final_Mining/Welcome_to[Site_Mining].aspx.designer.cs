@@ -85,6 +85,24 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.LinkButton vsmKlik;
         
         /// <summary>
+        /// Li1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li1;
+        
+        /// <summary>
+        /// registerKlik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton registerKlik;
+        
+        /// <summary>
         /// menuLogin control.
         /// </summary>
         /// <remarks>

@@ -54,7 +54,7 @@
                                                 <!-- start message -->
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="admin-lte/img/ce.jpg" class="img-circle" alt="User Image">
+                                                        <asp:Image ID="profileImage" CssClass="img-circle" src="" runat="server" />
                                                     </div>
                                                     <h4>Support Team
                         <small><i class="fa fa-clock-o"></i>5 mins</small>
@@ -124,17 +124,19 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="admin-lte/img/ce.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Rizkiyah</span>
+                                   <asp:Image ID="profileImage_dropdown" CssClass="user-image" src="" runat="server" />
+                                    <span class="hidden-xs">
+                                        <asp:Label ID="labelNama2" runat="server"></asp:Label>
+                                    </span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="admin-lte/img/ce.jpg" class="img-circle" alt="User Image">
+                                       <asp:Image ID="profileSideBar" CssClass="img-circle" src="" runat="server" />
 
                                         <p>
-                                            Rizkiyah - System Analist
-                  <small>Member since Nov. 2012</small>
+                                            <asp:Label ID="labelNama3" runat="server"></asp:Label> - System Analist
+                  <small>Enjoying Here</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -182,10 +184,11 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="admin-lte/img/ce.jpg" class="img-circle" alt="User Image">
+                             <asp:Image ID="sidebarProfile" CssClass="img-circle" src="" runat="server" />
                         </div>
                         <div class="pull-left info">
-                            <p>Rizkiyah,S.Kom</p>
+                            <p>
+                            <asp:Label ID="labelNama" runat="server"></asp:Label></p>
                             <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
                         </div>
                     </div>

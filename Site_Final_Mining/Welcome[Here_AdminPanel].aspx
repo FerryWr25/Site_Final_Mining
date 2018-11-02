@@ -7,13 +7,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>siteMining | Admin</title>
-     <link rel="icon" href="admin-lte/img/Research.ico" />
+    <link rel="icon" href="admin-lte/img/Research.ico" />
     <link href="Other_component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="Content/font-awesome.min.css"/>
+    <link rel="stylesheet" href="Content/font-awesome.min.css" />
     <link href="Ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="admin-lte/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
-         <!--chart -->
+    <!--chart -->
     <script src="chart/js/Chart.min.js"></script>
 </head>
 <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -43,11 +43,11 @@
                             <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning">4</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have 4 messages</li>
+                                    <li class="header">Pendftar baru</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
@@ -55,12 +55,43 @@
                                                 <!-- start message -->
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="admin-lte/img/lul.jpg" class="img-circle" alt="User Image">
+                                                        <asp:Image ID="profileImage1" CssClass="img-circle" src="" runat="server" />
                                                     </div>
-                                                    <h4>Support Team
-                        <small><i class="fa fa-clock-o"></i>5 mins</small>
+                                                    <h4>
+                                                        <asp:Label ID="Nama1" runat="server"></asp:Label>
+                                                        <small><i class="fa fa-clock-o"></i>
+                                                            <asp:Label ID="tanggalDaftar1" runat="server"></asp:Label></small>
                                                     </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
+                                                    <p>
+                                                        <asp:Label ID="pekerjaan1" runat="server"></asp:Label>
+                                                    </p>
+                                                </a>
+
+                                                <a href="#">
+                                                    <div class="pull-left">
+                                                        <asp:Image ID="profileImage2" CssClass="img-circle" src="" runat="server" />
+                                                    </div>
+                                                    <h4>
+                                                        <asp:Label ID="Nama2" runat="server"></asp:Label>
+                                                        <small><i class="fa fa-clock-o"></i>
+                                                            <asp:Label ID="tanggalDaftar2" runat="server"></asp:Label></small>
+                                                    </h4>
+                                                    <p>
+                                                        <asp:Label ID="pekerjaan2" runat="server"></asp:Label>
+                                                    </p>
+                                                </a>
+
+                                                <a href="#">
+                                                    <div class="pull-left">
+                                                        <asp:Image ID="profileImage3" CssClass="img-circle" src="" runat="server" />
+                                                    </div>
+                                                    <h4>
+                                                        <asp:Label ID="Nama3" runat="server"></asp:Label>
+                                                        <small><asp:Label ID="tanggalDaftar3" runat="server"></asp:Label></small>
+                                                    </h4>
+                                                    <p>
+                                                        <asp:Label ID="pekerjaan3" runat="server"></asp:Label>
+                                                    </p>
                                                 </a>
                                             </li>
                                             <!-- end message -->
@@ -72,18 +103,20 @@
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
+                                    <i class="fa fa-flag-o"></i>
+                                    <span class="label label-danger">10</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
+                                    <li class="header"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Pemberitahuan</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i>5 new members joined today
-                                                </a>
+                                                <asp:LinkButton ID="btnNotification" OnClick="manageUser_Click" runat="server">
+                                                    <i class="fa fa-users text-aqua" style="color: black">&nbsp; 
+                                                        <asp:Label ID="notifMemberBaru" Style="font-family: 'Source Sans Pro',sans-serif; color: black" runat="server"></asp:Label>
+                                                    </i>
+                                                </asp:LinkButton>
                                             </li>
                                         </ul>
                                     </li>
@@ -125,17 +158,18 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="admin-lte/img/lul.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Ferry Wiranto</span>
+                                    <asp:Image ID="profileImage_dropdown" CssClass="user-image" src="" runat="server" />
+                                    <span class="hidden-xs">
+                                        <asp:Label ID="labelNama2" runat="server"></asp:Label></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="admin-lte/img/lul.jpg" class="img-circle" alt="User Image"/>
-
+                                        <asp:Image ID="profileSideBar" CssClass="img-circle" src="" runat="server" />
                                         <p>
-                                            Ferry Wiranto - Web Developer
-                  <small>Member since Nov. 2018</small>
+                                            <asp:Label ID="labelNama3" runat="server"></asp:Label>
+                                            - Web Developer
+                  <small>Enjoying Here</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -183,10 +217,12 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="admin-lte/img/lul.jpg" class="img-circle" alt="User Image"/>
+                            <asp:Image ID="sidebarProfile" CssClass="img-circle" src="" runat="server" />
                         </div>
                         <div class="pull-left info">
-                            <p>Ferry Wiranto, S Kom</p>
+                            <p>
+                                <asp:Label ID="labelNama" runat="server"></asp:Label>
+                            </p>
                             <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
                         </div>
                     </div>
@@ -199,6 +235,7 @@
                                 <i class="fa fa-dashboard"></i><span>Dashboard</span>
                             </asp:LinkButton>
                         </li>
+
                         <li class="treeview" id="menu_kategori_berita" runat="server">
                             <a href="#">
                                 <i class="fa fa-paper-plane"></i>
@@ -292,9 +329,12 @@
                                 </ul>
                             </li>
                         </li>
-                        <li class="treeview" id="Li1" runat="server">
-                            <asp:LinkButton ID="LinkButton2" runat="server">
-                                <i class="fa fa-dashboard"></i><span>Management Konten</span>
+                        <li id="pengguna" runat="server">
+                            <asp:LinkButton ID="LinkButton3" runat="server" OnClick="manageUser_Click">
+                                <i class="fa fa-book" runat="server"></i><span>Manage Pengguna</span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-green">person</small>
+                            </span>
                             </asp:LinkButton>
                         </li>
 

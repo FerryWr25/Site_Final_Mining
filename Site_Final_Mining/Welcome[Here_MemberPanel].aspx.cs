@@ -4,18 +4,31 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Site_Final_Mining.Model;
+using System.Data;
 
 namespace Site_Final_Mining
 {
     public partial class Welcome_Here_Member_ : System.Web.UI.Page
     {
+        private connectionClass con;
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["Member"] != null)
             {
                 ViewState["userControl"] = "~/UDC/Member/Dashboard.ascx";
                 this.loadControl(ViewState["userControl"].ToString(), false);
-            } else
+                sidebarProfile.Attributes["src"] = getPathIMage();
+                profileImage.Attributes["src"] = getPathIMage();
+                profileImage_dropdown.Attributes["src"] = getPathIMage();
+                profileSideBar.Attributes["src"] = getPathIMage();
+                labelNama.Text = getName();
+                labelNama2.Text = getName();
+                labelNama3.Text = getName();
+
+            }
+            else
             {
                 Response.Redirect("Site[Please_Login].aspx");
             }
@@ -28,6 +41,25 @@ namespace Site_Final_Mining
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(ctrl);
         }
+        public string getName()
+        {
+            string name = null;
+            this.con = new connectionClass();
+            string query = "select \"namaPengguna\" from public.\"user\" where email='" + Session["Member"] + "'";
+            DataTable data = this.con.getResult(query);
+            name = data.Rows[0]["namaPengguna"].ToString();
+            return name;
+        }
+        public string getPathIMage()
+        {
+            string path = null;
+            this.con = new connectionClass();
+            string query = "select path_photo from public.\"user\" where email='" + Session["Member"] + "'";
+            DataTable data = this.con.getResult(query);
+            path = "admin-lte/img/" + data.Rows[0]["path_photo"].ToString();
+            return path;
+        }
+
         protected void keluar_Click(object sender, EventArgs e)
         {
             Session.Remove("Member");

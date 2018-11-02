@@ -43,10 +43,15 @@
                             <asp:LinkButton CssClass="nav-link" ID="vsmKlik" OnClick="VSM_Click" runat="server">
                       VSM</asp:LinkButton>
                         </li>
+                        <li class="nav-item" id="Li1" runat="server">
+                            <asp:LinkButton CssClass="nav-link" ID="registerKlik" OnClick="register_Click" runat="server">
+                      Daftar</asp:LinkButton>
+                        </li>
                         <li class="nav-item" id="menuLogin" runat="server">
                             <asp:LinkButton CssClass="nav-link" ID="loginKlik" OnClick="loginClick" runat="server">
                       Login</asp:LinkButton>
                         </li>
+
                     </ul>
                 </div>
             </div>

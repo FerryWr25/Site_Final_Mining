@@ -22,8 +22,6 @@ namespace Site_Final_Mining.UDC.Login
         }
         private void getDataUser(string email, string password)
         {
-
-
             this.con = new connectionClass();
             string query = "SELECT * FROM public.user " +
                 "WHERE email = '" + email + "' " +
@@ -38,13 +36,13 @@ namespace Site_Final_Mining.UDC.Login
                 if (result.Rows[0]["level"].ToString().Equals("1"))
                 {
                     Session.Remove("Member");
-                    Session["Admin"] = "online";
+                    Session["Admin"] = email;
                     Response.Redirect("Welcome[Here_AdminPanel].aspx");
                 }
                 else
                 {
                     Session.Remove("Admin");
-                    Session["Member"] = "online";
+                    Session["Member"] = email;
                     Response.Redirect("Welcome[Here_MemberPanel].aspx");
                 }
             }

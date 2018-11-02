@@ -13,6 +13,51 @@ namespace Site_Final_Mining {
     public partial class Welcome_Here_Member_ {
         
         /// <summary>
+        /// profileImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image profileImage;
+        
+        /// <summary>
+        /// profileImage_dropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image profileImage_dropdown;
+        
+        /// <summary>
+        /// labelNama2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelNama2;
+        
+        /// <summary>
+        /// profileSideBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image profileSideBar;
+        
+        /// <summary>
+        /// labelNama3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelNama3;
+        
+        /// <summary>
         /// btn_Profile_member control.
         /// </summary>
         /// <remarks>
@@ -29,6 +74,24 @@ namespace Site_Final_Mining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnKeluar_dashAdmin;
+        
+        /// <summary>
+        /// sidebarProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image sidebarProfile;
+        
+        /// <summary>
+        /// labelNama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelNama;
         
         /// <summary>
         /// menu_dashboard control.

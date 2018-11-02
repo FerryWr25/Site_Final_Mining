@@ -53,6 +53,13 @@ namespace Site_Final_Mining
                     menuHome.Attributes["class"] = "";
                     menuLogin.Attributes["class"] = "";
                     break;
+                case "Register":
+                    menuVSM.Attributes["class"] = "";
+                    menuIR.Attributes["class"] = "";
+                    menuKlasifikasi.Attributes["class"] = "";
+                    menuHome.Attributes["class"] = "";
+                    menuLogin.Attributes["class"] = "";
+                    break;
             }
         }
 
@@ -91,6 +98,12 @@ namespace Site_Final_Mining
         {
             changeActiveMenu("home");
             ViewState["userControl"] = "~/UDC/Guest/homeGuest.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+        }
+        protected void register_Click(object sender, EventArgs e)
+        {
+            changeActiveMenu("Register");
+            ViewState["userControl"] = "~/UDC/Guest/Register.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
     }
