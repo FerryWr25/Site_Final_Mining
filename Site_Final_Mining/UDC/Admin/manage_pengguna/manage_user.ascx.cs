@@ -15,21 +15,23 @@ namespace Site_Final_Mining.UDC.Admin.manage_pengguna
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
             this.con = new connectionClass();
             this.con.openConnection();
             DataTable pengguna = this.con.getResult("SELECT * FROM public.user_register order by \"tanggalDaftar\" asc ;");
             for (int i = 0; i < pengguna.Rows.Count; i++)
             {
                 pengguna.Rows[i]["pathPhoto"] = "~/admin-lte/img/" + pengguna.Rows[i]["pathPhoto"].ToString();
+                this.tabelPendaftar.DataSource = pengguna;
+                this.tabelPendaftar.DataBind();
             }
-            this.tabelPendaftar.DataSource = pengguna;
+            
+        }
+        protected void nextView(object sender , GridViewPageEventArgs fer)
+        {
+            this.tabelPendaftar.PageIndex = fer.NewPageIndex;
             this.tabelPendaftar.DataBind();
         }
 
-        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.tabelPendaftar.PageIndex = e.NewPageIndex;
-            this.tabelPendaftar.DataBind();
-        }
     }
 }

@@ -14,12 +14,17 @@ namespace Site_Final_Mining
         private connectionClass con;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ViewState["userControl"] = "~/UDC/Admin/Dashboard.ascx";
-            this.loadControl(ViewState["userControl"].ToString(), false);
             if (Session["Admin"] != null)
             {
+                if (ViewState["userControl"] == null)
+                {
+                    ViewState["userControl"] = "~/UDC/Admin/Dashboard.ascx";
+                    this.loadControl(ViewState["userControl"].ToString(), false);
+                } else
+                {
+                    this.loadControl(ViewState["userControl"].ToString(), true);
+                }
                 sidebarProfile.Attributes["src"] = getPathIMage();
-
                 profileImage_dropdown.Attributes["src"] = getPathIMage();
                 profileSideBar.Attributes["src"] = getPathIMage();
                 labelNama.Text = getName();
@@ -38,18 +43,39 @@ namespace Site_Final_Mining
                 profileImage2.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[1]["pathPhoto"].ToString();
                 profileImage3.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[2]["pathPhoto"].ToString();
 
-                Nama1.Text = MemberBaru.Rows[0]["nama"].ToString();
-                Nama2.Text = MemberBaru.Rows[1]["nama"].ToString();
-                Nama3.Text = MemberBaru.Rows[2]["nama"].ToString();
+                if (MemberBaru.Rows[0]["nama"].ToString().Length > 15)
+                {
+                    Nama1.Text = MemberBaru.Rows[0]["nama"].ToString().Remove(15);
+                    if (MemberBaru.Rows[1]["nama"].ToString().Length > 15)
+                    {
+                        Nama2.Text = MemberBaru.Rows[1]["nama"].ToString().Remove(15);
+                        if (MemberBaru.Rows[2]["nama"].ToString().Length > 15)
+                        {
+                            Nama3.Text = MemberBaru.Rows[2]["nama"].ToString().Remove(15);
+                        }
+                        else
+                        {
+                            Nama3.Text = MemberBaru.Rows[2]["nama"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Nama2.Text = MemberBaru.Rows[1]["nama"].ToString();
+                    }
+
+                }
+                else
+                {
+                    Nama1.Text = MemberBaru.Rows[0]["nama"].ToString();
+                }
 
                 pekerjaan1.Text = MemberBaru.Rows[0]["pekerjaan"].ToString();
                 pekerjaan2.Text = MemberBaru.Rows[1]["pekerjaan"].ToString();
                 pekerjaan3.Text = MemberBaru.Rows[2]["pekerjaan"].ToString();
 
-                tanggalDaftar1.Text = MemberBaru.Rows[0]["tanggalDaftar"].ToString();
-                tanggalDaftar2.Text = MemberBaru.Rows[1]["tanggalDaftar"].ToString();
-                tanggalDaftar3.Text = MemberBaru.Rows[2]["tanggalDaftar"].ToString();
-
+                tanggalDaftar1.Text = MemberBaru.Rows[0]["tanggalDaftar"].ToString().Remove(10);
+                tanggalDaftar2.Text = MemberBaru.Rows[1]["tanggalDaftar"].ToString().Remove(10);
+                tanggalDaftar3.Text = MemberBaru.Rows[2]["tanggalDaftar"].ToString().Remove(10);
 
             }
             else
@@ -206,22 +232,21 @@ namespace Site_Final_Mining
                     kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
                     break;
                 case "pengguna":
-                    menu_dashboard.Attributes["class"] = "";
-                    menu_all_konten_berita.Attributes["class"] = "";
-                    menu_dashboard.Attributes["class"] = "";
-                    menu_all_konten_berita.Attributes["class"] = "";
-                    menu_kategori_berita.Attributes["class"] = "treeview menu";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
                     pengguna.Attributes["class"] = "active";
+                    menu_dashboard.Attributes["class"] = "";
+                    menu_all_konten_berita.Attributes["class"] = "";
+                    menu_kategori_berita.Attributes["class"] = "treeview";
+                    kategori_berita_olahraga.Attributes["class"] = "";
+                    kategori_berita_pemerintahan.Attributes["class"] = "";
+                    kategori_berita_bencana_alam.Attributes["class"] = "";
+                    kategori_berita_kecelakaan.Attributes["class"] = "";
+                    kategori_berita_kejahatan.Attributes["class"] = "";
+                    kategori_berita_lain_lainnya.Attributes["class"] = "";
                     break;
             }
         }
-        protected void manageUser_Click(object sender, EventArgs e)
+
+        public void loadDetailAnggota(string member_id)
         {
             changeActiveMenu("pengguna");
             Control manageeUser = Page.LoadControl("~/UDC/Admin/manage_pengguna/manage_user.ascx");
@@ -230,7 +255,6 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/manage_pengguna/manage_user.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-
         protected void olahraga_Click(object sender, EventArgs e)
         {
             changeActiveMenu("kategoriOlahraga");
@@ -252,6 +276,11 @@ namespace Site_Final_Mining
         protected void dashBoard_click(object sender, EventArgs e)
         {
             changeActiveMenu("dashBoard");
+            Control dashboard = Page.LoadControl("~/UDC/Admin/Dashboard.ascx");
+            Content_Admin.Controls.Clear();
+            Content_Admin.Controls.Add(dashboard);
+            ViewState["userControl"] = "~/UDC/Admin/Dashboard.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
         }
         protected void bencana_Click(object sender, EventArgs e)
         {
@@ -305,6 +334,15 @@ namespace Site_Final_Mining
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(profile);
             ViewState["userControl"] = "~/UDC/Admin/profile/adminProfile.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+        }
+        protected void manageUser_Click(object sender, EventArgs e)
+        {
+            changeActiveMenu("pengguna");
+            Control manageeUser = Page.LoadControl("~/UDC/Admin/manage_pengguna/manage_user.ascx");
+            Content_Admin.Controls.Clear();
+            Content_Admin.Controls.Add(manageeUser);
+            ViewState["userControl"] = "~/UDC/Admin/manage_pengguna/manage_user.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
     }

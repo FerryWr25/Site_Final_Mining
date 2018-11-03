@@ -47,7 +47,7 @@
                                     <span class="label label-warning">4</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">Pendftar baru</li>
+                                    <li class="header"><i class="fa fa-info-circle"></i>&nbsp; Pendaftar baru</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
@@ -107,7 +107,7 @@
                                     <span class="label label-danger">10</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Pemberitahuan</li>
+                                    <li class="header"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:red"></i>&nbsp; Pemberitahuan</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
