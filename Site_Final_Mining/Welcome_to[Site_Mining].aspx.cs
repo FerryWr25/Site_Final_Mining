@@ -102,9 +102,7 @@ namespace Site_Final_Mining
         }
         protected void register_Click(object sender, EventArgs e)
         {
-            changeActiveMenu("Register");
-            ViewState["userControl"] = "~/UDC/Guest/Register.ascx";
-            this.loadControl(ViewState["userControl"].ToString(), false);
+            Response.Redirect("Pendaftaran[Welcome_Here].aspx");
         }
     }
 }

@@ -44,7 +44,7 @@
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">4</span>
+                                    <span class="label label-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="header"><i class="fa fa-info-circle"></i>&nbsp; Pendaftar baru</li>
@@ -104,7 +104,8 @@
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">10</span>
+                                    <span class="label label-danger">
+                                        <asp:Label ID="notif_jmlPendaftar" runat="server"></asp:Label></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="header"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:red"></i>&nbsp; Pemberitahuan</li>
@@ -331,9 +332,9 @@
                         </li>
                         <li id="pengguna" runat="server">
                             <asp:LinkButton ID="LinkButton3" runat="server" OnClick="manageUser_Click">
-                                <i class="fa fa-book" runat="server"></i><span>Manage Pengguna</span>
+                               <i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Manage Pengguna</span>
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-green">person</small>
+                                <small class="label pull-right bg-green"><i class="fa fa-address-card" aria-hidden="true"></i></small>
                             </span>
                             </asp:LinkButton>
                         </li>

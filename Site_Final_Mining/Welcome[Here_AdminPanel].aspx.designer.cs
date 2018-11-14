@@ -121,6 +121,15 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.Label pekerjaan3;
         
         /// <summary>
+        /// notif_jmlPendaftar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label notif_jmlPendaftar;
+        
+        /// <summary>
         /// btnNotification control.
         /// </summary>
         /// <remarks>

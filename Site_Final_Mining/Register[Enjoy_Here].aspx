@@ -197,11 +197,10 @@
                             </div>
                             <div class="box-footer" style="background-color: #ecf0f5">
                                 <div class="pull-right">
-                                    <button type="reset" class="btn btn-danger">Reset</button>
                                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" type="submit" OnClick="submit_Clik" />
                                 </div>
                                 <div class="pull-left">
-                                    <asp:Button ID="btnKembali" runat="server" Text="Kembali" CssClass="btn btn-danger" type="submit" OnClick="kembali_click" />
+                                    <asp:Button ID="btnKembali" runat="server" Text="Kembali" CssClass="btn btn-danger" type="button" OnClick="kembali_click" />
                                 </div>
                             </div>
                             <!-- /.box-body -->

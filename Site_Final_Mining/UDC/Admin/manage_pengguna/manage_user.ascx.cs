@@ -16,6 +16,7 @@ namespace Site_Final_Mining.UDC.Admin.manage_pengguna
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
+            Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             this.con = new connectionClass();
             this.con.openConnection();
             DataTable pengguna = this.con.getResult("SELECT * FROM public.user_register order by \"tanggalDaftar\" asc ;");

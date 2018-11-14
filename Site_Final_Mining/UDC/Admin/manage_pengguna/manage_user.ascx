@@ -13,7 +13,7 @@
 <section class="content">
     <div class="row">
     <div class="col-md-12" id="aktivitas" runat="server">
-        <div class="box box-primary box-solid" style="border-color:floralwhite">
+        <div class="box box-primary box-solid">
             <!-- /.box-header -->
             <div class="box-body">
                     <div class="col-md-12">

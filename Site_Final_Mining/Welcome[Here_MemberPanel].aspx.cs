@@ -45,7 +45,7 @@ namespace Site_Final_Mining
         {
             string name = null;
             this.con = new connectionClass();
-            string query = "select \"namaPengguna\" from public.\"user\" where email='" + Session["Member"] + "'";
+            string query = "select \"namaPengguna\" from public.\"userFix\" where email='" + Session["Member"] + "'";
             DataTable data = this.con.getResult(query);
             name = data.Rows[0]["namaPengguna"].ToString();
             return name;
@@ -54,7 +54,7 @@ namespace Site_Final_Mining
         {
             string path = null;
             this.con = new connectionClass();
-            string query = "select path_photo from public.\"user\" where email='" + Session["Member"] + "'";
+            string query = "select path_photo from public.\"userFix\" where email='" + Session["Member"] + "'";
             DataTable data = this.con.getResult(query);
             path = "admin-lte/img/" + data.Rows[0]["path_photo"].ToString();
             return path;

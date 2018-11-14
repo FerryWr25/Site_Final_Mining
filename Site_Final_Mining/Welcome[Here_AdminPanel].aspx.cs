@@ -42,7 +42,7 @@ namespace Site_Final_Mining
                 profileImage1.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[0]["pathPhoto"].ToString();
                 profileImage2.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[1]["pathPhoto"].ToString();
                 profileImage3.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[2]["pathPhoto"].ToString();
-
+                notif_jmlPendaftar.Text = pengguna.Rows[0]["cek_notVerified"].ToString();
                 if (MemberBaru.Rows[0]["nama"].ToString().Length > 15)
                 {
                     Nama1.Text = MemberBaru.Rows[0]["nama"].ToString().Remove(15);

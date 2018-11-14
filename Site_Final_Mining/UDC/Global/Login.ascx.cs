@@ -23,7 +23,7 @@ namespace Site_Final_Mining.UDC.Login
         private void getDataUser(string email, string password)
         {
             this.con = new connectionClass();
-            string query = "SELECT * FROM public.user " +
+            string query = "SELECT * FROM public.\"userFix\"" +
                 "WHERE email = '" + email + "' " +
                 "AND password = '" + password + "';";
             DataTable result = this.con.getResult(query);
