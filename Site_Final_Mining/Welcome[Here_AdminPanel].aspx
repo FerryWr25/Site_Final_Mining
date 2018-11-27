@@ -44,10 +44,10 @@
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+                                    <span class="label label-warning"><asp:Label ID="notif_jmlPendaftar" runat="server"></asp:Label></span></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header"><i class="fa fa-info-circle"></i>&nbsp; Pendaftar baru</li>
+                                    <li class="header"><i class="fa fa-info-circle"></i>&nbsp; Member baru</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
@@ -97,34 +97,11 @@
                                             <!-- end message -->
                                         </ul>
                                     </li>
-                                    <li class="footer"><a href="#">See All Messages</a></li>
+                                    <li class="footer">
+                                        <asp:LinkButton ID="lihatSemua_member" OnClick="manageUser_Click" Text="Lihat Semua Member" runat="server"></asp:LinkButton></li>
                                 </ul>
                             </li>
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">
-                                        <asp:Label ID="notif_jmlPendaftar" runat="server"></asp:Label></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:red"></i>&nbsp; Pemberitahuan</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <asp:LinkButton ID="btnNotification" OnClick="manageUser_Click" runat="server">
-                                                    <i class="fa fa-users text-aqua" style="color: black">&nbsp; 
-                                                        <asp:Label ID="notifMemberBaru" Style="font-family: 'Source Sans Pro',sans-serif; color: black" runat="server"></asp:Label>
-                                                    </i>
-                                                </asp:LinkButton>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
-                            <!-- Tasks: style can be found in dropdown.less -->
                             <li class="dropdown tasks-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-flag-o"></i>
@@ -332,7 +309,7 @@
                         </li>
                         <li id="pengguna" runat="server">
                             <asp:LinkButton ID="LinkButton3" runat="server" OnClick="manageUser_Click">
-                               <i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Manage Pengguna</span>
+                               <i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Pengguna</span>
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-green"><i class="fa fa-address-card" aria-hidden="true"></i></small>
                             </span>

@@ -15,8 +15,8 @@ namespace Site_Final_Mining.UDC.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             this.con = new connectionClass();
-            DataTable pengguna = this.con.getResult("SELECT count(*) as jmlhPengguna FROM public.\"user\";");
-            jml_userActive.Text = pengguna.Rows[0]["jmlhPengguna"].ToString();
+            DataTable pengguna = this.con.getResult("SELECT count(*) as get FROM public.\"userFix\" where level='2';");
+            jml_userActive.Text = pengguna.Rows[0]["get"].ToString();
         }
 
     }

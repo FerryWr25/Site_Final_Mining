@@ -19,10 +19,11 @@ namespace Site_Final_Mining.UDC.Admin.manage_pengguna
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             this.con = new connectionClass();
             this.con.openConnection();
-            DataTable pengguna = this.con.getResult("SELECT * FROM public.user_register order by \"tanggalDaftar\" asc ;");
+            DataTable pengguna = this.con.getResult("SELECT uf.\"namaPengguna\", uf.email, ur.pekerjaan, uf.path_photo,  " +
+                "ur.alamat, ur.\"tanggalDaftar\" FROM public.\"userFix\" uf join public.\"user_register\" ur on (uf.email=ur.email);");
             for (int i = 0; i < pengguna.Rows.Count; i++)
             {
-                pengguna.Rows[i]["pathPhoto"] = "~/admin-lte/img/" + pengguna.Rows[i]["pathPhoto"].ToString();
+                pengguna.Rows[i]["path_photo"] = "~/admin-lte/img/" + pengguna.Rows[i]["path_photo"].ToString();
                 this.tabelPendaftar.DataSource = pengguna;
                 this.tabelPendaftar.DataBind();
             }

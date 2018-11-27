@@ -62,7 +62,7 @@
             <div class="small-box bg-red">
                <div class="inner">
                     <h3>
-                        <asp:Label ID="jml_userActive" runat="server" Text="Label"></asp:Label> <sup style="font-size: 12px"> User</sup></h3>
+                        <asp:Label ID="jml_userActive" runat="server" Text="Label"></asp:Label> <sup style="font-size: 12px"> Pengguna</sup></h3>
                     <p>User Active</p>
                 </div>
                 <div class="icon">

@@ -13,6 +13,15 @@ namespace Site_Final_Mining {
     public partial class Welcome_Here_AdminPanel_ {
         
         /// <summary>
+        /// notif_jmlPendaftar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label notif_jmlPendaftar;
+        
+        /// <summary>
         /// profileImage1 control.
         /// </summary>
         /// <remarks>
@@ -121,31 +130,13 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.Label pekerjaan3;
         
         /// <summary>
-        /// notif_jmlPendaftar control.
+        /// lihatSemua_member control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label notif_jmlPendaftar;
-        
-        /// <summary>
-        /// btnNotification control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNotification;
-        
-        /// <summary>
-        /// notifMemberBaru control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label notifMemberBaru;
+        protected global::System.Web.UI.WebControls.LinkButton lihatSemua_member;
         
         /// <summary>
         /// profileImage_dropdown control.
