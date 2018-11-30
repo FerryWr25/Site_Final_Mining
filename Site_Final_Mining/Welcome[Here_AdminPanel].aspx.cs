@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Site_Final_Mining.Model;
+using Site_Final_Mining.UDC;
 using System.Data;
+using Site_Final_Mining.UDC.Admin.allBerita;
 
 namespace Site_Final_Mining
 {
@@ -346,10 +348,10 @@ namespace Site_Final_Mining
         protected void allBerita_Click(object sender, EventArgs e)
         {
             changeActiveMenu("allBerita");
-            Control allberita = Page.LoadControl("~/UDC/Global/allSitus_Berita.ascx");
+            Control allberita = Page.LoadControl("~/UDC/Admin/allBerita/allDokumen_Berita.ascx");
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(allberita);
-            ViewState["userControl"] = "~/UDC/Global/allSitus_Berita.ascx";
+            ViewState["userControl"] = "~/UDC/Admin/allBerita/allDokumen_Berita.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
         protected void dashBoard_click(object sender, EventArgs e)
@@ -423,6 +425,12 @@ namespace Site_Final_Mining
             Content_Admin.Controls.Add(manageeUser);
             ViewState["userControl"] = "~/UDC/Admin/manage_pengguna/manage_user.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
+        }
+        public void detailBeritaNya(string idBerita)
+        {
+            ViewState["userControl"] = "~/UDC/Admin/allberita/detailBerita.ascx";
+            detailBerita dtl = (detailBerita)Content_Admin.Controls[0];
+            dtl.setPage(idBerita);
         }
     }
 }

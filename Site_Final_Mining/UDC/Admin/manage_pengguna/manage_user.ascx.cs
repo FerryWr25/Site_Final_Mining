@@ -35,5 +35,6 @@ namespace Site_Final_Mining.UDC.Admin.manage_pengguna
             this.tabelPendaftar.DataBind();
         }
 
+
     }
 }

@@ -25,6 +25,11 @@
                                 <div class="table-responsive" style="background: white !important;">
                                     <asp:GridView ID="tabelPendaftar" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak Ada Pendaftar" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="5" PagerSettings-PageButtonCount="5" PagerSettings-Mode="NumericFirstLast">
                                         <Columns>
+                                            <asp:TemplateField HeaderText="No" ItemStyle-Width="30" ItemStyle-HorizontalAlign="Justify">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                                                    </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="namaPengguna" HeaderText="Nama Pengguna" />
                                             <asp:BoundField DataField="email" HeaderText="Email" />
                                             <asp:BoundField DataField="pekerjaan" HeaderText="Pekerjaan" />

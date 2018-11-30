@@ -2218,6 +2218,8 @@
     <Content Include="Scripts\js_sidebar\jquery\src\wrap.js" />
     <Content Include="Scripts\raphael.min.js" />
     <Content Include="Site[Please_Login].aspx" />
+    <Content Include="UDC\Admin\allBerita\allDokumen_Berita.ascx" />
+    <Content Include="UDC\Admin\allBerita\detailBerita.ascx" />
     <Content Include="UDC\Admin\Dashboard.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriBencana.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriKecelakaan.ascx" />
@@ -2505,6 +2507,7 @@
     <Content Include="Other_component\sweetAlert\LICENSE" />
     <Content Include="Other_component\sweetAlert\package.json" />
     <Content Include="Other_component\sweetAlert\README.md" />
+    <Content Include="dokumenBerita\konten.json" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2560,6 +2563,20 @@
     </Compile>
     <Compile Include="Site[Please_Login].aspx.designer.cs">
       <DependentUpon>Site[Please_Login].aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Admin\allBerita\allDokumen_Berita.ascx.cs">
+      <DependentUpon>allDokumen_Berita.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Admin\allBerita\allDokumen_Berita.ascx.designer.cs">
+      <DependentUpon>allDokumen_Berita.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Admin\allBerita\detailBerita.ascx.cs">
+      <DependentUpon>detailBerita.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Admin\allBerita\detailBerita.ascx.designer.cs">
+      <DependentUpon>detailBerita.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Admin\Dashboard.ascx.cs">
       <DependentUpon>Dashboard.ascx</DependentUpon>
@@ -2789,7 +2806,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configure_API\" />
     <Folder Include="Other_component\font_register\" />
   </ItemGroup>
   <PropertyGroup>
