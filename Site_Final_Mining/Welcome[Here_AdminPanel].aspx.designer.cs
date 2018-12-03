@@ -373,6 +373,15 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu_calender;
         
         /// <summary>
+        /// btnActivity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnActivity;
+        
+        /// <summary>
         /// statistic_berita control.
         /// </summary>
         /// <remarks>

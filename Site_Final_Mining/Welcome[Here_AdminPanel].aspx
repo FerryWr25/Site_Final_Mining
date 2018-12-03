@@ -15,6 +15,110 @@
     <link href="admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
     <!--chart -->
     <script src="chart/js/Chart.min.js"></script>
+    <style>
+        /* This element would be replaced by where you want the templates. */
+        body {
+            font-family: Arial,sans-serif;
+            color: #292f33;
+        }
+
+        .tweetEntry-tweetHolder {
+            border-left: 1px solid #e1e8ed;
+            border-right: 1px solid #e1e8ed;
+            border-top: 1px solid #e1e8ed;
+            width: 1000px;
+            margin: auto;
+            border-radius: 5px;
+        }
+
+        /* The action list is optional. */
+        .tweetEntry-action-list {
+            display: block;
+            line-height: 18px;
+            margin-left: 58px;
+            margin-top: 10px;
+            color: #292f33;
+        }
+
+        .fa-reply:hover {
+            color: #292f33;
+        }
+
+        .fa-thumbs-o-down:hover {
+            color: blue;
+        }
+
+        .fa-heart:hover {
+            color: #ff3333;
+        }
+        /************************/
+
+        .tweetEntry {
+            border-bottom: 1px solid #e1e8ed;
+            cursor: pointer;
+            min-height: 51px;
+            padding: 9px 12px;
+        }
+
+        .tweetEntry-content {
+            display: block;
+            font-size: 14px;
+            margin-left: 58px;
+            font-size: 14px;
+        }
+
+        .tweetEntry-account-group {
+            color: #8899a6;
+            padding: 0px;
+            text-decoration: none;
+            line-height: 20px;
+        }
+
+        .tweetEntry-avatar {
+            float: left;
+            height: 48px;
+            width: 48px;
+            margin-left: -58px;
+            border-radius: 5px;
+        }
+
+        .tweetEntry-fullname {
+            font-weight: bold;
+            font-size: 14px;
+            color: #292f33;
+            padding: 0px;
+        }
+
+        .tweetEntry-username {
+            font-weight: bold;
+            font-size: 14px;
+            color: #b1bbc3;
+            padding: 0px;
+        }
+
+        .tweetEntry-timestamp {
+            font-size: 14px;
+            color: #b1bbc3;
+            padding: 0px;
+        }
+
+        .tweetEntry-text-container {
+            font-size: 14px;
+            color: #292f33;
+            line-height: 18px;
+        }
+
+        .optionalMedia {
+            margin-left: 58px;
+            margin-top: 10px;
+        }
+
+        .optionalMedia-img {
+            border-radius: 5px;
+            max-width: 506px;
+            max-height: 506px;
+        }
+    </style>
 </head>
 <body class="hold-transition skin-blue fixed sidebar-mini">
     <form runat="server">
@@ -44,7 +148,8 @@
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning"><asp:Label ID="notif_jmlPendaftar" runat="server"></asp:Label></span></span>
+                                    <span class="label label-warning">
+                                        <asp:Label ID="notif_jmlPendaftar" runat="server"></asp:Label></span></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="header"><i class="fa fa-info-circle"></i>&nbsp; Member baru</li>
@@ -87,7 +192,8 @@
                                                     </div>
                                                     <h4>
                                                         <asp:Label ID="Nama3" runat="server"></asp:Label>
-                                                        <small><asp:Label ID="tanggalDaftar3" runat="server"></asp:Label></small>
+                                                        <small>
+                                                            <asp:Label ID="tanggalDaftar3" runat="server"></asp:Label></small>
                                                     </h4>
                                                     <p>
                                                         <asp:Label ID="pekerjaan3" runat="server"></asp:Label>
@@ -264,13 +370,13 @@
                             </asp:LinkButton>
                         </li>
                         <li id="menu_calender" runat="server">
-                            <a href="#">
+                            <asp:LinkButton ID="btnActivity" runat="server" OnClick="feedActivity_Click">
                                 <i class="fa fa-calendar"></i><span>Feed Activity</span>
                                 <span class="pull-right-container">
                                     <small class="label pull-right bg-red">3</small>
                                     <small class="label pull-right bg-blue">17</small>
                                 </span>
-                            </a>
+                            </asp:LinkButton>
                         </li>
                         <li class="treeview" id="statistic_berita" runat="server">
                             <a href="#">

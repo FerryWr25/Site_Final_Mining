@@ -37,7 +37,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <!-- isi table -->
                             <div class="box">
                                 <!-- /.box-header -->
@@ -45,20 +45,13 @@
                                     <div class="table-responsive" style="background: white !important;">
                                         <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak Ada Berita" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="10" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
                                             <Columns>
-                                                <asp:TemplateField HeaderText="No" ItemStyle-Width="30" ItemStyle-HorizontalAlign="Justify">
+                                                <asp:TemplateField ItemStyle-Width="1000" ItemStyle-HorizontalAlign="Justify">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField HeaderText="Judul Berita" DataField="title">
-                                                    <HeaderStyle HorizontalAlign="Center" />
-                                                </asp:BoundField>
-                                                <asp:BoundField DataField="site_name" HeaderText="Sumber Berita" />
-                                                <asp:BoundField DataField="author" HeaderText="Penulis" />
-                                                <asp:BoundField DataField="date" HeaderText="Tanggal Publikasi" />
-                                                <asp:TemplateField HeaderText="Aksi" ShowHeader="False">
-                                                    <ItemTemplate>
-                                                        <asp:Button ID="btnDetail" runat="server" Text="Read more" CommandArgument='<%# Eval("id") %>' CssClass="btn btn-success btn-sm" CausesValidation="false"></asp:Button>
+                                                        <asp:Label ID="judul" runat="server" Font-Bold="true" Font-Size="16"><%# Eval("title")%></asp:Label><br/>
+                                                        <asp:Label ID="konten" runat="server"><%# Eval("news") %></asp:Label><br /><br/>
+                                                        <asp:Label ID="SumberBerita" runat="server"><span class="label label-success"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<%# Eval("site_name") %></span></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <asp:Label ID="penulis"  runat="server"><span class="label label-primary"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;<%# Eval("author") %></span></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <asp:Label ID="tanggal" runat="server" Font-Bold="true" ForeColor="#cccccc"><span class="label label-warning"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Terbit: <%# Eval("date")%></span></asp:Label><br />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
@@ -71,63 +64,6 @@
                         </div>
 
                         <!-- /.isi box sebelah tabel -->
-                        <div class="col-md-3">
-                            <div class="info-box bg-aqua">
-                                <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Bookmarks</span>
-                                    <span class="info-box-number">41,410</span>
-
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 70%"></div>
-                                    </div>
-                                    <a href="#" class="small-box-footer" style="color: whitesmoke">More info <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <div class="info-box bg-green">
-                                <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Likes</span>
-                                    <span class="info-box-number">41,410</span>
-
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 70%"></div>
-                                    </div>
-                                    <a href="#" class="small-box-footer" style="color: whitesmoke">More info <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <div class="info-box bg-yellow">
-                                <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Events</span>
-                                    <span class="info-box-number">41,410</span>
-
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 70%"></div>
-                                    </div>
-                                    <a href="#" class="small-box-footer" style="color: whitesmoke">More info <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <div class="info-box bg-red">
-                                <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Comments</span>
-                                    <span class="info-box-number">41,410</span>
-
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 70%"></div>
-                                    </div>
-                                    <a href="#" class="small-box-footer" style="color: whitesmoke">More info <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                        </div>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->

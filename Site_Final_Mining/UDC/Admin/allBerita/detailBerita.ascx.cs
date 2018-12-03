@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,11 +14,13 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
-        public void setPage(string idBerita)
+
+        public void setPage(string id)
         {
-
+            contentBerita.InnerHtml = Session["id"].ToString();
         }
+        
     }
 }

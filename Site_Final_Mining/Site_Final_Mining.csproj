@@ -2221,6 +2221,7 @@
     <Content Include="UDC\Admin\allBerita\allDokumen_Berita.ascx" />
     <Content Include="UDC\Admin\allBerita\detailBerita.ascx" />
     <Content Include="UDC\Admin\Dashboard.ascx" />
+    <Content Include="UDC\Admin\feedActivity\feedActivity_Member.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriBencana.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriKecelakaan.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriKejahatan.ascx" />
@@ -2584,6 +2585,13 @@
     </Compile>
     <Compile Include="UDC\Admin\Dashboard.ascx.designer.cs">
       <DependentUpon>Dashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Admin\feedActivity\feedActivity_Member.ascx.cs">
+      <DependentUpon>feedActivity_Member.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Admin\feedActivity\feedActivity_Member.ascx.designer.cs">
+      <DependentUpon>feedActivity_Member.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Admin\kategoriBerita\kategoriBencana.ascx.cs">
       <DependentUpon>kategoriBencana.ascx</DependentUpon>

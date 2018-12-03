@@ -329,7 +329,7 @@ namespace Site_Final_Mining
 
         public void loadDetailAnggota(string member_id)
         {
-            changeActiveMenu("pengguna");
+            changeActiveMenu("allBerita");
             Control manageeUser = Page.LoadControl("~/UDC/Admin/manage_pengguna/manage_user.ascx");
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(manageeUser);
@@ -426,11 +426,21 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/manage_pengguna/manage_user.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
+        protected void feedActivity_Click(object sender, EventArgs e)
+        {
+            changeActiveMenu("pengguna");
+            Control feed = Page.LoadControl("~/UDC/Admin/feedActivity/feedActivity_Member.ascx");
+            Content_Admin.Controls.Clear();
+            Content_Admin.Controls.Add(feed);
+            ViewState["userControl"] = "~/UDC/Admin/feedActivity/feedActivity_Member.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+        }
         public void detailBeritaNya(string idBerita)
         {
             ViewState["userControl"] = "~/UDC/Admin/allberita/detailBerita.ascx";
             detailBerita dtl = (detailBerita)Content_Admin.Controls[0];
             dtl.setPage(idBerita);
         }
+
     }
 }

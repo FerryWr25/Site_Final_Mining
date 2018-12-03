@@ -32,11 +32,11 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             this.tabelBerita.PageIndex = fer.NewPageIndex;
             this.tabelBerita.DataBind();
         }
-        protected void News_Grid_Command(object sender, EventArgs e)
+        protected void detail_Klik(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
-            parent.loadDetailAnggota(btn.CommandArgument);
+            
+
         }
+
     }
 }
