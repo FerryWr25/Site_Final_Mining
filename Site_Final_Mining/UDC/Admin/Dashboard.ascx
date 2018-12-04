@@ -19,13 +19,14 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>100<sup style="font-size: 12px"> Doc</sup></h3>
+                    <h3>
+                        <asp:Label ID="totalTribun" runat="server" Text="Label"></asp:Label><sup style="font-size: 12px"> Doc</sup></h3>
                     <p>TribunNews</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <asp:LinkButton ID="btnShow_Tribun" OnClick="tribunnews_Click" CssClass="small-box-footer" Text="More info" runat="server">More Info <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>
             </div>
         </div>
         <!-- ./col -->
@@ -33,13 +34,14 @@
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 12px"> Doc</sup></h3>
+                    <h3>
+                        <asp:Label ID="TotalDetik" runat="server" Text="Label"></asp:Label><sup style="font-size: 12px"> Doc</sup></h3>
                     <p>Detik.com</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <asp:LinkButton ID="btnShow_Detik" OnClick="detik_Click" CssClass="small-box-footer" Text="More info" runat="server">More Info <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>
             </div>
         </div>
         <!-- ./col -->
@@ -47,13 +49,14 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>25<sup style="font-size: 12px"> Doc</sup></h3>
+                    <h3>
+                        <asp:Label ID="TotalLiputan6" runat="server" Text="Label"></asp:Label><sup style="font-size: 12px"> Doc</sup></h3>
                     <p>Liputan6</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <asp:LinkButton ID="btnShow_Liputan6" OnClick="liputan6_Click" CssClass="small-box-footer" Text="More info" runat="server">More Info <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>
             </div>
         </div>
         <!-- ./col -->
@@ -68,7 +71,7 @@
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <asp:LinkButton ID="bnAnggotaActive" OnClick="anggotaActive_Click" CssClass="small-box-footer" Text="More info" runat="server">More Info <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>
             </div>
         </div>
 

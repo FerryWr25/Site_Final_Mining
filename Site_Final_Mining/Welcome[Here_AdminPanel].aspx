@@ -192,7 +192,7 @@
                                                     </div>
                                                     <h4>
                                                         <asp:Label ID="Nama3" runat="server"></asp:Label>
-                                                        <small>
+                                                        <small><i class="fa fa-clock-o"></i>
                                                             <asp:Label ID="tanggalDaftar3" runat="server"></asp:Label></small>
                                                     </h4>
                                                     <p>
@@ -323,40 +323,25 @@
                         <li class="treeview" id="menu_kategori_berita" runat="server">
                             <a href="#">
                                 <i class="fa fa-paper-plane"></i>
-                                <span>Kategori Berita</span>
+                                <span>Sumber Berita</span>
                                 <span class="pull-right-container">
                                     <span class="label label-primary pull-right">6</span>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="kategori_berita_olahraga" runat="server" class="">
-                                    <asp:LinkButton ID="olahraga" runat="server" OnClick="olahraga_Click">
-                                    <i class="fa fa-genderless"></i>Olahraga
+                                <li id="btn_tribunnews" runat="server" class="">
+                                    <asp:LinkButton ID="olahraga" runat="server" OnClick="tribunnews_Click">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Tribunnews.com
                                     </asp:LinkButton>
                                 </li>
-                                <li id="kategori_berita_pemerintahan" runat="server" class="">
-                                    <asp:LinkButton ID="pemerintahan" runat="server" OnClick="pemerintahan_Click">
-                                    <i class="fa fa-genderless"></i>Pemerintahan
+                                <li id="btn_detik" runat="server" class="">
+                                    <asp:LinkButton ID="pemerintahan" runat="server" OnClick="detik_Click">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Detik.com
                                     </asp:LinkButton>
                                 </li>
-                                <li id="kategori_berita_kejahatan" runat="server" class="">
-                                    <asp:LinkButton ID="kejahatan" runat="server" OnClick="kejahatan_Click">
-                                    <i class="fa fa-genderless"></i>Kejahatan
-                                    </asp:LinkButton>
-                                </li>
-                                <li id="kategori_berita_kecelakaan" runat="server" class="">
-                                    <asp:LinkButton ID="kecelakaan" runat="server" OnClick="kecelakaan_Click">
-                                    <i class="fa fa-genderless"></i>Kecelakaan
-                                    </asp:LinkButton>
-                                </li>
-                                <li id="kategori_berita_bencana_alam" runat="server" class="">
-                                    <asp:LinkButton ID="bencana_alam" runat="server" OnClick="bencana_Click">
-                                <i class="fa fa-genderless"></i>Bencana Alam
-                                    </asp:LinkButton>
-                                </li>
-                                <li id="kategori_berita_lain_lainnya" runat="server" class="">
-                                    <asp:LinkButton ID="lain_lainnya" runat="server" OnClick="lainnya_Click">
-                                    <i class="fa fa-genderless"></i>Lain-lain..
+                                <li id="btn_liputan6" runat="server" class="">
+                                    <asp:LinkButton ID="kejahatan" runat="server" OnClick="liputan6_Click">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Liputan6.com
                                     </asp:LinkButton>
                                 </li>
                             </ul>

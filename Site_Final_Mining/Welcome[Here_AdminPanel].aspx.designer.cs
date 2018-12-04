@@ -238,13 +238,13 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu_kategori_berita;
         
         /// <summary>
-        /// kategori_berita_olahraga control.
+        /// btn_tribunnews control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl kategori_berita_olahraga;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btn_tribunnews;
         
         /// <summary>
         /// olahraga control.
@@ -256,13 +256,13 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.LinkButton olahraga;
         
         /// <summary>
-        /// kategori_berita_pemerintahan control.
+        /// btn_detik control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl kategori_berita_pemerintahan;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btn_detik;
         
         /// <summary>
         /// pemerintahan control.
@@ -274,13 +274,13 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.LinkButton pemerintahan;
         
         /// <summary>
-        /// kategori_berita_kejahatan control.
+        /// btn_liputan6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl kategori_berita_kejahatan;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btn_liputan6;
         
         /// <summary>
         /// kejahatan control.
@@ -290,60 +290,6 @@ namespace Site_Final_Mining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton kejahatan;
-        
-        /// <summary>
-        /// kategori_berita_kecelakaan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl kategori_berita_kecelakaan;
-        
-        /// <summary>
-        /// kecelakaan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton kecelakaan;
-        
-        /// <summary>
-        /// kategori_berita_bencana_alam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl kategori_berita_bencana_alam;
-        
-        /// <summary>
-        /// bencana_alam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bencana_alam;
-        
-        /// <summary>
-        /// kategori_berita_lain_lainnya control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl kategori_berita_lain_lainnya;
-        
-        /// <summary>
-        /// lain_lainnya control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lain_lainnya;
         
         /// <summary>
         /// menu_all_konten_berita control.

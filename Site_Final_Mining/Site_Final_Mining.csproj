@@ -2232,6 +2232,9 @@
     <Content Include="UDC\Admin\profile\adminProfile.ascx" />
     <Content Include="UDC\Global\Alert.ascx" />
     <Content Include="UDC\Global\allSitus_Berita.ascx" />
+    <Content Include="UDC\Global\Filter_Dokumen\Detik.ascx" />
+    <Content Include="UDC\Global\Filter_Dokumen\Liputan6.ascx" />
+    <Content Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx" />
     <Content Include="UDC\Global\Login.ascx" />
     <Content Include="UDC\Guest\homeGuest.ascx" />
     <Content Include="UDC\Guest\InformationRetrieval_page.ascx" />
@@ -2662,6 +2665,27 @@
     </Compile>
     <Compile Include="UDC\Global\allSitus_Berita.ascx.designer.cs">
       <DependentUpon>allSitus_Berita.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\Detik.ascx.cs">
+      <DependentUpon>Detik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\Detik.ascx.designer.cs">
+      <DependentUpon>Detik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\Liputan6.ascx.cs">
+      <DependentUpon>Liputan6.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\Liputan6.ascx.designer.cs">
+      <DependentUpon>Liputan6.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx.cs">
+      <DependentUpon>Tribunnews.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx.designer.cs">
+      <DependentUpon>Tribunnews.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Global\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>

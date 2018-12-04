@@ -8,14 +8,18 @@ using Site_Final_Mining.Model;
 using Site_Final_Mining.UDC;
 using System.Data;
 using Site_Final_Mining.UDC.Admin.allBerita;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Site_Final_Mining
 {
     public partial class Welcome_Here_AdminPanel_ : System.Web.UI.Page
     {
         private connectionClass con;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Session["Admin"] != null)
             {
                 if (ViewState["userControl"] == null)
@@ -56,7 +60,8 @@ namespace Site_Final_Mining
                 if (MemberBaru.Rows[1]["nama"].ToString().Length > 15)
                 {
                     Nama2.Text = MemberBaru.Rows[1]["nama"].ToString().Remove(15);
-                } else
+                }
+                else
                 {
                     Nama2.Text = MemberBaru.Rows[1]["nama"].ToString();
                 }
@@ -205,34 +210,25 @@ namespace Site_Final_Mining
                     menu_dashboard.Attributes["class"] = "active";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview";
-                    kategori_berita_olahraga.Attributes["class"] = "";
-                    kategori_berita_pemerintahan.Attributes["class"] = "";
-                    kategori_berita_bencana_alam.Attributes["class"] = "";
-                    kategori_berita_kecelakaan.Attributes["class"] = "";
-                    kategori_berita_kejahatan.Attributes["class"] = "";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "";
+                    btn_tribunnews.Attributes["class"] = "";
+                    btn_detik.Attributes["class"] = "";
+                    btn_liputan6.Attributes["class"] = "";
                     break;
                 case "allBerita":
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "active";
                     menu_kategori_berita.Attributes["class"] = "treeview";
-                    kategori_berita_olahraga.Attributes["class"] = "";
-                    kategori_berita_pemerintahan.Attributes["class"] = "";
-                    kategori_berita_bencana_alam.Attributes["class"] = "";
-                    kategori_berita_kecelakaan.Attributes["class"] = "";
-                    kategori_berita_kejahatan.Attributes["class"] = "";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "";
+                    btn_tribunnews.Attributes["class"] = "";
+                    btn_detik.Attributes["class"] = "";
+                    btn_liputan6.Attributes["class"] = "";
                     break;
-                case "kategoriOlahraga":
+                case "tribunnews":
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview active";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview active";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
+                    btn_tribunnews.Attributes["class"] = "threeview active";
+                    btn_detik.Attributes["class"] = "threeview";
+                    btn_liputan6.Attributes["class"] = "threeview";
                     break;
                 case "kategoriBencanaAlam":
                     menu_dashboard.Attributes["class"] = "";
@@ -240,38 +236,29 @@ namespace Site_Final_Mining
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview active";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview active";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
+                    btn_tribunnews.Attributes["class"] = "threeview";
+                    btn_detik.Attributes["class"] = "threeview";
+                    btn_liputan6.Attributes["class"] = "threeview";
                     break;
-                case "kategoriKejahatan":
+                case "liputan6":
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview active";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview active";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
+                    btn_tribunnews.Attributes["class"] = "threeview";
+                    btn_detik.Attributes["class"] = "threeview";
+                    btn_liputan6.Attributes["class"] = "threeview active";
                     break;
-                case "kategoriPemerintahan":
+                case "detik":
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview active";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview active";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
+                    btn_tribunnews.Attributes["class"] = "threeview";
+                    btn_detik.Attributes["class"] = "threeview active";
+                    btn_liputan6.Attributes["class"] = "threeview";
                     break;
                 case "kategoriKecelakaan":
                     menu_dashboard.Attributes["class"] = "";
@@ -279,12 +266,9 @@ namespace Site_Final_Mining
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview active";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview active";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
+                    btn_tribunnews.Attributes["class"] = "threeview";
+                    btn_detik.Attributes["class"] = "threeview";
+                    btn_liputan6.Attributes["class"] = "threeview";
                     break;
                 case "kategoriLainnya":
                     menu_dashboard.Attributes["class"] = "";
@@ -292,12 +276,9 @@ namespace Site_Final_Mining
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview active";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview active";
+                    btn_tribunnews.Attributes["class"] = "threeview";
+                    btn_detik.Attributes["class"] = "threeview";
+                    btn_liputan6.Attributes["class"] = "threeview";
                     break;
                 case "profile":
                     menu_dashboard.Attributes["class"] = "";
@@ -305,24 +286,18 @@ namespace Site_Final_Mining
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview menu";
-                    kategori_berita_olahraga.Attributes["class"] = "threeview";
-                    kategori_berita_pemerintahan.Attributes["class"] = "threeview";
-                    kategori_berita_bencana_alam.Attributes["class"] = "threeview";
-                    kategori_berita_kecelakaan.Attributes["class"] = "threeview";
-                    kategori_berita_kejahatan.Attributes["class"] = "threeview";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "threeview";
+                    btn_tribunnews.Attributes["class"] = "threeview";
+                    btn_detik.Attributes["class"] = "threeview";
+                    btn_liputan6.Attributes["class"] = "threeview";
                     break;
                 case "pengguna":
                     pengguna.Attributes["class"] = "active";
                     menu_dashboard.Attributes["class"] = "";
                     menu_all_konten_berita.Attributes["class"] = "";
                     menu_kategori_berita.Attributes["class"] = "treeview";
-                    kategori_berita_olahraga.Attributes["class"] = "";
-                    kategori_berita_pemerintahan.Attributes["class"] = "";
-                    kategori_berita_bencana_alam.Attributes["class"] = "";
-                    kategori_berita_kecelakaan.Attributes["class"] = "";
-                    kategori_berita_kejahatan.Attributes["class"] = "";
-                    kategori_berita_lain_lainnya.Attributes["class"] = "";
+                    btn_tribunnews.Attributes["class"] = "";
+                    btn_detik.Attributes["class"] = "";
+                    btn_liputan6.Attributes["class"] = "";
                     break;
             }
         }
@@ -336,13 +311,13 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/manage_pengguna/manage_user.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void olahraga_Click(object sender, EventArgs e)
+        public void tribunnews_Click(object sender, EventArgs e)
         {
-            changeActiveMenu("kategoriOlahraga");
-            Control olahraga = Page.LoadControl("~/UDC/Admin/kategoriBerita/kategoriOlahraga.ascx");
+            changeActiveMenu("tribunnews");
+            Control tribunnews = Page.LoadControl("~/UDC/Global/Filter_Dokumen/Tribunnews.ascx");
             Content_Admin.Controls.Clear();
-            Content_Admin.Controls.Add(olahraga);
-            ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriOlahraga.ascx";
+            Content_Admin.Controls.Add(tribunnews);
+            ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/Tribunnews.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
         protected void allBerita_Click(object sender, EventArgs e)
@@ -372,22 +347,22 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriBencana.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void kejahatan_Click(object sender, EventArgs e)
+        public void liputan6_Click(object sender, EventArgs e)
         {
-            changeActiveMenu("kategoriKejahatan");
-            Control kejahatan = Page.LoadControl("~/UDC/Admin/kategoriBerita/kategoriKejahatan.ascx");
+            changeActiveMenu("liputan6");
+            Control liputan6 = Page.LoadControl("~/UDC/Global/Filter_Dokumen/Liputan6.ascx");
             Content_Admin.Controls.Clear();
-            Content_Admin.Controls.Add(kejahatan);
-            ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriKejahatan.ascx";
+            Content_Admin.Controls.Add(liputan6);
+            ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/Liputan6.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void pemerintahan_Click(object sender, EventArgs e)
+        public void detik_Click(object sender, EventArgs e)
         {
-            changeActiveMenu("kategoriPemerintahan");
-            Control pemerintahan = Page.LoadControl("~/UDC/Admin/kategoriBerita/kategoriPemerintahan.ascx");
+            changeActiveMenu("detik");
+            Control detik = Page.LoadControl("~/UDC/Global/Filter_Dokumen/Detik.ascx");
             Content_Admin.Controls.Clear();
-            Content_Admin.Controls.Add(pemerintahan);
-            ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriPemerintahan.ascx";
+            Content_Admin.Controls.Add(detik);
+            ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/Detik.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
         protected void kecelakaan_Click(object sender, EventArgs e)
@@ -417,7 +392,7 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/profile/adminProfile.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void manageUser_Click(object sender, EventArgs e)
+        public void manageUser_Click(object sender, EventArgs e)
         {
             changeActiveMenu("pengguna");
             Control manageeUser = Page.LoadControl("~/UDC/Admin/manage_pengguna/manage_user.ascx");
@@ -441,6 +416,8 @@ namespace Site_Final_Mining
             detailBerita dtl = (detailBerita)Content_Admin.Controls[0];
             dtl.setPage(idBerita);
         }
+       
+
 
     }
 }

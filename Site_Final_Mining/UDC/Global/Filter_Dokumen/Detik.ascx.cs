@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Site_Final_Mining.UDC.Admin.allBerita
+namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
 {
-    public partial class allDokumen_Berita : System.Web.UI.UserControl
+    public partial class Detik : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +18,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
-            string search = "site_name = 'Tribunnews.com' ";
+            string search = "site_name = 'Detik.com' ";
             DataRow[] fer = displayJson().Select(search);
             tabelBerita.DataSource = fer.CopyToDataTable();
             tabelBerita.DataBind();
@@ -38,9 +37,8 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
         }
         protected void detail_Klik(object sender, EventArgs e)
         {
-            
+
 
         }
-
     }
 }
