@@ -2234,6 +2234,9 @@
     <Content Include="UDC\Global\allSitus_Berita.ascx" />
     <Content Include="UDC\Global\Filter_Dokumen\Detik.ascx" />
     <Content Include="UDC\Global\Filter_Dokumen\Liputan6.ascx" />
+    <Content Include="UDC\Global\Filter_Dokumen\readMore_detik.ascx" />
+    <Content Include="UDC\Global\Filter_Dokumen\readMore_Liputan6.ascx" />
+    <Content Include="UDC\Global\Filter_Dokumen\readMore_Tribun.ascx" />
     <Content Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx" />
     <Content Include="UDC\Global\Login.ascx" />
     <Content Include="UDC\Guest\homeGuest.ascx" />
@@ -2679,6 +2682,27 @@
     </Compile>
     <Compile Include="UDC\Global\Filter_Dokumen\Liputan6.ascx.designer.cs">
       <DependentUpon>Liputan6.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\readMore_detik.ascx.cs">
+      <DependentUpon>readMore_detik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\readMore_detik.ascx.designer.cs">
+      <DependentUpon>readMore_detik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\readMore_Liputan6.ascx.cs">
+      <DependentUpon>readMore_Liputan6.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\readMore_Liputan6.ascx.designer.cs">
+      <DependentUpon>readMore_Liputan6.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\readMore_Tribun.ascx.cs">
+      <DependentUpon>readMore_Tribun.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\Filter_Dokumen\readMore_Tribun.ascx.designer.cs">
+      <DependentUpon>readMore_Tribun.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx.cs">
       <DependentUpon>Tribunnews.ascx</DependentUpon>

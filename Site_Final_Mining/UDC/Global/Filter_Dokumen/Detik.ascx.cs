@@ -35,10 +35,11 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             this.tabelBerita.PageIndex = fer.NewPageIndex;
             this.tabelBerita.DataBind();
         }
-        protected void detail_Klik(object sender, EventArgs e)
+        protected void readmore_Click(object sender, EventArgs e)
         {
-
-
+            LinkButton btn = (LinkButton)sender;
+            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
+            parent.readMoreDetik_Click(btn.CommandArgument);
         }
     }
 }

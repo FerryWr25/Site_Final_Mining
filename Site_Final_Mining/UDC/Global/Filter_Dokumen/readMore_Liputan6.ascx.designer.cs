@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Site_Final_Mining.UDC.Admin.allBerita {
+namespace Site_Final_Mining.UDC.Global.Filter_Dokumen {
     
     
-    public partial class detailBerita {
+    public partial class readMore_Liputan6 {
         
         /// <summary>
         /// tanggal control.

@@ -48,11 +48,16 @@
                                             <Columns>
                                                 <asp:TemplateField ItemStyle-Width="1000" ItemStyle-HorizontalAlign="Justify">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="judul" runat="server" Font-Bold="true" Font-Size="16"><%# Eval("title")%></asp:Label><br/>
-                                                        <asp:Label ID="konten" runat="server"><%# Eval("news") %></asp:Label><br /><br/>
-                                                        <asp:Label ID="SumberBerita" runat="server"><span class="label label-success"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<%# Eval("site_name") %></span></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <asp:Label ID="penulis"  runat="server"><span class="label label-primary"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;<%# Eval("author") %></span></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <asp:Label ID="tanggal" runat="server" Font-Bold="true" ForeColor="#cccccc"><span class="label label-warning"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Terbit: <%# Eval("date")%></span></asp:Label><br />
+                                                        <asp:Label ID="judul" runat="server" Font-Bold="true" Font-Size="16"><%# Eval("title")%></asp:Label><br />
+                                                        <asp:Label ID="SumberBerita" runat="server"><span class="label label-primary"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<%# Eval("site_name") %></span></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <asp:Label ID="penulis" ForeColor="#a0a0c5" runat="server"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;<%# Eval("author") %></span></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <asp:Label ID="tanggal" ForeColor="#a0a0c5" runat="server"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Terbit: <%# Eval("date")%></span></asp:Label><br />
+                                                        <br />
+                                                        <asp:Label ID="konten" runat="server"><%# Eval("news").ToString().Substring(0, Eval("news").ToString().Length-(Eval("news").ToString().Length)/3)+"[.....]" %></asp:Label><br />
+                                                        <br />
+                                                        <asp:LinkButton OnClick="readmore_Click" runat="server" CommandArgument='<%# Eval("id") %>' CssClass="btn btn-primary">
+                                                           Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                                        </asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

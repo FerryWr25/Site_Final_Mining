@@ -20,7 +20,7 @@ namespace Site_Final_Mining.UDC.Admin.manage_pengguna
             this.con = new connectionClass();
             this.con.openConnection();
             DataTable pengguna = this.con.getResult("SELECT uf.\"namaPengguna\", uf.email, ur.pekerjaan, uf.path_photo,  " +
-                "ur.alamat, ur.\"tanggalDaftar\" FROM public.\"userFix\" uf join public.\"user_register\" ur on (uf.email=ur.email);");
+                "ur.jenis_kelamin, ur.alamat, ur.\"tanggalDaftar\", ur.\"alasanBergabung\" FROM public.\"userFix\" uf join public.\"user_register\" ur on (uf.email=ur.email);");
             for (int i = 0; i < pengguna.Rows.Count; i++)
             {
                 pengguna.Rows[i]["path_photo"] = "~/admin-lte/img/" + pengguna.Rows[i]["path_photo"].ToString();

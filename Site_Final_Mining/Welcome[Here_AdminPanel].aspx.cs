@@ -10,16 +10,17 @@ using System.Data;
 using Site_Final_Mining.UDC.Admin.allBerita;
 using Newtonsoft.Json;
 using System.IO;
+using Site_Final_Mining.UDC.Global.Filter_Dokumen;
 
 namespace Site_Final_Mining
 {
     public partial class Welcome_Here_AdminPanel_ : System.Web.UI.Page
     {
         private connectionClass con;
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (Session["Admin"] != null)
             {
                 if (ViewState["userControl"] == null)
@@ -320,7 +321,7 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/Tribunnews.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void allBerita_Click(object sender, EventArgs e)
+        public void allBerita_Click(object sender, EventArgs e)
         {
             changeActiveMenu("allBerita");
             Control allberita = Page.LoadControl("~/UDC/Admin/allBerita/allDokumen_Berita.ascx");
@@ -410,14 +411,33 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/feedActivity/feedActivity_Member.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        public void detailBeritaNya(string idBerita)
+        public void readMore_Click(string id)
         {
-            ViewState["userControl"] = "~/UDC/Admin/allberita/detailBerita.ascx";
+            ViewState["userControl"] = "~/UDC/Admin/allBerita/detailBerita.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
             detailBerita dtl = (detailBerita)Content_Admin.Controls[0];
-            dtl.setPage(idBerita);
+            dtl.setPage(id);
         }
-       
-
-
+        public void readMoreDetik_Click(string id)
+        {
+            ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/readMore_detik.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+            readMore_detik dtl = (readMore_detik)Content_Admin.Controls[0];
+            dtl.setPage(id);
+        }
+        public void readMoreLiputan6_Click(string id)
+        {
+            ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/readMore_Liputan6.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+            readMore_Liputan6 dtl = (readMore_Liputan6)Content_Admin.Controls[0];
+            dtl.setPage(id);
+        }
+        public void readMoreTribun_Click(string id)
+        {
+            ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/readMore_Tribun.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+            readMore_Tribun dtl = (readMore_Tribun)Content_Admin.Controls[0];
+            dtl.setPage(id);
+        }
     }
 }

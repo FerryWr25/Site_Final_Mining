@@ -8,13 +8,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Site_Final_Mining.UDC.Admin.allBerita
+namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
 {
-    public partial class detailBerita : System.Web.UI.UserControl
+    public partial class readMore_Tribun : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
 
         }
         public DataTable displayJson()
@@ -32,12 +31,11 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             tabelBerita.DataBind();
 
         }
-        protected void backAll_Click(object sender, EventArgs e)
+        protected void backTribun_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
             Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
-            parent.allBerita_Click(sender, e);
+            parent.tribunnews_Click(sender, e);
         }
-        
     }
 }

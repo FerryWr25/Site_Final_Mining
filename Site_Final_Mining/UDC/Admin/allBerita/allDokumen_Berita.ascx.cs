@@ -19,9 +19,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
-            string search = "site_name = 'Tribunnews.com' ";
-            DataRow[] fer = displayJson().Select(search);
-            tabelBerita.DataSource = fer.CopyToDataTable();
+            tabelBerita.DataSource = displayJson();
             tabelBerita.DataBind();
         }
         public DataTable displayJson()
@@ -36,10 +34,11 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             this.tabelBerita.PageIndex = fer.NewPageIndex;
             this.tabelBerita.DataBind();
         }
-        protected void detail_Klik(object sender, EventArgs e)
+        protected void readmore_Click(object sender, EventArgs e)
         {
-            
-
+            LinkButton btn = (LinkButton)sender;
+            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
+            parent.readMore_Click(btn.CommandArgument);
         }
 
     }
