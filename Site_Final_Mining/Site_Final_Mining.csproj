@@ -2228,6 +2228,7 @@
     <Content Include="UDC\Admin\kategoriBerita\kategoriLain.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriOlahraga.ascx" />
     <Content Include="UDC\Admin\kategoriBerita\kategoriPemerintahan.ascx" />
+    <Content Include="UDC\Admin\manage_pengguna\logMember.ascx" />
     <Content Include="UDC\Admin\manage_pengguna\manage_user.ascx" />
     <Content Include="UDC\Admin\profile\adminProfile.ascx" />
     <Content Include="UDC\Global\Alert.ascx" />
@@ -2245,6 +2246,14 @@
     <Content Include="UDC\Guest\Register.ascx" />
     <Content Include="UDC\Guest\vectorSpaceModel_Page.ascx" />
     <Content Include="UDC\Member\Dashboard.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\AllBerita.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\DetikNews.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\Liputan6.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\ReadMore_allBerita.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\ReadMore_detik.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\ReadMore_Liputan6.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\ReadMore_TribunNews.ascx" />
+    <Content Include="UDC\Member\Filter_dokumen\TribunNews.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriBencana.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriKecelakaan.ascx" />
     <Content Include="UDC\Member\kategoriBerita\kategoriKejahatan.ascx" />
@@ -2542,6 +2551,8 @@
       <DependentUpon>Dashboard[Site_Member].aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\connectionClass.cs" />
+    <Compile Include="Model\SetLog.cs" />
+    <Compile Include="Model\TimeCount.cs" />
     <Compile Include="Pendaftaran[Welcome_Here].aspx.cs">
       <DependentUpon>Pendaftaran[Welcome_Here].aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2640,6 +2651,13 @@
     </Compile>
     <Compile Include="UDC\Admin\kategoriBerita\kategoriPemerintahan.ascx.designer.cs">
       <DependentUpon>kategoriPemerintahan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Admin\manage_pengguna\logMember.ascx.cs">
+      <DependentUpon>logMember.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Admin\manage_pengguna\logMember.ascx.designer.cs">
+      <DependentUpon>logMember.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Admin\manage_pengguna\manage_user.ascx.cs">
       <DependentUpon>manage_user.ascx</DependentUpon>
@@ -2759,6 +2777,62 @@
     </Compile>
     <Compile Include="UDC\Member\Dashboard.ascx.designer.cs">
       <DependentUpon>Dashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\AllBerita.ascx.cs">
+      <DependentUpon>AllBerita.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\AllBerita.ascx.designer.cs">
+      <DependentUpon>AllBerita.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\DetikNews.ascx.cs">
+      <DependentUpon>DetikNews.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\DetikNews.ascx.designer.cs">
+      <DependentUpon>DetikNews.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\Liputan6.ascx.cs">
+      <DependentUpon>Liputan6.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\Liputan6.ascx.designer.cs">
+      <DependentUpon>Liputan6.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_allBerita.ascx.cs">
+      <DependentUpon>ReadMore_allBerita.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_allBerita.ascx.designer.cs">
+      <DependentUpon>ReadMore_allBerita.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_detik.ascx.cs">
+      <DependentUpon>ReadMore_detik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_detik.ascx.designer.cs">
+      <DependentUpon>ReadMore_detik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_Liputan6.ascx.cs">
+      <DependentUpon>ReadMore_Liputan6.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_Liputan6.ascx.designer.cs">
+      <DependentUpon>ReadMore_Liputan6.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_TribunNews.ascx.cs">
+      <DependentUpon>ReadMore_TribunNews.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\ReadMore_TribunNews.ascx.designer.cs">
+      <DependentUpon>ReadMore_TribunNews.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\TribunNews.ascx.cs">
+      <DependentUpon>TribunNews.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Member\Filter_dokumen\TribunNews.ascx.designer.cs">
+      <DependentUpon>TribunNews.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Member\kategoriBerita\kategoriBencana.ascx.cs">
       <DependentUpon>kategoriBencana.ascx</DependentUpon>

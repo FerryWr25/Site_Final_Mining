@@ -34,7 +34,13 @@ namespace Site_Final_Mining.UDC.Admin.manage_pengguna
             this.tabelPendaftar.PageIndex = fer.NewPageIndex;
             this.tabelPendaftar.DataBind();
         }
-
+        
+        protected void a_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
+            parent.logActivityDetail_Member(sender,e,btn.CommandArgument);
+        }
 
     }
 }

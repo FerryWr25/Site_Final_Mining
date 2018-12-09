@@ -11,6 +11,7 @@ using Site_Final_Mining.UDC.Admin.allBerita;
 using Newtonsoft.Json;
 using System.IO;
 using Site_Final_Mining.UDC.Global.Filter_Dokumen;
+using Site_Final_Mining.UDC.Admin.manage_pengguna;
 
 namespace Site_Final_Mining
 {
@@ -339,15 +340,6 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/Dashboard.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void bencana_Click(object sender, EventArgs e)
-        {
-            changeActiveMenu("kategoriBencanaAlam");
-            Control bencana = Page.LoadControl("~/UDC/Admin/kategoriBerita/kategoriBencana.ascx");
-            Content_Admin.Controls.Clear();
-            Content_Admin.Controls.Add(bencana);
-            ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriBencana.ascx";
-            this.loadControl(ViewState["userControl"].ToString(), false);
-        }
         public void liputan6_Click(object sender, EventArgs e)
         {
             changeActiveMenu("liputan6");
@@ -366,24 +358,7 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Global/Filter_Dokumen/Detik.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        protected void kecelakaan_Click(object sender, EventArgs e)
-        {
-            changeActiveMenu("kategoriKecelakaan");
-            Control kecelakaan = Page.LoadControl("~/UDC/Admin/kategoriBerita/kategoriKecelakaan.ascx");
-            Content_Admin.Controls.Clear();
-            Content_Admin.Controls.Add(kecelakaan);
-            ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriKecelakaan.ascx";
-            this.loadControl(ViewState["userControl"].ToString(), false);
-        }
-        protected void lainnya_Click(object sender, EventArgs e)
-        {
-            changeActiveMenu("kategoriLainnya");
-            Control lainnya = Page.LoadControl("~/UDC/Admin/kategoriBerita/kategoriLain.ascx");
-            Content_Admin.Controls.Clear();
-            Content_Admin.Controls.Add(lainnya);
-            ViewState["userControl"] = "~/UDC/Admin/kategoriBerita/kategoriLain.ascx";
-            this.loadControl(ViewState["userControl"].ToString(), false);
-        }
+        
         protected void profile_Click(object sender, EventArgs e)
         {
             changeActiveMenu("profile");
@@ -439,5 +414,13 @@ namespace Site_Final_Mining
             readMore_Tribun dtl = (readMore_Tribun)Content_Admin.Controls[0];
             dtl.setPage(id);
         }
+        public void logActivityDetail_Member(object sender, EventArgs e, string email)
+        {
+            ViewState["userControl"] = "~/UDC/Admin/manage_pengguna/logMember.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+            logMember dtl = (logMember)Content_Admin.Controls[0];
+            dtl.Page_Load(sender, e, email);
+        }
     }
 }
+

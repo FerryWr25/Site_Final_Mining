@@ -13,6 +13,7 @@
     <link href="Ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="admin-lte/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+     <script src="chart/js/Chart.min.js"></script>
 </head>
 <body class="hold-transition skin-blue fixed sidebar-mini">
     <form runat="server">
@@ -124,7 +125,7 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                   <asp:Image ID="profileImage_dropdown" CssClass="user-image" src="" runat="server" />
+                                    <asp:Image ID="profileImage_dropdown" CssClass="user-image" src="" runat="server" />
                                     <span class="hidden-xs">
                                         <asp:Label ID="labelNama2" runat="server"></asp:Label>
                                     </span>
@@ -132,10 +133,11 @@
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                       <asp:Image ID="profileSideBar" CssClass="img-circle" src="" runat="server" />
+                                        <asp:Image ID="profileSideBar" CssClass="img-circle" src="" runat="server" />
 
                                         <p>
-                                            <asp:Label ID="labelNama3" runat="server"></asp:Label> - System Analist
+                                            <asp:Label ID="labelNama3" runat="server"></asp:Label>
+                                            - System Analist
                   <small>Enjoying Here</small>
                                         </p>
                                     </li>
@@ -184,11 +186,12 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                             <asp:Image ID="sidebarProfile" CssClass="img-circle" src="" runat="server" />
+                            <asp:Image ID="sidebarProfile" CssClass="img-circle" src="" runat="server" />
                         </div>
                         <div class="pull-left info">
                             <p>
-                            <asp:Label ID="labelNama" runat="server"></asp:Label></p>
+                                <asp:Label ID="labelNama" runat="server"></asp:Label>
+                            </p>
                             <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
                         </div>
                     </div>
@@ -201,43 +204,29 @@
                                 <i class="fa fa-dashboard"></i><span>Dashboard</span>
                             </asp:LinkButton>
                         </li>
+
                         <li class="treeview" id="menu_kategori_berita" runat="server">
                             <a href="#">
                                 <i class="fa fa-paper-plane"></i>
-                                <span>Kategori Berita</span>
+                                <span>Sumber Berita</span>
                                 <span class="pull-right-container">
-                                    <span class="label label-primary pull-right">6</span>
+                                    <span class="label label-primary pull-right">3</span>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="kategori_berita_olahraga" runat="server" class="">
-                                    <asp:LinkButton ID="olahraga" runat="server" OnClick="olahraga_Click">
-                                    <i class="fa fa-genderless"></i>Olahraga
+                                <li id="btn_tribunnews" runat="server" class="">
+                                    <asp:LinkButton ID="olahraga" runat="server" OnClick="tribunnews_Click">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Tribunnews.com
                                     </asp:LinkButton>
                                 </li>
-                                <li id="kategori_berita_pemerintahan" runat="server" class="">
-                                    <asp:LinkButton ID="pemerintahan" runat="server" OnClick="pemerintahan_Click">
-                                    <i class="fa fa-genderless"></i>Pemerintahan
+                                <li id="btn_detik" runat="server" class="">
+                                    <asp:LinkButton ID="pemerintahan" runat="server" OnClick="detik_Click">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Detik.com
                                     </asp:LinkButton>
                                 </li>
-                                <li id="kategori_berita_kejahatan" runat="server" class="">
-                                    <asp:LinkButton ID="kejahatan" runat="server" OnClick="kejahatan_Click">
-                                    <i class="fa fa-genderless"></i>Kejahatan
-                                    </asp:LinkButton>
-                                </li>
-                                <li id="kategori_berita_kecelakaan" runat="server" class="">
-                                    <asp:LinkButton ID="kecelakaan" runat="server" OnClick="kecelakaan_Click">
-                                    <i class="fa fa-genderless"></i>Kecelakaan
-                                    </asp:LinkButton>
-                                </li>
-                                <li id="kategori_berita_bencana_alam" runat="server" class="">
-                                    <asp:LinkButton ID="bencana_alam" runat="server" OnClick="bencana_Click">
-                                <i class="fa fa-genderless"></i>Bencana Alam
-                                    </asp:LinkButton>
-                                </li>
-                                <li id="kategori_berita_lain_lainnya" runat="server" class="">
-                                    <asp:LinkButton ID="lain_lainnya" runat="server" OnClick="lainnya_Click">
-                                    <i class="fa fa-genderless"></i>Lain-lain..
+                                <li id="btn_liputan6" runat="server" class="">
+                                    <asp:LinkButton ID="kejahatan" runat="server" OnClick="liputan6_Click">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Liputan6.com
                                     </asp:LinkButton>
                                 </li>
                             </ul>
@@ -251,55 +240,14 @@
                             </asp:LinkButton>
                         </li>
                         <li id="menu_calender" runat="server">
-                            <a href="#">
+                            <asp:LinkButton ID="btnActivity" runat="server" OnClick="feedActivity_Click">
                                 <i class="fa fa-calendar"></i><span>Feed Activity</span>
                                 <span class="pull-right-container">
                                     <small class="label pull-right bg-red">3</small>
                                     <small class="label pull-right bg-blue">17</small>
                                 </span>
-                            </a>
-                        </li>
-                        <li class="treeview" id="statistic_berita" runat="server">
-                            <a href="#">
-                                <i class="fa fa-area-chart"></i><span>Statistic Kategori Berita</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Olahraga</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Politik</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Kejahatan</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Kecelakaan</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Bencana Alam</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Lain-lain..</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <li class="header">TIMEFRAME BERITA</li>
-                            <li class="treeview" id="timeFrameBerita" runat="server">
-                                <a href="#">
-                                    <i class="fa fa-pie-chart"></i><span>Konten Berita</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Olahraga</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Politik</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Kejahatan</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Kecelakaan</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Bencana Alam</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Lain-lain..</a></li>
-                                </ul>
-                            </li>
-                        </li>
-                        <li class="treeview" id="Li1" runat="server">
-                            <asp:LinkButton ID="LinkButton2" runat="server">
-                                <i class="fa fa-dashboard"></i><span>Management Konten</span>
                             </asp:LinkButton>
                         </li>
-
                     </ul>
                 </section>
                 <!-- /.sidebar -->

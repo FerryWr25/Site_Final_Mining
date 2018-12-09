@@ -7,21 +7,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Site_Final_Mining.Model;
 
-namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
+namespace Site_Final_Mining.UDC.Member.Filter_dokumen
 {
-    public partial class Tribunnews : System.Web.UI.UserControl
+
+    public partial class AllBerita : System.Web.UI.UserControl
     {
+        private SetLog set;
+        string email;
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.set = new SetLog();
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
-            string search = "site_name = 'Tribunnews.com' ";
-            DataRow[] fer = displayJson().Select(search);
-            tabelBerita.DataSource = fer.CopyToDataTable();
+            tabelBerita.DataSource = displayJson();
             tabelBerita.DataBind();
+            email = Session["Member"].ToString();
         }
         public DataTable displayJson()
         {
@@ -38,14 +42,9 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
         protected void readmore_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
-            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
-            parent.readMoreTribun_Click(btn.CommandArgument);
-        }
-        protected void readmoreMember_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
             Welcome_Here_Member_ parent = (Welcome_Here_Member_)this.Page;
-            parent.readMoreTribun_Click(btn.CommandArgument);
+            parent.readMore_Click(btn.CommandArgument);
+            set.InsertLog(email, btn.CommandArgument,btn.CommandName);
         }
     }
 }

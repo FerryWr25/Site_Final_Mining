@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
+namespace Site_Final_Mining.UDC.Member.Filter_dokumen
 {
-    public partial class Tribunnews : System.Web.UI.UserControl
+    public partial class Liputan6 : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
-            string search = "site_name = 'Tribunnews.com' ";
+            string search = "site_name = 'Liputan6.com' ";
             DataRow[] fer = displayJson().Select(search);
             tabelBerita.DataSource = fer.CopyToDataTable();
             tabelBerita.DataBind();
@@ -38,14 +38,8 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
         protected void readmore_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
-            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
-            parent.readMoreTribun_Click(btn.CommandArgument);
-        }
-        protected void readmoreMember_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
             Welcome_Here_Member_ parent = (Welcome_Here_Member_)this.Page;
-            parent.readMoreTribun_Click(btn.CommandArgument);
+            parent.readMoreLiputan6_Click(btn.CommandArgument);
         }
     }
 }
