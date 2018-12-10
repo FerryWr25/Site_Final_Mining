@@ -33,7 +33,6 @@
                                                     <br /><br />
                                                     <asp:Label ID="kodeberita" runat="server"><span class="label label-success"><i class="fa fa-key" aria-hidden="true"></i></span> Kode Berita : <%# Eval("id_berita")%></span></asp:Label><br /><br />
                                                     <asp:Label ID="judul" runat="server"><span class="label label-success"><i class="fa fa-book" aria-hidden="true"></i></span> Judul Berita : <%# Eval("judul")%></span></asp:Label><br /><br />
-                                                    
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>

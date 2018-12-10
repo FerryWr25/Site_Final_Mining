@@ -56,7 +56,7 @@
                                                         <br />
                                                         <asp:Label ID="konten" runat="server"><%# Eval("news").ToString().Substring(0, Eval("news").ToString().Length-(Eval("news").ToString().Length)/2)+"[.....]" %></asp:Label><br />
                                                         <br />
-                                                        <asp:LinkButton OnClick="readmore_Click" runat="server" CommandArgument='<%# Eval("id") %>' CssClass="btn btn-primary">
+                                                        <asp:LinkButton OnClick="readmore_Click" runat="server" CommandArgument='<%# Eval("id") %>' CommandName='<%# Eval("title") %>' CssClass="btn btn-primary">
                                                            Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                                         </asp:LinkButton>
                                                     </ItemTemplate>
