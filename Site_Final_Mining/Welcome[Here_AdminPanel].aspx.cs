@@ -386,6 +386,14 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Admin/feedActivity/feedActivity_Member.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
+        protected void manageKonten_Click(object sender, EventArgs e)
+        {
+            Control manageKonten = Page.LoadControl("~/UDC/Admin/Refresh_IR/refreshIR.ascx");
+            Content_Admin.Controls.Clear();
+            Content_Admin.Controls.Add(manageKonten);
+            ViewState["userControl"] = "~/UDC/Admin/Refresh_IR/refreshIR.ascx";
+            this.loadControl(ViewState["userControl"].ToString(), false);
+        }
         public void readMore_Click(string id)
         {
             ViewState["userControl"] = "~/UDC/Admin/allBerita/detailBerita.ascx";

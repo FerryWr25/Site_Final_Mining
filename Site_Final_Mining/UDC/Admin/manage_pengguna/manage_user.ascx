@@ -25,7 +25,7 @@
                                 <div class="table-responsive" style="background: white !important;">
                                     <asp:GridView ID="tabelPendaftar" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak Ada Pendaftar" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="5" PagerSettings-PageButtonCount="5" PagerSettings-Mode="NumericFirstLast">
                                         <Columns>
-                                            <asp:ImageField ItemStyle-Width="250px" ItemStyle-HorizontalAlign="Center" DataImageUrlField="path_photo" ControlStyle-Width="200px" ControlStyle-Height="200px" ControlStyle-CssClass="profile-user-img img-responsive img-circle"></asp:ImageField>
+                                            <asp:ImageField ItemStyle-Width="250px" ItemStyle-HorizontalAlign="Center" DataImageUrlField="path_photo" ControlStyle-Width="175px" ControlStyle-Height="175px" ControlStyle-CssClass="profile-user-img img-responsive img-circle"></asp:ImageField>
                                             <asp:TemplateField ItemStyle-HorizontalAlign="Left">
                                                 <ItemTemplate>
                                                     <asp:Label ID="judul" runat="server" Font-Bold="true"><span class="label label-warning"><i class="fa fa-user-o" aria-hidden="true"></i></span> Nama : <%# Eval("namaPengguna")%></asp:Label>&nbsp;&nbsp;&nbsp;

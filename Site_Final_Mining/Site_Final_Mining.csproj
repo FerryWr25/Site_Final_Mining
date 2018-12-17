@@ -2231,6 +2231,7 @@
     <Content Include="UDC\Admin\manage_pengguna\logMember.ascx" />
     <Content Include="UDC\Admin\manage_pengguna\manage_user.ascx" />
     <Content Include="UDC\Admin\profile\adminProfile.ascx" />
+    <Content Include="UDC\Admin\Refresh_IR\refreshIR.ascx" />
     <Content Include="UDC\Global\Alert.ascx" />
     <Content Include="UDC\Global\allSitus_Berita.ascx" />
     <Content Include="UDC\Global\Filter_Dokumen\Detik.ascx" />
@@ -2672,6 +2673,13 @@
     </Compile>
     <Compile Include="UDC\Admin\profile\adminProfile.ascx.designer.cs">
       <DependentUpon>adminProfile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Admin\Refresh_IR\refreshIR.ascx.cs">
+      <DependentUpon>refreshIR.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Admin\Refresh_IR\refreshIR.ascx.designer.cs">
+      <DependentUpon>refreshIR.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Global\Alert.ascx.cs">
       <DependentUpon>Alert.ascx</DependentUpon>

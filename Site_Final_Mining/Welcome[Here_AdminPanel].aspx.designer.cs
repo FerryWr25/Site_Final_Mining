@@ -292,6 +292,24 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.LinkButton kejahatan;
         
         /// <summary>
+        /// btn_refreshIR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btn_refreshIR;
+        
+        /// <summary>
+        /// btn_IR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_IR;
+        
+        /// <summary>
         /// menu_all_konten_berita control.
         /// </summary>
         /// <remarks>
