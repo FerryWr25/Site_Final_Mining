@@ -2082,6 +2082,7 @@
     <Content Include="register.aspx" />
     <Content Include="Register[Enjoy_Here].aspx" />
     <Content Include="Scripts\bootstrapAlert.min.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\js_dashBoard\jquery.min.js" />
     <Content Include="Scripts\js_dashBoard\jquery.slimscroll.minTP.js" />
     <Content Include="Scripts\js_frontPage\bootstrap.bundle.min.js" />
@@ -2537,6 +2538,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\TALA.cs" />
+    <Compile Include="Class\VectorSpaceModel.cs" />
     <Compile Include="Dashboard[Site_Admin].aspx.cs">
       <DependentUpon>Dashboard[Site_Admin].aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

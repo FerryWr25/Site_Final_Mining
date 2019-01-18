@@ -63,9 +63,10 @@
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-red">
-               <div class="inner">
+                <div class="inner">
                     <h3>
-                        <asp:Label ID="jml_userActive" runat="server" Text="Label"></asp:Label> <sup style="font-size: 12px"> Pengguna</sup></h3>
+                        <asp:Label ID="jml_userActive" runat="server" Text="Label"></asp:Label>
+                        <sup style="font-size: 12px">Pengguna</sup></h3>
                     <p>User Active</p>
                 </div>
                 <div class="icon">
@@ -195,47 +196,7 @@
         </div>
         <!-- /.col -->
     </div>
-    <script>
-        let myChart = document.getElementById('myChart').getContext('2d');
-        Chart.defaults.global.defaultFontSize = 12;
-        Chart.defaults.global.defaultFontColor = '#777';
-        let ChartPopulation = new Chart(myChart, {
-            type: 'line',
-            data: {
-                labels: ['Boston city', 'Worcester city', 'Springfield city', 'Lowell city', 'Cambridge city', 'New Bedford city'],
-                datasets: [{
-                    label: 'Human Population',
-                    data: [
-                        617594,
-                        181045,
-                        153060,
-                        106519,
-                        105162,
-                        95072
-                    ],
-                    backgroundColor: [
-                        'rgba(255,99,132,0.6)',
-                        'rgba(54,162,235,0.6)',
-                        'rgba(255,206,86,0.6)',
-                        'rgba(75,192,192,0.6)',
-                        'rgba(255,159,64,0.6)',
-                        'rgba(255,15,80,0.6)'
-                    ],
-                    borderWidth: 1,
-                    borderColor: '#777',
-                    hoverBorderWidth:2,
-                    hoverBorderColor: '#000'
-                }]
-            },
-            options: {
-                title: {
-                    display:true,
-                    text: 'Largest Cities In Jangkar',
-                    fontSize:18
-                },
-            }
-        });
-    </script>
+    
 </section>
 
 

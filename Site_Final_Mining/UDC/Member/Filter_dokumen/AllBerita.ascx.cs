@@ -38,6 +38,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         {
             this.tabelBerita.PageIndex = fer.NewPageIndex;
             this.tabelBerita.DataBind();
+
         }
         protected void readmore_Click(object sender, EventArgs e)
         {

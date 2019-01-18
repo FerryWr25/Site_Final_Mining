@@ -18,6 +18,8 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
+            //string[] idSearch = { "'ae0c4315-2bb9-4603-8fd6-566674e9fccc'", "'68d357dc-fd60-4277-9286-d89ed7b3c7de'" };
+            //string search = "id in (" + string.Join(", ", idSearch) + ")";
             string search = "site_name = 'Detik.com' ";
             DataRow[] fer = displayJson().Select(search);
             tabelBerita.DataSource = fer.CopyToDataTable();

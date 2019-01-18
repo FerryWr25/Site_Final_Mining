@@ -20,13 +20,14 @@
                             <input type="hidden" id="tanggal" runat="server" value="" />
                         </div>
                         <div class="col-md-3">
-                            <div class="input-group input-group-sm date">
+
+                            <div class="input-group input-group-sm">
                                 <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
+                                    <i class="fa fa-search"></i>
                                 </div>
-                                <asp:TextBox ID="datepicker" runat="server" CssClass="form-control" placeholder="Masukkan Tanggal Berita" ClientIDMode="Static"></asp:TextBox>
+                                <asp:TextBox ID="query" runat="server" CssClass="form-control" placeholder="Masukan Pencarian" required="true"></asp:TextBox>
                                 <span class="input-group-btn">
-                                    <asp:Button ID="cari_berita" runat="server" Text="Cari" CssClass="btn btn-info btn-flat" />
+                                    <asp:Button ID="btnSubmit_Query" runat="server" Text="Search" CssClass="btn btn-info" type="submit" OnClick="submitQuery_click" />
                                 </span>
                             </div>
                         </div>
@@ -41,7 +42,7 @@
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="table-responsive" style="background: white !important;">
-                                        <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak Ada Berita" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="10" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
+                                        <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak Ada Berita" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="3" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
                                             <Columns>
                                                 <asp:TemplateField ItemStyle-Width="1000" ItemStyle-HorizontalAlign="Justify">
                                                     <ItemTemplate>
@@ -65,15 +66,26 @@
                                 <!-- /.box-body -->
                             </div>
                         </div>
-                        <!-- /.isi box sebelah tabel -->
-                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <div class="chart">
+                                <!-- Sales Chart Canvas -->
+                                <canvas id="barChart" style="height: 290px;"></canvas>
+                            </div>
+                            <!-- /.chart-responsive -->
+                        </div>
                     </div>
-                    <!-- /.row -->
+                    <!-- /.isi box sebelah tabel -->
+                    <!-- /.col -->
                 </div>
-                <!-- /.box-footer -->
+                <!-- /.row -->
             </div>
-            <!-- /.box -->
+            <!-- /.box-footer -->
         </div>
+        <!-- /.box -->
     </div>
+    </div>
+
 </section>
+
+
 
