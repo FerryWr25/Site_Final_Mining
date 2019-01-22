@@ -25,8 +25,7 @@
     <!-- copyright -->
     <div class="footer">
         <p>
-            &copy; 2018 Validator Signup Form. All rights reserved | Design by
-				<a href="http://w3layouts.com">W3layouts</a>
+            &copy; 2018 Sistem TimeFrame . All rights reserved 
         </p>
     </div>
     <!-- //copyright -->

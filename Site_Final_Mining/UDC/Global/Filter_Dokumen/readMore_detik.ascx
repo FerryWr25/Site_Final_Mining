@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="readMore_detik.ascx.cs" Inherits="Site_Final_Mining.UDC.Global.Filter_Dokumen.readMore_detik" %>
 <section class="content-header">
-    <h1>Konten Berita
+    <h1>Detail Konten Berita
         <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
@@ -18,7 +18,7 @@
                         <div class="col-md-9">
                             <h1 class="box-title" style="margin-top: 5px">Dokumen Berita Detik.com</h1>
                             <input type="hidden" id="tanggal" runat="server" value="" />
-                        </div>
+                        </div>  
                         <div class="col-md-3">
                             <asp:LinkButton OnClick="backDetik_Click" runat="server" CssClass="btn btn-primary">
                                 <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;Kembali

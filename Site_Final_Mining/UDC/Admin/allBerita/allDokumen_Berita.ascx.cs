@@ -16,12 +16,21 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
     {
         VectorSpaceModel vsm = new VectorSpaceModel();
         TALA tala = new TALA();
+        public bool search = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
-            //tabelBerita.DataSource = displayJson();
-            //tabelBerita.DataBind();
+            if (query.Text.Equals(""))
+            {
+                DataRow[] fer = displayJson().Select();
+                tabelBerita.DataSource = fer.CopyToDataTable();
+                tabelBerita.DataBind();
+            }
+            else
+            {
+                submitQuery_click(sender, e);
+            }
 
         }
         public DataTable displayJson()
@@ -37,12 +46,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             this.tabelBerita.PageIndex = fer.NewPageIndex;
             this.tabelBerita.DataBind();
         }
-        protected void readmore_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
-            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
-            parent.readMore_Click(btn.CommandArgument);
-        }
+
         protected void submitQuery_click(object sender, EventArgs e)
         {
             vsm.run(query.Text);
@@ -52,6 +56,77 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             tabelBerita.DataSource = fer.CopyToDataTable();
             tabelBerita.DataBind();
             this.loadChartSearch(tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()));
+
+        }
+
+        protected void readmore_click(object sender, EventArgs e)
+        {
+            submitQuery_click(sender, e);
+            LinkButton btn = (LinkButton)sender;
+            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
+            parent.readMore_Click(btn.CommandArgument);
+
+        }
+        private string[] getLabel_SumbuX(string[] data)
+        {
+            string[] result;
+            string bulan;
+            List<string> ListResult = new List<string>();
+            for (int i = 0; i < data.Length; i++)
+            {
+                bulan = data[i].Substring(3, 4);
+                if (bulan.Equals("/01/"))
+                {
+                    bulan = "Jan";
+                }
+                else if (bulan.Equals("/02/"))
+                {
+                    bulan = "Feb";
+                }
+                else if (bulan.Equals("/03/"))
+                {
+                    bulan = "Mar";
+                }
+                else if (bulan.Equals("/04/"))
+                {
+                    bulan = "Apr";
+                }
+                else if (bulan.Equals("/05/"))
+                {
+                    bulan = "Mei";
+                }
+                else if (bulan.Equals("/06/"))
+                {
+                    bulan = "Jun";
+                }
+                else if (bulan.Equals("/07/"))
+                {
+                    bulan = "Jul";
+                }
+                else if (bulan.Equals("/08/"))
+                {
+                    bulan = "Agst";
+                }
+                else if (bulan.Equals("/09/"))
+                {
+                    bulan = "Sep";
+                }
+                else if (bulan.Equals("/10/"))
+                {
+                    bulan = "Okt";
+                }
+                else if (bulan.Equals("/11/"))
+                {
+                    bulan = "Nov";
+                }
+                else
+                {
+                    bulan = "Des";
+                }
+                ListResult.Add(data[i].Replace(data[i].Substring(3, 4), bulan ));
+            }
+            result = ListResult.ToArray();
+            return result;
         }
         private void loadChartSearch(string[] data)
         {
@@ -60,11 +135,12 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             List<string> sumbuX = new List<string>();
             List<int> sumbuY = new List<int>();
             string[] sumbuXX = new string[data.Length];
-            int[] sumbuYY = new int[sumbuXX.Length];
+            string[] result_sumbuXX = new string[data.Length];
+            int[] sumbuYY = new int[data.Length];
             //inisialisasi awal chart
-            for (int fer = 0; fer < data.Length; fer++)
+            for (int fer = 0; fer < result_sumbuXX.Length; fer++)
             {
-                sumbuXX[fer] = "";
+                result_sumbuXX[fer] = "";
                 sumbuYY[fer] = 0;
             }
             //baca data dan tampilkan ke chart
@@ -101,12 +177,12 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             }
             sumbuXX = sumbuX.ToArray();
             sumbuYY = sumbuY.ToArray();
-            // inisialisasi nilai awal
-
+            result_sumbuXX = getLabel_SumbuX(sumbuXX);
             // load javascript untuk grafik
             var MainJS = "<script src=\"chart/js/Chart.min.js\"></script>";
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     MainJS, false);
+
             // load data untuk grafik
             var DataJS =
                  "<script>" +
@@ -116,14 +192,14 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             "type: 'line'," +
             "data:" +
             "{" +
-            "labels: [" + string.Join(", ", sumbuXX) + "]," +
+            "labels: [" + string.Join(", ", result_sumbuXX) + "]," +
                 "datasets: [{" +
                 "label: 'Durasi Kejadian " + sumbuXX.Length + " hari' ," +
                    " data: [" +
                         "" + string.Join(", ", sumbuYY) + "" +
                     "]," +
                     "backgroundColor: [" +
-                        "'rgba(51,51,255,0.5)'" +
+                        "'rgba(51,51,255,0.6)'" +
                     "]," +
                     "borderWidth: 2," +
                     "borderColor: '#0033cc'," +

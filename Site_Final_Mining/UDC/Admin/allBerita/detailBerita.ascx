@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="detailBerita.ascx.cs" Inherits="Site_Final_Mining.UDC.Admin.allBerita.detailBerita" %>
 
 <section class="content-header">
-    <h1>Konten Berita
+    <h1>Detail Konten Berita
         <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
@@ -17,7 +17,7 @@
                 <div class="box-header with-border">
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="box-title" style="margin-top: 5px">Dokumen Berita Detik.com</h1>
+                            <h1 class="box-title" style="margin-top: 5px">Dokumen Detail Pencarian</h1>
                             <input type="hidden" id="tanggal" runat="server" value="" />
                         </div>
                         <div class="col-md-3">

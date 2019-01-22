@@ -30,7 +30,6 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             DataRow[] fer = displayJson().Select(search);
             tabelBerita.DataSource = fer.CopyToDataTable();
             tabelBerita.DataBind();
-
         }
         protected void backAll_Click(object sender, EventArgs e)
         {
