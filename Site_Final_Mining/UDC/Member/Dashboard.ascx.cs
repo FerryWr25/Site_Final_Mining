@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Site_Final_Mining.Class;
 
 namespace Site_Final_Mining.UDC.Member
 {
@@ -15,6 +16,7 @@ namespace Site_Final_Mining.UDC.Member
     {
         private connectionClass con;
         int countDetik = 0, countLiputan6 = 0, countTribun = 0;
+        Grafik_Board grafik = new Grafik_Board();
         protected void Page_Load(object sender, EventArgs e)
         {
             this.con = new connectionClass();
@@ -23,6 +25,7 @@ namespace Site_Final_Mining.UDC.Member
             totalTribun.Text = getcountTribun().ToString();
             TotalDetik.Text = getcounDetik().ToString();
             TotalLiputan6.Text = getcountLiputan6().ToString();
+            loadChartBeranda();
         }
         public DataTable displayJson()
         {
@@ -75,6 +78,79 @@ namespace Site_Final_Mining.UDC.Member
         {
             Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
             parent.manageUser_Click(sender, e);
+        }
+        private void loadChartBeranda()
+        {
+            List<int> fre_Detik = new List<int>();
+            List<int> fre_Tribun = new List<int>();
+            List<int> fre_Liputan6 = new List<int>();
+            int[,] data = new int[3, 24];
+            int[] dataDetik = new int[12];
+            int[] dataTribun = new int[12];
+            int[] dataLiputan = new int[12];
+            // inisialisasi nilai awal
+            for (int i = 0; i < dataDetik.Length; i++)
+            {
+                dataDetik[i] = 0;
+            }
+            for (int i = 0; i < dataTribun.Length; i++)
+            {
+                dataTribun[i] = 0;
+            }
+            for (int i = 0; i < dataLiputan.Length; i++)
+            {
+                dataLiputan[i] = 0;
+            }
+            grafik.readJson_getDateDETIK();
+            grafik.readJson_getDateLIPUTAN();
+            grafik.readJson_getDateTRIBUN();
+            dataDetik = grafik.getData_Detik();
+            dataTribun = grafik.getData_Tribun();
+            dataLiputan = grafik.getData_Liputan();
+            string[] sumbuX = { "\"January\"", "\"Februari\"", "\"Maret\"", "\"April\"", "\"Mei\"", "\"Juni\"", "\"Juli\"", "\"Agustus\"", "\"September\"",
+                "\"Oktober\"", "\"November\"", "\"Desember\"" };
+            // load javascript untuk grafik
+            var MainJS = "<script src=\"chart/js/Chart.min.js\"></script>";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    MainJS, false);
+            // load data untuk grafik
+            var DataJS =
+                  "<script> " +
+                 "new Chart(document.getElementById(\"myChart\"), {" +
+                 "type: 'bar'," +
+                 "data: {" +
+                 "labels: [" + string.Join(", ", sumbuX) + "]," +
+                 "datasets: [" +
+                 "{" +
+                 "label: \"Tribunnews.com\"," +
+                 "backgroundColor: \"rgba(0,192,239,1.0)\"," +
+                 "data: [" + dataTribun[0] + ", " + dataTribun[1] + ", " + dataTribun[2] + ", " + dataTribun[3] + ", " + dataTribun[4] + ", " + dataTribun[5] +
+                ", " + dataTribun[6] + ", " + dataTribun[7] + ", " + dataTribun[8] + ", " + dataTribun[9] + ", " + dataTribun[10] + ", " + dataTribun[11] + "]" +
+                 "}, {" +
+                 "label:\"Detik.com\"," +
+                 "backgroundColor: \"rgba(0,166,90,1.0)\"," +
+                 "data: [" + dataDetik[0] + ", " + dataDetik[1] + ", " + dataDetik[2] + ", " + dataDetik[3] + ", " + dataDetik[4] + ", " + dataDetik[5] +
+                ", " + dataDetik[6] + ", " + dataDetik[7] + ", " + dataDetik[8] + ", " + dataDetik[9] + ", " + dataDetik[10] + ", " + dataDetik[11] + "]" +
+                 "} ,{ " +
+                  "label:\"Liputan6.com\"," +
+                 "backgroundColor: \"rgba(243,156,18,1.0)\"," +
+                 "data: [" + dataLiputan[0] + ", " + dataLiputan[1] + ", " + dataLiputan[2] + ", " + dataLiputan[3] + ", " + dataLiputan[4] + ", " + dataLiputan[5] +
+                ", " + dataLiputan[6] + ", " + dataLiputan[7] + ", " + dataLiputan[8] + ", " + dataLiputan[9] + ", " + dataLiputan[10] + ", " + dataLiputan[11] + "]" +
+                 "}" +
+                 "]" +
+                 "}," +
+                 "options: {" +
+                 "title: {" +
+                 "display: true," +
+                 "text: 'Grafik Representasi Dokumen Berita'" +
+                 "}" +
+                 "}" +
+                 "});" +
+                 "</script>";
+
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
+                    DataJS, false);
         }
     }
 }

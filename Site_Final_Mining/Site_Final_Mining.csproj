@@ -4153,6 +4153,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Grafik_Board.cs" />
     <Compile Include="Class\TALA.cs" />
     <Compile Include="Class\VectorSpaceModel.cs" />
     <Compile Include="Dashboard[Site_Admin].aspx.cs">

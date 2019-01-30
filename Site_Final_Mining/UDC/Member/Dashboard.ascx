@@ -77,7 +77,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Monthly Recap Report</h3>
+                    <h3 class="box-title">Enjoying here with us</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
                             <i class="fa fa-minus"></i>
@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="chart">
-                                <canvas id="myChart"></canvas>
+                                <canvas id="myChart" height="350"></canvas>
                             </div>
                         </div>
                         <!-- /.col -->

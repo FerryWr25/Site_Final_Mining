@@ -18,7 +18,7 @@ namespace Site_Final_Mining.Model
             if (this.con == null)
             {
                 // buat koneksi baru
-                string connectionString = "Server=127.0.0.1;Port=5432;Database=skripsi_news; User Id=postgres; Password = 'admin' ;Pooling=False;";
+                string connectionString = "Server=127.0.0.1;Port=5432;Database=skripsweet; User Id=postgres; Password = 'admin' ;Pooling=False;";
                 this.con = new NpgsqlConnection(connectionString);
             }
 
