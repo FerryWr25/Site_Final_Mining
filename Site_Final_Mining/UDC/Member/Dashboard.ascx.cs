@@ -26,6 +26,32 @@ namespace Site_Final_Mining.UDC.Member
             TotalDetik.Text = getcounDetik().ToString();
             TotalLiputan6.Text = getcountLiputan6().ToString();
             loadChartBeranda();
+            setBoardButton();
+        }
+        public void get_nDoc()
+        {
+            this.con = new connectionClass();
+            DataTable pengguna = this.con.getResult("SELECT count (*) as get  FROM public.\"Dokumen\";");
+            totalDoc.Text = pengguna.Rows[0]["get"].ToString();
+        }
+        public void get_n_DimensiDoc()
+        {
+            this.con = new connectionClass();
+            DataTable pengguna = this.con.getResult("SELECT count(*) as dimensi FROM public.\"bobotTerm\";");
+            total_nDoc.Text = pengguna.Rows[0]["dimensi"].ToString();
+        }
+        public void get_n_DimensiTerm()
+        {
+            this.con = new connectionClass();
+            DataTable pengguna = this.con.getResult("SELECT count(*) as dimensiTerm  FROM public.\"Term\";");
+            total_nTerm.Text = pengguna.Rows[0]["dimensiTerm"].ToString();
+        }
+
+        public void setBoardButton()
+        {
+            get_nDoc();
+            get_n_DimensiDoc();
+            get_n_DimensiTerm();
         }
         public DataTable displayJson()
         {
@@ -45,15 +71,15 @@ namespace Site_Final_Mining.UDC.Member
         {
             string search = "site_name = 'Detik.com' ";
             DataRow[] fer = displayJson().Select(search);
-            countTribun = fer.Count();
-            return countTribun;
+            countDetik = fer.Count();
+            return countDetik;
         }
         public int getcountLiputan6()
         {
             string search = "site_name = 'Liputan6.com' ";
             DataRow[] fer = displayJson().Select(search);
-            countTribun = fer.Count();
-            return countTribun;
+            countLiputan6 = fer.Count();
+            return countLiputan6;
         }
         protected void btn_MoreinfoTribun(object sender, EventArgs e)
         {

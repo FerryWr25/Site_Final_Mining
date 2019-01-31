@@ -42,7 +42,7 @@
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="table-responsive" style="background: white !important;">
-                                        <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak Ada Berita" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="3" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
+                                        <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak ada berita yang mengandung kata pada setiap query" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="3" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
                                             <Columns>
                                                 <asp:TemplateField ItemStyle-Width="1000" ItemStyle-HorizontalAlign="Justify">
                                                     <ItemTemplate>
@@ -83,8 +83,6 @@
         </div>
         <!-- /.box -->
     </div>
-    </div>
-
 </section>
 
 

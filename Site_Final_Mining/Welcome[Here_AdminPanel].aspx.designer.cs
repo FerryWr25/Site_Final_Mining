@@ -310,24 +310,6 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.LinkButton btn_IR;
         
         /// <summary>
-        /// menu_all_konten_berita control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu_all_konten_berita;
-        
-        /// <summary>
-        /// allBerita control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton allBerita;
-        
-        /// <summary>
         /// menu_calender control.
         /// </summary>
         /// <remarks>
@@ -346,22 +328,22 @@ namespace Site_Final_Mining {
         protected global::System.Web.UI.WebControls.LinkButton btnActivity;
         
         /// <summary>
-        /// statistic_berita control.
+        /// menu_all_konten_berita control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl statistic_berita;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu_all_konten_berita;
         
         /// <summary>
-        /// timeFrameBerita control.
+        /// allBerita control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl timeFrameBerita;
+        protected global::System.Web.UI.WebControls.LinkButton allBerita;
         
         /// <summary>
         /// pengguna control.

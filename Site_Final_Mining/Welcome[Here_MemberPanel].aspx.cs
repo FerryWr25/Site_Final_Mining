@@ -29,7 +29,6 @@ namespace Site_Final_Mining
                     this.loadControl(ViewState["userControl"].ToString(), true);
                 }
                 sidebarProfile.Attributes["src"] = getPathIMage();
-                profileImage.Attributes["src"] = getPathIMage();
                 profileImage_dropdown.Attributes["src"] = getPathIMage();
                 profileSideBar.Attributes["src"] = getPathIMage();
                 labelNama.Text = getName();

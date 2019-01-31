@@ -32,6 +32,32 @@ namespace Site_Final_Mining.UDC.Admin
             TotalLiputan6.Text = get_nLiputan6;
             setBar_dashBoard();
             loadChartBeranda();
+            setBoardButton();
+        }
+        public void get_nDoc()
+        {
+            this.con = new connectionClass();
+            DataTable pengguna = this.con.getResult("SELECT count (*) as get  FROM public.\"Dokumen\";");
+            totalDoc.Text = pengguna.Rows[0]["get"].ToString();
+        }
+        public void get_n_DimensiDoc()
+        {
+            this.con = new connectionClass();
+            DataTable pengguna = this.con.getResult("SELECT count(*) as dimensi FROM public.\"bobotTerm\";");
+            total_nDoc.Text = pengguna.Rows[0]["dimensi"].ToString();
+        }
+        public void get_n_DimensiTerm()
+        {
+            this.con = new connectionClass();
+            DataTable pengguna = this.con.getResult("SELECT count(*) as dimensiTerm  FROM public.\"Term\";");
+            total_nTerm.Text = pengguna.Rows[0]["dimensiTerm"].ToString();
+        }
+
+        public void setBoardButton()
+        {
+            get_nDoc();
+            get_n_DimensiDoc();
+            get_n_DimensiTerm();
         }
         public void setBar_dashBoard()
         {
@@ -39,7 +65,7 @@ namespace Site_Final_Mining.UDC.Admin
             double nTribun = Convert.ToDouble(get_nTribun);
             double nDetik = Convert.ToDouble(get_nDetik);
             double nLiputan6 = Convert.ToDouble(get_nLiputan6);
-            double resultBAR_tribun, resultBAR_Detik, resultBAR_Lipuatan6,result_User;
+            double resultBAR_tribun, resultBAR_Detik, resultBAR_Lipuatan6, result_User;
             resultBAR_tribun = Math.Round(((nTribun / n_Doc) * 100), 2);
             resultBAR_Detik = Math.Round(((nDetik / n_Doc) * 100), 2);
             resultBAR_Lipuatan6 = Math.Round(((nLiputan6 / n_Doc) * 100), 2);
@@ -86,15 +112,15 @@ namespace Site_Final_Mining.UDC.Admin
         {
             string search = "site_name = 'Detik.com' ";
             DataRow[] fer = displayJson().Select(search);
-            countTribun = fer.Count();
-            return countTribun;
+            countDetik = fer.Count();
+            return countDetik;
         }
         public int getcountLiputan6()
         {
             string search = "site_name = 'Liputan6.com' ";
             DataRow[] fer = displayJson().Select(search);
-            countTribun = fer.Count();
-            return countTribun;
+            countLiputan6 = fer.Count();
+            return countLiputan6;
         }
         protected void btn_MoreinfoTribun(object sender, EventArgs e)
         {
@@ -188,8 +214,6 @@ namespace Site_Final_Mining.UDC.Admin
                  "}" +
                  "});" +
                  "</script>";
-
-
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     DataJS, false);
         }

@@ -13,21 +13,39 @@ namespace Site_Final_Mining.UDC.Admin.feedActivity {
     public partial class feedActivity_Member {
         
         /// <summary>
-        /// aktivitas control.
+        /// tanggal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl aktivitas;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden tanggal;
         
         /// <summary>
-        /// tabel_panel control.
+        /// query control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tabel_panel;
+        protected global::System.Web.UI.WebControls.TextBox query;
+        
+        /// <summary>
+        /// btnSubmit_Query control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit_Query;
+        
+        /// <summary>
+        /// tabelActivity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView tabelActivity;
     }
 }

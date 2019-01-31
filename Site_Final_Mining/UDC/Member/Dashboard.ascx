@@ -62,9 +62,10 @@
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-red">
-               <div class="inner">
+                <div class="inner">
                     <h3>
-                        <asp:Label ID="jml_userActive" runat="server" Text="Label"></asp:Label> <sup style="font-size: 12px"> Pengguna</sup></h3>
+                        <asp:Label ID="jml_userActive" runat="server" Text="Label"></asp:Label>
+                        <sup style="font-size: 12px">Pengguna</sup></h3>
                     <p>User Active</p>
                 </div>
                 <div class="icon">
@@ -152,47 +153,50 @@
                     <div class="row">
                         <div class="col-sm-3 col-xs-6">
                             <div class="description-block border-right">
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i>17%</span>
-                                <h5 class="description-header">$35,210.43</h5>
-                                <span class="description-text">TOTAL REVENUE</span>
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i>100%</span>
+                                <h5 class="description-header">
+                                    <asp:Label ID="totalDoc" runat="server"></asp:Label></h5>
+                                <span class="description-text">TOTAL DOKUMEN</span>
                             </div>
                             <!-- /.description-block -->
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-3 col-xs-6">
                             <div class="description-block border-right">
-                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i>0%</span>
-                                <h5 class="description-header">$10,390.90</h5>
-                                <span class="description-text">TOTAL COST</span>
+                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i>100%</span>
+                                <h5 class="description-header">
+                                    <asp:Label ID="total_nDoc" runat="server"></asp:Label></h5>
+                                <span class="description-text">TOTAL DIMENSI DOKUMEN</span>
                             </div>
                             <!-- /.description-block -->
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-3 col-xs-6">
                             <div class="description-block border-right">
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i>20%</span>
-                                <h5 class="description-header">$24,813.53</h5>
-                                <span class="description-text">TOTAL PROFIT</span>
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i>100%</span>
+                                <h5 class="description-header">
+                                    <asp:Label ID="total_nTerm" runat="server"></asp:Label></h5>
+                                <span class="description-text">TOTAL DIMENSI KATA</span>
                             </div>
                             <!-- /.description-block -->
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-3 col-xs-6">
                             <div class="description-block">
-                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i>18%</span>
-                                <h5 class="description-header">1200</h5>
-                                <span class="description-text">GOAL COMPLETIONS</span>
+                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i>60%-95%</span>
+                                <h5 class="description-header">Search Eginee</h5>
+                                <span class="description-text">SEARCH ACCURATION</span>
                             </div>
                             <!-- /.description-block -->
                         </div>
                     </div>
                     <!-- /.row -->
                 </div>
-                <!-- /.box-footer -->
-            </div>
-            <!-- /.box -->
+            <!-- /.box-footer -->
         </div>
-        <!-- /.col -->
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
     </div>
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
@@ -222,15 +226,15 @@
                     ],
                     borderWidth: 1,
                     borderColor: '#777',
-                    hoverBorderWidth:2,
+                    hoverBorderWidth: 2,
                     hoverBorderColor: '#000'
                 }]
             },
             options: {
                 title: {
-                    display:true,
+                    display: true,
                     text: 'Largest Cities In Jangkar',
-                    fontSize:18
+                    fontSize: 18
                 },
             }
         });

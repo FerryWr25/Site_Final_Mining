@@ -17,6 +17,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
         VectorSpaceModel vsm = new VectorSpaceModel();
         TALA tala = new TALA();
         public bool search = false;
+        string email;
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
@@ -31,6 +32,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             {
                 submitQuery_click(sender, e);
             }
+            email = Session["Admin"].ToString();
 
         }
         public DataTable displayJson()
@@ -51,12 +53,19 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
         {
             vsm.run(query.Text);
             string[] id = vsm.getDoc();
-            string search = "id in (" + string.Join(", ", id) + ")";
-            DataRow[] fer = displayJson().Select(search);
-            tabelBerita.DataSource = fer.CopyToDataTable();
-            tabelBerita.DataBind();
-            this.loadChartSearch(tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()));
-
+            if (vsm.getStatus_Search() == false)
+            {
+                tabelBerita.DataSource = null;
+                tabelBerita.DataBind();
+            }
+            else
+            {
+                string search = "id in (" + string.Join(", ", id) + ")";
+                DataRow[] fer = displayJson().Select(search);
+                tabelBerita.DataSource = fer.CopyToDataTable();
+                tabelBerita.DataBind();
+                this.loadChartSearch(tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()));
+            }
         }
 
         protected void readmore_click(object sender, EventArgs e)
@@ -123,7 +132,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
                 {
                     bulan = "Des";
                 }
-                ListResult.Add(data[i].Replace(data[i].Substring(3, 4), bulan ));
+                ListResult.Add(data[i].Replace(data[i].Substring(3, 4), bulan));
             }
             result = ListResult.ToArray();
             return result;

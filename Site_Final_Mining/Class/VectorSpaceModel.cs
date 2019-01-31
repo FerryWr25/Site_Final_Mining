@@ -88,7 +88,7 @@ namespace Site_Final_Mining.Class
             }
             else
             {
-                return "kosong";
+                return "null";
             }
 
         }
@@ -181,8 +181,12 @@ namespace Site_Final_Mining.Class
                     {
                         if (data[i].Length > 2)
                         {
-                            frekuensiList.Add(frekuensi[i]);
-                            queryList.Add(data[i]);
+                            string cek = cariID_Term(data[i]);
+                            if (!cek.Equals("null"))
+                            {
+                                frekuensiList.Add(frekuensi[i]);
+                                queryList.Add(data[i]);
+                            }
                         }
                     }
                 }
@@ -320,81 +324,77 @@ namespace Site_Final_Mining.Class
             List<double> semuaTF_IDFQuery = new List<double>();
             List<double> semuaTF_IDFQuery_toPenyebut = new List<double>();
             List<double> pembilang = new List<double>();
-            double pembilangDoc = 0;
-            double penyebutDoc = 0;
             double hasilPembilangPER_doc = 0;
             double hasilPenyebutPER_doc = 0;
-            double akhirPembilang_Doc = 0;
-            double akhirPenyebut_Doc = 0;
             List<double> tempPembilang = new List<double>();
             List<double> tempPenyebut = new List<double>();
-
-            string queryPakek = cariID_Term(query);
-
-
             getFrekuensi_fromQuery(getDokumen(query)); // ambil frekunsi query perkata (query dan frekuensinya)
-            if (panjangQuery > 2)
+            if (queryArray.Length != 0)
             {
-
-            }
-            for (int i = 0; i < queryArray.Length; i++)
-            {
-                Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali");
-                double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
-                hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
-                Console.WriteLine("nilai TF-IDF kata '" + queryArray[i] + "' = " + hasil_TF_IDF_Query);
-                semuaTF_IDFQuery.Add(hasil_TF_IDF_Query);
-                semuaTF_IDFQuery_toPenyebut.Add(Math.Pow(hasil_TF_IDF_Query, 2));
-            }
-            arrayQuery_TF_IDF = semuaTF_IDFQuery_toPenyebut.ToArray();
-            double hasilAkhir_Penyebutquery = Math.Sqrt(arrayQuery_TF_IDF.Sum());
-            Console.WriteLine("Nilai sum akar query = " + hasilAkhir_Penyebutquery);
-            string[] idTerm = getID_Term(getQuery());
-            string[] idDocTerlibat = getID_Doc(idTerm);
-            Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
-            for (int i = 0; i < idDocTerlibat.Length; i++)
-            {
-                Console.WriteLine(idDocTerlibat[i]);
-                for (int f = 0; f < queryArray.Length; f++)
+                for (int i = 0; i < queryArray.Length; i++)
                 {
-                    double[] hasilTF_IDF_Query = semuaTF_IDFQuery.ToArray();
-                    double temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[i], idTerm[f]);
-                    tempPembilang.Add(temp_TF_IDF_doc_toQuery);
-                    tempPenyebut.Add(Math.Pow(temp_TF_IDF_doc_toQuery, 2));
-                    Console.WriteLine(temp_TF_IDF_doc_toQuery);
+                    Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali");
+                    double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
+                    hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
+                    Console.WriteLine("nilai TF-IDF kata '" + queryArray[i] + "' = " + hasil_TF_IDF_Query);
+                    semuaTF_IDFQuery.Add(hasil_TF_IDF_Query);
+                    semuaTF_IDFQuery_toPenyebut.Add(Math.Pow(hasil_TF_IDF_Query, 2));
                 }
-                hasilPembilangPER_doc = tempPembilang.ToArray().Sum();
-                hasilPenyebutPER_doc = tempPenyebut.ToArray().Sum();
-                tempPembilang.Clear();
-                tempPenyebut.Clear();
-                Console.WriteLine("==========================");
-                Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[i] + " = " + hasilPembilangPER_doc);
-                Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[i] + " = " + hasilPenyebutPER_doc);
-                Console.WriteLine("Go Hitung Similarity Doc id " + idDocTerlibat[i] + " dengan Query");
-                double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (hasilAkhir_Penyebutquery * hasilPenyebutPER_doc), 5);
-                Console.WriteLine("Nilai Similarity Doc id " + idDocTerlibat[i] + " dengan Query = " + hasilSimilarity);
-
-                if (hasilSimilarity >= 0.5)
+                arrayQuery_TF_IDF = semuaTF_IDFQuery_toPenyebut.ToArray();
+                double hasilAkhir_Penyebutquery = Math.Sqrt(arrayQuery_TF_IDF.Sum());
+                Console.WriteLine("Nilai sum akar query = " + hasilAkhir_Penyebutquery);
+                string[] idTerm = getID_Term(getQuery());
+                string[] idDocTerlibat = getID_Doc(idTerm);
+                Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
+                for (int i = 0; i < idDocTerlibat.Length; i++)
                 {
-                    if (!ListHasil_Akhir.Contains(idDocTerlibat[i]))
+                    Console.WriteLine(idDocTerlibat[i]);
+                    for (int f = 0; f < queryArray.Length; f++)
                     {
-                        ListHasil_Akhir.Add(idDocTerlibat[i]);
+                        double[] hasilTF_IDF_Query = semuaTF_IDFQuery.ToArray();
+                        double temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[i], idTerm[f]);
+                        tempPembilang.Add(temp_TF_IDF_doc_toQuery);
+                        tempPenyebut.Add(Math.Pow(temp_TF_IDF_doc_toQuery, 2));
+                        Console.WriteLine(temp_TF_IDF_doc_toQuery);
                     }
+                    hasilPembilangPER_doc = tempPembilang.ToArray().Sum();
+                    hasilPenyebutPER_doc = tempPenyebut.ToArray().Sum();
+                    tempPembilang.Clear();
+                    tempPenyebut.Clear();
+                    Console.WriteLine("==========================");
+                    Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[i] + " = " + hasilPembilangPER_doc);
+                    Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[i] + " = " + hasilPenyebutPER_doc);
+                    Console.WriteLine("Go Hitung Similarity Doc id " + idDocTerlibat[i] + " dengan Query");
+                    double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (hasilAkhir_Penyebutquery * hasilPenyebutPER_doc), 5);
+                    Console.WriteLine("Nilai Similarity Doc id " + idDocTerlibat[i] + " dengan Query = " + hasilSimilarity);
 
-                }
-                arrayHasil_Akhir = ListHasil_Akhir.ToArray();
-
-                for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
-                {
-                    if (idDocTerlibat.Length - 1 == i)
+                    if (hasilSimilarity >= 0.5)
                     {
-                        Console.WriteLine("Id Doc yang masuk :");
-                        Console.WriteLine(arrayHasil_Akhir[ferry]);
+                        if (!ListHasil_Akhir.Contains(idDocTerlibat[i]))
+                        {
+                            ListHasil_Akhir.Add(idDocTerlibat[i]);
+                        }
 
                     }
+                    arrayHasil_Akhir = ListHasil_Akhir.ToArray();
 
+                    for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
+                    {
+                        if (idDocTerlibat.Length - 1 == i)
+                        {
+                            Console.WriteLine("Id Doc yang masuk :");
+                            Console.WriteLine(arrayHasil_Akhir[ferry]);
+
+                        }
+
+                    }
                 }
             }
+            else
+            {
+                string status = "tidak ada dokumen yang mengandung kata pada setiap query";
+            }
+
         }
         public void run(string query)
         {
@@ -405,80 +405,93 @@ namespace Site_Final_Mining.Class
             double hasilPembilangPER_doc = 0;
             double hasilPenyebutPER_doc = 0;
             getFrekuensi_fromQuery(getDokumen(query));
-
-            string[] idTerm = getID_Term(getQuery());
-            Console.WriteLine("ini idTermnya");
-            for (int i = 0; i < idTerm.Length; i++)
+            if (queryArray.Length == 0)
             {
-                Console.WriteLine(idTerm[i]);
+                string status = "tidak ada dokumen yang mengandung kata pada setiap query";
             }
-            string[] idDocTerlibat = getID_Doc(idTerm);
-            List<double> tempPembilang = new List<double>();
-            List<double> tempPenyebut = new List<double>();
-            List<double> ListpanjangQuery = new List<double>();
-            for (int i = 0; i < queryArray.Length; i++)
+            else
             {
-                double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
-                hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
-                Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali & hasil TF-IDFnya: " + hasil_TF_IDF_Query);
-                semuaTF_IDFQuery.Add(Math.Round(Math.Pow(hasil_TF_IDF_Query, 2), 5));//panjang query
-                semuaTF_IDFQuery_toPembilang.Add(hasil_TF_IDF_Query);
-            }
-            arrayQuery_TF_IDF = semuaTF_IDFQuery.ToArray();
-            arrayQuery_TF_IDF_toPembilang = semuaTF_IDFQuery_toPembilang.ToArray();
-            Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
-            Console.WriteLine("");
-            for (int fer = 0; fer < idDocTerlibat.Length; fer++)
-            {
-                double temp_TF_IDF_doc_toQuery = 0;
-                double temp_TF_IDF_doc_toQuery_penyebut = 0;
-                //hitung pembilang
-                for (int ry = 0; ry < idTerm.Length; ry++)
+                string[] idTerm = getID_Term(getQuery());
+                Console.WriteLine("ini idTermnya");
+                string[] idDocTerlibat = getID_Doc(idTerm);
+                List<double> tempPembilang = new List<double>();
+                List<double> tempPenyebut = new List<double>();
+                List<double> ListpanjangQuery = new List<double>();
+                for (int i = 0; i < queryArray.Length; i++)
                 {
-                    temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[fer], idTerm[ry]);
-                    Console.WriteLine(idDocTerlibat[fer] + ", " + idTerm[ry] + " : " + temp_TF_IDF_doc_toQuery);
-                    tempPembilang.Add(temp_TF_IDF_doc_toQuery * arrayQuery_TF_IDF_toPembilang[ry]);
+                    double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
+                    hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
+                    Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali & hasil TF-IDFnya: " + hasil_TF_IDF_Query);
+                    semuaTF_IDFQuery.Add(Math.Round(Math.Pow(hasil_TF_IDF_Query, 2), 5));//panjang query
+                    semuaTF_IDFQuery_toPembilang.Add(hasil_TF_IDF_Query);
                 }
-                hasilPembilangPER_doc = tempPembilang.Sum();
-                tempPembilang.Clear();
-                //hitung penyebut atu panjang vector
-                for (int wr = 0; wr < idTerm.Length; wr++)
-                {
-                    //hitung panjang vector doc
-                    temp_TF_IDF_doc_toQuery_penyebut = cariTF_IDF(idDocTerlibat[fer], idTerm[wr]);
-                    tempPenyebut.Add(Math.Round(Math.Pow(temp_TF_IDF_doc_toQuery_penyebut, 2), 5));
-                }
-                double[] akhirPenyebut = tempPenyebut.ToArray();
-                tempPenyebut.Clear();
-                //hitung panjang vector query
-                double akhirPanjangQuery = Math.Round(Math.Sqrt(arrayQuery_TF_IDF.Sum()), 5);
-                hasilPenyebutPER_doc = Math.Round(Math.Sqrt(akhirPenyebut.Sum()), 5);//menentukan panjang vector doc
-                Console.WriteLine("Panjang Q = " + akhirPanjangQuery);
-                Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[fer] + " = " + hasilPembilangPER_doc);
-                Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[fer] + " = " + hasilPenyebutPER_doc);
-                double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (akhirPanjangQuery * hasilPenyebutPER_doc), 5);
-                Console.WriteLine("Similarity Doc id " + idDocTerlibat[fer] + " dengan Query = " + hasilSimilarity);
-                Console.WriteLine("=====================================>>>.................");
+                arrayQuery_TF_IDF = semuaTF_IDFQuery.ToArray();
+                arrayQuery_TF_IDF_toPembilang = semuaTF_IDFQuery_toPembilang.ToArray();
+                Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
                 Console.WriteLine("");
-                semuaTF_IDFQuery.Clear();
-                if (hasilSimilarity >= 0.8)
+                for (int fer = 0; fer < idDocTerlibat.Length; fer++)
                 {
-                    if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
+                    double temp_TF_IDF_doc_toQuery = 0;
+                    double temp_TF_IDF_doc_toQuery_penyebut = 0;
+                    //hitung pembilang
+                    for (int ry = 0; ry < idTerm.Length; ry++)
                     {
-                        ListHasil_Akhir.Add(idDocTerlibat[fer]);
+                        temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[fer], idTerm[ry]);
+                        Console.WriteLine(idDocTerlibat[fer] + ", " + idTerm[ry] + " : " + temp_TF_IDF_doc_toQuery);
+                        tempPembilang.Add(temp_TF_IDF_doc_toQuery * arrayQuery_TF_IDF_toPembilang[ry]);
                     }
-                }
-                arrayHasil_Akhir = ListHasil_Akhir.ToArray();
-                for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
-                {
-                    if (idDocTerlibat.Length - 1 == fer)
+                    hasilPembilangPER_doc = tempPembilang.Sum();
+                    tempPembilang.Clear();
+                    //hitung penyebut atu panjang vector
+                    for (int wr = 0; wr < idTerm.Length; wr++)
                     {
-                        Console.WriteLine("Id Doc yang masuk :");
-                        Console.WriteLine(arrayHasil_Akhir[ferry]);
+                        //hitung panjang vector doc
+                        temp_TF_IDF_doc_toQuery_penyebut = cariTF_IDF(idDocTerlibat[fer], idTerm[wr]);
+                        tempPenyebut.Add(Math.Round(Math.Pow(temp_TF_IDF_doc_toQuery_penyebut, 2), 5));
+                    }
+                    double[] akhirPenyebut = tempPenyebut.ToArray();
+                    tempPenyebut.Clear();
+                    //hitung panjang vector query
+                    double akhirPanjangQuery = Math.Round(Math.Sqrt(arrayQuery_TF_IDF.Sum()), 5);
+                    hasilPenyebutPER_doc = Math.Round(Math.Sqrt(akhirPenyebut.Sum()), 5);//menentukan panjang vector doc
+                    Console.WriteLine("Panjang Q = " + akhirPanjangQuery);
+                    Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[fer] + " = " + hasilPembilangPER_doc);
+                    Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[fer] + " = " + hasilPenyebutPER_doc);
+                    double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (akhirPanjangQuery * hasilPenyebutPER_doc), 5);
+                    Console.WriteLine("Similarity Doc id " + idDocTerlibat[fer] + " dengan Query = " + hasilSimilarity);
+                    Console.WriteLine("=====================================>>>.................");
+                    Console.WriteLine("");
+                    semuaTF_IDFQuery.Clear();
+                    if (hasilSimilarity >= 0.8)
+                    {
+                        if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
+                        {
+                            ListHasil_Akhir.Add(idDocTerlibat[fer]);
+                        }
+                    }
+                    arrayHasil_Akhir = ListHasil_Akhir.ToArray();
+                    for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
+                    {
+                        if (idDocTerlibat.Length - 1 == fer)
+                        {
+                            Console.WriteLine("Id Doc yang masuk :");
+                            Console.WriteLine(arrayHasil_Akhir[ferry]);
+                        }
                     }
                 }
             }
-
+        }
+        public bool getStatus_Search()
+        {
+            bool status = false;
+            if (queryArray.Length!=0)
+            {
+                status = true;
+            } else
+            {
+                status = false;
+            }
+            return status;
         }
         public string[] getDoc()
         {

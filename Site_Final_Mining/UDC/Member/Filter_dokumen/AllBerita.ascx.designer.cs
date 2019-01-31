@@ -22,22 +22,22 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden tanggal;
         
         /// <summary>
-        /// datepicker control.
+        /// query control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox datepicker;
+        protected global::System.Web.UI.WebControls.TextBox query;
         
         /// <summary>
-        /// cari_berita control.
+        /// btnSubmit_Query control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cari_berita;
+        protected global::System.Web.UI.WebControls.Button btnSubmit_Query;
         
         /// <summary>
         /// tabelBerita control.

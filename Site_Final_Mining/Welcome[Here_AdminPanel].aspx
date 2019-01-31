@@ -207,38 +207,6 @@
                                         <asp:LinkButton ID="lihatSemua_member" OnClick="manageUser_Click" Text="Lihat Semua Member" runat="server"></asp:LinkButton></li>
                                 </ul>
                             </li>
-                            <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown tasks-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">9</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 9 tasks</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <!-- Task item -->
-                                                <a href="#">
-                                                    <h3>Design some buttons
-                        <small class="pull-right">20%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">20% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- end task item -->
-                                        </ul>
-                                    </li>
-                                    <li class="footer">
-                                        <a href="#">View all tasks</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -252,24 +220,9 @@
                                         <asp:Image ID="profileSideBar" CssClass="img-circle" src="" runat="server" />
                                         <p>
                                             <asp:Label ID="labelNama3" runat="server"></asp:Label>
-                                            - Web Developer
+                                            - Admin-Site
                   <small>Enjoying Here</small>
                                         </p>
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Followers</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Sales</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Friends</a>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
@@ -290,11 +243,8 @@
                     </div>
                 </nav>
             </header>
-
             <!-- =============================================== -->
-
             <!-- Left side column. contains the sidebar -->
-
             <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
@@ -325,7 +275,7 @@
                                 <i class="fa fa-paper-plane"></i>
                                 <span>Sumber Berita</span>
                                 <span class="pull-right-container">
-                                    <span class="label label-primary pull-right">6</span>
+                                    <i class="fa fa-angle-left pull-right"></i>&nbsp; <span class="label label-primary pull-right">6</span>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
@@ -344,20 +294,12 @@
                                     <i class="fa fa-globe" aria-hidden="true"></i>Liputan6.com
                                     </asp:LinkButton>
                                 </li>
-                                 <li id="btn_refreshIR" runat="server" class="">
-                                    <asp:LinkButton ID="btn_IR" runat="server" OnClick="manageKonten_Click" >
+                                <li id="btn_refreshIR" runat="server" class="">
+                                    <asp:LinkButton ID="btn_IR" runat="server" OnClick="manageKonten_Click">
                                     <i class="fa fa-globe" aria-hidden="true"></i>Manage Konten
                                     </asp:LinkButton>
                                 </li>
                             </ul>
-                        </li>
-                        <li id="menu_all_konten_berita" runat="server">
-                            <asp:LinkButton ID="allBerita" runat="server" OnClick="allBerita_Click">
-                                <i class="fa fa-book" runat="server"></i><span>Semua Konten Berita</span>
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-green">news</small>
-                            </span>
-                            </asp:LinkButton>
                         </li>
                         <li id="menu_calender" runat="server">
                             <asp:LinkButton ID="btnActivity" runat="server" OnClick="feedActivity_Click">
@@ -368,41 +310,16 @@
                                 </span>
                             </asp:LinkButton>
                         </li>
-                        <li class="treeview" id="statistic_berita" runat="server">
-                            <a href="#">
-                                <i class="fa fa-area-chart"></i><span>Statistic Kategori Berita</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Olahraga</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Politik</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Kejahatan</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Kecelakaan</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Bencana Alam</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Lain-lain..</a></li>
-                            </ul>
+                        <li class="header">Search Enginee & Timeframe</li>
+                        <li id="menu_all_konten_berita" runat="server">
+                            <asp:LinkButton ID="allBerita" runat="server" OnClick="allBerita_Click">
+                                <i class="fa fa-book" runat="server"></i><span>Semua Konten Berita</span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-green">news</small>
+                            </span>
+                            </asp:LinkButton>
                         </li>
-                        <li>
-                            <li class="header">Timeframe Berita</li>
-                            <li class="treeview" id="timeFrameBerita" runat="server">
-                                <a href="#">
-                                    <i class="fa fa-pie-chart"></i><span>Konten Berita</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Olahraga</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Politik</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Kejahatan</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Kecelakaan</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Bencana Alam</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i>Lain-lain..</a></li>
-                                </ul>
-                            </li>
-                        </li>
+                        <li class="header">Kelola Member</li>
                         <li id="pengguna" runat="server">
                             <asp:LinkButton ID="LinkButton3" runat="server" OnClick="manageUser_Click">
                                <i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Pengguna</span>
