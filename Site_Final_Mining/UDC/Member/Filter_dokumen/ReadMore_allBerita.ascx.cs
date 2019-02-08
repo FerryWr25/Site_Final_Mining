@@ -29,11 +29,10 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             DataRow[] fer = displayJson().Select(search);
             tabelBerita.DataSource = fer.CopyToDataTable();
             tabelBerita.DataBind();
-
         }
         protected void backAll_Click(object sender, EventArgs e)
         {
-            LinkButton btn = (LinkButton)sender;
+            Button btn = (Button)sender;
             Welcome_Here_Member_ parent = (Welcome_Here_Member_)this.Page;
             parent.allBerita_Click(sender, e);
         }

@@ -13,6 +13,15 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
     public partial class AllBerita {
         
         /// <summary>
+        /// judul control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl judul;
+        
+        /// <summary>
         /// tanggal control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,60 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden tanggal;
+        
+        /// <summary>
+        /// groupBtn_showAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupBtn_showAll;
+        
+        /// <summary>
+        /// asa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden asa;
+        
+        /// <summary>
+        /// btnShowALL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowALL;
+        
+        /// <summary>
+        /// groupFilter_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupFilter_date;
+        
+        /// <summary>
+        /// Drop_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Drop_Date;
+        
+        /// <summary>
+        /// btn_Drop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_Drop;
         
         /// <summary>
         /// query control.
@@ -47,5 +110,14 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView tabelBerita;
+        
+        /// <summary>
+        /// grafik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl grafik;
     }
 }

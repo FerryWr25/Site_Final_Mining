@@ -15,14 +15,21 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <h1 class="box-title" style="margin-top: 5px">Dokumen Berita Detik.com</h1>
                             <input type="hidden" id="tanggal" runat="server" value="" />
                         </div>
-                        <div class="col-md-3">
-                            <asp:LinkButton OnClick="backAll_Click" runat="server" CssClass="btn btn-primary">
-                                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;Kembali
-                            </asp:LinkButton>
+
+                        <div class="col-md-2" id="groupBtn_showAll" runat="server">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-addon">
+                                   <i class="fa fa-backward"></i>
+                                </div>
+                                <input type="hidden" id="asa" cssclass="form-control" runat="server" value="" />
+                                <span class="input-group-btn">
+                                    <asp:Button ID="back" runat="server" Text="Kembali" CssClass="btn btn-info" type="submit" OnClick="backAll_Click" />
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

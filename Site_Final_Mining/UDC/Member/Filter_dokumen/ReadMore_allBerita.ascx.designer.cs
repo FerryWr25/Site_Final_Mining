@@ -22,6 +22,33 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden tanggal;
         
         /// <summary>
+        /// groupBtn_showAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupBtn_showAll;
+        
+        /// <summary>
+        /// asa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden asa;
+        
+        /// <summary>
+        /// back control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button back;
+        
+        /// <summary>
         /// tabelBerita control.
         /// </summary>
         /// <remarks>

@@ -74,7 +74,7 @@ namespace Site_Final_Mining
             Session.Abandon();
             Response.Redirect("Welcome_to[Site_Mining].aspx");
         }
-       
+
         protected void dashBoard_click(object sender, EventArgs e)
         {
             changeActiveMenu("dashBoard");
@@ -84,7 +84,7 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Member/Dashboard.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        
+
         protected void profile_Click(object sender, EventArgs e)
         {
             changeActiveMenu("profile");
@@ -196,13 +196,15 @@ namespace Site_Final_Mining
         public void allBerita_Click(object sender, EventArgs e)
         {
             changeActiveMenu("allBerita");
+            Session["query"] = "";
+            Session["idDoc"] = "";
             Control allberita = Page.LoadControl("~/UDC/Member/Filter_dokumen/AllBerita.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(allberita);
             ViewState["userControl"] = "~/UDC/Member/Filter_dokumen/AllBerita.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        
+
         public void liputan6_Click(object sender, EventArgs e)
         {
             changeActiveMenu("liputan6");
@@ -221,7 +223,7 @@ namespace Site_Final_Mining
             ViewState["userControl"] = "~/UDC/Member/Filter_dokumen/DetikNews.ascx";
             this.loadControl(ViewState["userControl"].ToString(), false);
         }
-        
+
         protected void feedActivity_Click(object sender, EventArgs e)
         {
             changeActiveMenu("pengguna");
@@ -234,6 +236,7 @@ namespace Site_Final_Mining
         public void readMore_Click(string id)
         {
             ViewState["userControl"] = "~/UDC/Member/Filter_dokumen/ReadMore_allBerita.ascx";
+            Session["urlPage"] = Request.UrlReferrer.ToString();
             this.loadControl(ViewState["userControl"].ToString(), false);
             ReadMore_allBerita dtl = (ReadMore_allBerita)Content_Member.Controls[0];
             dtl.setPage(id);

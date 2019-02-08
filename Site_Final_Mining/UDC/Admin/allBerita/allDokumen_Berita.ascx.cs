@@ -18,6 +18,10 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
         TALA tala = new TALA();
         public bool search = false;
         string email;
+        string[] result_sumbuXX;
+        DataRow[] hasilDoc;
+        string dateFilter;
+        DataTable hasil;
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
@@ -27,10 +31,15 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
                 DataRow[] fer = displayJson().Select();
                 tabelBerita.DataSource = fer.CopyToDataTable();
                 tabelBerita.DataBind();
+                Drop_Date.Visible = false;
+                groupBtn_showAll.Visible = false;
+                groupFilter_date.Visible = false;
+                judul.Attributes["class"] = "col-md-8";
             }
             else
             {
                 submitQuery_click(sender, e);
+                judul.Attributes["class"] = "col-md-3";
             }
             email = Session["Admin"].ToString();
 
@@ -44,9 +53,25 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
         }
         protected void nextView(object sender, GridViewPageEventArgs fer)
         {
-            submitQuery_click(sender, fer);
+            //submitQuery_click(sender, fer);
             this.tabelBerita.PageIndex = fer.NewPageIndex;
             this.tabelBerita.DataBind();
+        }
+        protected void show_all_klik(object sender, EventArgs e)
+        {
+            DataRow[] fer = displayJson().Select();
+            tabelBerita.DataSource = fer.CopyToDataTable();
+            tabelBerita.DataBind();
+            query.Text = "";
+        }
+        protected void filterByTime_klik(object sender, EventArgs e)
+        {
+            submitQuery_click(sender, e);
+            dateFilter = "19/10/2018 13:52:00";
+            string search = "date = " + "'" + dateFilter + "'";
+            DataRow[] fer = hasil.Select(search);
+            tabelBerita.DataSource = fer.CopyToDataTable();
+            tabelBerita.DataBind();
         }
 
         protected void submitQuery_click(object sender, EventArgs e)
@@ -57,20 +82,44 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             {
                 tabelBerita.DataSource = null;
                 tabelBerita.DataBind();
+                tabelBerita.EmptyDataText = "Tidak ada berita yang mengandung kata pada setiap query";
+                tabelBerita.DataBind();
+                Drop_Date.Visible = false;
+                groupBtn_showAll.Visible = false;
+                groupFilter_date.Visible = false;
+                judul.Attributes["class"] = "col-md-8";
             }
             else
             {
-                string search = "id in (" + string.Join(", ", id) + ")";
-                DataRow[] fer = displayJson().Select(search);
-                tabelBerita.DataSource = fer.CopyToDataTable();
-                tabelBerita.DataBind();
-                this.loadChartSearch(tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()));
+                if (id.Length < 1)
+                {
+                    tabelBerita.DataSource = null;
+                    tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query";
+                    tabelBerita.DataBind();
+                    Drop_Date.Visible = false;
+                    groupBtn_showAll.Visible = false;
+                    groupFilter_date.Visible = false;
+                    judul.Attributes["class"] = "col-md-8";
+                }
+                else
+                {
+                    string search = "id in (" + string.Join(", ", id) + ")";
+                    DataRow[] fer = displayJson().Select(search);
+                    tabelBerita.DataSource = fer.CopyToDataTable();
+                    tabelBerita.DataBind();
+                    this.loadChartSearch(tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()));
+                    Drop_Date.DataSource = result_sumbuXX;
+                    Drop_Date.DataBind();
+                    groupBtn_showAll.Visible = true;
+                    groupFilter_date.Visible = true;
+                    judul.Attributes["class"] = "col-md-3";
+                }
             }
         }
-
+       
         protected void readmore_click(object sender, EventArgs e)
         {
-            submitQuery_click(sender, e);
+            //submitQuery_click(sender, e);
             LinkButton btn = (LinkButton)sender;
             Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
             parent.readMore_Click(btn.CommandArgument);
@@ -144,7 +193,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             List<string> sumbuX = new List<string>();
             List<int> sumbuY = new List<int>();
             string[] sumbuXX = new string[data.Length];
-            string[] result_sumbuXX = new string[data.Length];
+            result_sumbuXX = new string[data.Length];
             int[] sumbuYY = new int[data.Length];
             //inisialisasi awal chart
             for (int fer = 0; fer < result_sumbuXX.Length; fer++)

@@ -30,6 +30,7 @@ namespace Site_Final_Mining.Class
         List<string> listHasilAkhir_toSearchDate = new List<string>();
         string[] arrayHasil_Akhir;
         string[] arrayHasilDate;
+        string[] arrayHasilDatePure;
 
         public string getIDF_Term(string term)
         {
@@ -316,7 +317,26 @@ namespace Site_Final_Mining.Class
             }
             return arrayDateAkhir;
         }
-
+        public string[] getDate_PURE(string[] idDoc)
+        {
+            List<string> List_dateDoc = new List<string>();
+            connectionClass con = new connectionClass();
+            con.openConnection();
+            string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") order by  \"dateDoc\" desc;";
+            DataTable result = con.getResult(queryTerm);
+            string[] arrayDate = new string[result.Rows.Count];
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                string temp = result.Rows[i]["dateDoc"].ToString();
+                if (temp.Length > 10)
+                {
+                    temp = temp.Substring(0, temp.Length - 1);
+                }
+                List_dateDoc.Add(temp);
+            }
+            arrayHasilDatePure = List_dateDoc.ToArray();
+            return arrayHasilDatePure;
+        }
 
         public void runVSM(string query)
         {
@@ -484,10 +504,11 @@ namespace Site_Final_Mining.Class
         public bool getStatus_Search()
         {
             bool status = false;
-            if (queryArray.Length!=0)
+            if (queryArray.Length != 0)
             {
                 status = true;
-            } else
+            }
+            else
             {
                 status = false;
             }
@@ -501,6 +522,10 @@ namespace Site_Final_Mining.Class
         {
             arrayHasilDate = getDate_Doc(getDoc());
             return arrayHasilDate;
+        }
+        public string[] getDatePure()
+        {
+            return arrayHasilDatePure = getDate_PURE(getDoc());
         }
     }
 }

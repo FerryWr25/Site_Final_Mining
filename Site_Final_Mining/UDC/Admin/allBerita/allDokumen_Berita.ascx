@@ -15,12 +15,38 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div id="judul" runat="server">
                             <h1 class="box-title" style="margin-top: 5px">Dokumen Berita</h1>
                             <input type="hidden" id="tanggal" runat="server" value="" />
                         </div>
-                        <div class="col-md-3">
+                        <div id="groupBtn_showAll" runat="server">
+                            <div class="col-md-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-reply-all"></i>
+                                    </div>
+                                    <input type="hidden" id="asa" cssclass="form-control" runat="server" value="" />
+                                    <span class="input-group-btn">
+                                        <asp:Button ID="btnShowALL" runat="server" Text="Show all Document" CssClass="btn btn-info" type="submit" OnClick="show_all_klik" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="groupFilter_date" runat="server">
+                            <div class="col-md-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <asp:DropDownList ID="Drop_Date" CssClass="form-control" runat="server"></asp:DropDownList>
+                                    <span class="input-group-btn">
+                                        <asp:Button ID="btn_Drop" runat="server" Text="Filter By Time" CssClass="btn btn-info" type="submit" OnClick="filterByTime_klik" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-md-4">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-addon">
                                     <i class="fa fa-search"></i>
@@ -42,7 +68,7 @@
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="table-responsive" style="background: white !important;">
-                                        <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataText="Tidak ada berita yang mengandung kata pada setiap query" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="3" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
+                                        <asp:GridView ID="tabelBerita" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" AllowPaging="True" OnPageIndexChanging="nextView" ShowHeaderWhenEmpty="True" EmptyDataRowStyle-HorizontalAlign="Center" PageSize="3" PagerSettings-PageButtonCount="10" PagerSettings-Mode="NumericFirstLast">
                                             <Columns>
                                                 <asp:TemplateField ItemStyle-Width="1000" ItemStyle-HorizontalAlign="Justify">
                                                     <ItemTemplate>

@@ -294,11 +294,6 @@
                                     <i class="fa fa-globe" aria-hidden="true"></i>Liputan6.com
                                     </asp:LinkButton>
                                 </li>
-                                <li id="btn_refreshIR" runat="server" class="">
-                                    <asp:LinkButton ID="btn_IR" runat="server" OnClick="manageKonten_Click">
-                                    <i class="fa fa-globe" aria-hidden="true"></i>Manage Konten
-                                    </asp:LinkButton>
-                                </li>
                             </ul>
                         </li>
                         <li id="menu_calender" runat="server">

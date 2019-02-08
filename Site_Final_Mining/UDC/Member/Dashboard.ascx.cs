@@ -16,17 +16,57 @@ namespace Site_Final_Mining.UDC.Member
     {
         private connectionClass con;
         int countDetik = 0, countLiputan6 = 0, countTribun = 0;
+        string get_nTribun, get_nDetik, get_nLiputan6, get_nUser;
         Grafik_Board grafik = new Grafik_Board();
         protected void Page_Load(object sender, EventArgs e)
         {
             this.con = new connectionClass();
             DataTable pengguna = this.con.getResult("SELECT count(*) as get FROM public.\"userFix\" where level='2';");
             jml_userActive.Text = pengguna.Rows[0]["get"].ToString();
+            get_nUser = pengguna.Rows[0]["get"].ToString();
             totalTribun.Text = getcountTribun().ToString();
+            get_nTribun = getcountTribun().ToString();
+            get_nDetik = getcounDetik().ToString();
+            get_nLiputan6 = getcountLiputan6().ToString();
             TotalDetik.Text = getcounDetik().ToString();
             TotalLiputan6.Text = getcountLiputan6().ToString();
             loadChartBeranda();
             setBoardButton();
+            setBar_dashBoard();
+        }
+        public int getcountAll()
+        {
+            DataRow[] fer = displayJson().Select();
+            countTribun = fer.Count();
+            return countTribun;
+        }
+        public void setBar_dashBoard()
+        {
+            double n_Doc = Convert.ToDouble(getcountAll());
+            double nTribun = Convert.ToDouble(get_nTribun);
+            double nDetik = Convert.ToDouble(get_nDetik);
+            double nLiputan6 = Convert.ToDouble(get_nLiputan6);
+            double resultBAR_tribun, resultBAR_Detik, resultBAR_Lipuatan6, result_User;
+            resultBAR_tribun = Math.Round(((nTribun / n_Doc) * 100), 2);
+            resultBAR_Detik = Math.Round(((nDetik / n_Doc) * 100), 2);
+            resultBAR_Lipuatan6 = Math.Round(((nLiputan6 / n_Doc) * 100), 2);
+            result_User = Math.Round(((Convert.ToDouble(get_nUser) / 50) * 100), 2);
+            labelTibunnews1.Text = nTribun.ToString();
+            labelTibunnews2.Text = n_Doc.ToString();
+            labelDetik1.Text = nDetik.ToString();
+            labelDetik2.Text = n_Doc.ToString();
+            labeliputan1.Text = nLiputan6.ToString();
+            labeliputan2.Text = n_Doc.ToString();
+            labelUser1.Text = get_nUser.ToString();
+            labelUser2.Text = "50";
+            labelPersenTribun.Text = resultBAR_tribun.ToString();
+            labelPersenDetik.Text = resultBAR_Detik.ToString();
+            labelPersenLiputan6.Text = resultBAR_Lipuatan6.ToString();
+            labelPersenUser.Text = result_User.ToString();
+            bar_Tribun.Attributes["style"] = "width: " + resultBAR_tribun.ToString().Replace(",", ".") + "%";
+            bar_Detik.Attributes["style"] = "width: " + resultBAR_Detik.ToString().Replace(",", ".") + "%";
+            bar_Lipuan6.Attributes["style"] = "width: " + resultBAR_Lipuatan6.ToString().Replace(",", ".") + "%";
+            bar_User.Attributes["style"] = "width: " + result_User.ToString().Replace(",", ".") + "%";
         }
         public void get_nDoc()
         {
