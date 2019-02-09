@@ -51,9 +51,13 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     Drop_Date.DataSource = Session["filterDate"];
                     Drop_Date.DataBind();
                     string[] id = Session["idDoc"] as string[];
-                    setTable(id);
-                    grafik.Visible = true;
-                    setGrafik();
+                    if (id != null)
+                    {
+                        setTable(id);
+                        grafik.Visible = true;
+                        setGrafik();
+                    }
+
                 }
 
             }
@@ -136,10 +140,12 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             if (vsm.getStatus_Search() == false)
             {
                 tabelBerita.DataSource = null;
-                tabelBerita.EmptyDataText = "Tidak ada berita yang mengandung kata pada setiap query";
+                tabelBerita.EmptyDataText = "Tidak ada berita yang mengandung kata pada setiap query di semua situs berita";
                 tabelBerita.DataBind();
+                Session["idDoc"] = null;
                 groupBtn_showAll.Visible = false;
                 groupFilter_date.Visible = false;
+                grafik.Visible = false;
                 judul.Attributes["class"] = "col-md-8";
             }
             else
@@ -147,10 +153,12 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 if (id.Length < 1)
                 {
                     tabelBerita.DataSource = null;
-                    tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query";
+                    tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query di semua situs berita";
                     tabelBerita.DataBind();
+                    Session["idDoc"] = null;
                     groupBtn_showAll.Visible = false;
                     groupFilter_date.Visible = false;
+                    grafik.Visible = false;
                     judul.Attributes["class"] = "col-md-8";
                 }
                 else
@@ -161,6 +169,9 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     string[] hasilDate = vsm.getDatePure();
                     Session["filterDate"] = hasilDate as Array;
                     Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()) as Array;
+                    Session["dataGrafik_Tribun"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Tribun()) as Array;
+                    Session["dataGrafik_Detik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Detik()) as Array;
+                    Session["dataGrafik_liputan6"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()) as Array;
                     setGrafik();
                     Drop_Date.DataSource = Session["filterDate"];
                     Drop_Date.DataBind();
@@ -354,7 +365,37 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 "}," +
             "}" +
         "});" +
+         "let ChartPopulation2 = new Chart(myChart, {" +
+            "type: 'line'," +
+            "data:" +
+            "{" +
+            "labels: [" + string.Join(", ", result_sumbuXX) + "]," +
+                "datasets: [{" +
+                "label: 'Durasi Kejadian " + sumbuXX.Length + " hari' ," +
+                   " data: [" +
+                        "" + string.Join(", ", sumbuYY) + "" +
+                    "]," +
+                    "backgroundColor: [" +
+                        "'rgba(51,51,255,0.6)'" +
+                    "]," +
+                    "borderWidth: 2," +
+                    "borderColor: '#0033cc'," +
+                    "hoverBorderWidth: 3," +
+                    "hoverBorderColor: 'red'" +
+                "}]" +
+            "}," +
+            "options:" +
+            "{" +
+            "title:" +
+                "{" +
+                "display: true," +
+                    "text: 'Grafik Durasi Kejadian Pencarian'," +
+                    "fontSize: 18" +
+                "}," +
+            "}" +
+        "});" +
     "</script>";
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     DataJS, false);
         }

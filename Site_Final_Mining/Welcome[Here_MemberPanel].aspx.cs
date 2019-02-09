@@ -187,6 +187,9 @@ namespace Site_Final_Mining
         public void tribunnews_Click(object sender, EventArgs e)
         {
             changeActiveMenu("tribunnews");
+            Session["query"] = "";
+            Session["idDoc"] = "";
+            Session["dataGrafik"] = "";
             Control tribunnews = Page.LoadControl("~/UDC/Member/Filter_dokumen/TribunNews.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(tribunnews);
@@ -198,6 +201,9 @@ namespace Site_Final_Mining
             changeActiveMenu("allBerita");
             Session["query"] = "";
             Session["idDoc"] = "";
+            Session["dataTribun"] = "";
+            Session["dataDetik"] = "";
+            Session["dataLiputan6"] = "";
             Control allberita = Page.LoadControl("~/UDC/Member/Filter_dokumen/AllBerita.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(allberita);
@@ -208,6 +214,8 @@ namespace Site_Final_Mining
         public void liputan6_Click(object sender, EventArgs e)
         {
             changeActiveMenu("liputan6");
+            Session["query"] = "";
+            Session["idDoc"] = "";
             Control liputan6 = Page.LoadControl("~/UDC/Member/Filter_dokumen/Liputan6.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(liputan6);
@@ -217,6 +225,8 @@ namespace Site_Final_Mining
         public void detik_Click(object sender, EventArgs e)
         {
             changeActiveMenu("detik");
+            Session["query"] = "";
+            Session["idDoc"] = "";
             Control detik = Page.LoadControl("~/UDC/Member/Filter_dokumen/DetikNews.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(detik);

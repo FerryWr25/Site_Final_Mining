@@ -66,6 +66,7 @@ namespace Site_Final_Mining.Class
             }
 
         }
+
         public double count_TF_IDF_Query(double Tf_Idf, double frekuensi)
         {
             double hasil = 0;
@@ -260,6 +261,60 @@ namespace Site_Final_Mining.Class
             arrayDoc = List_idDoc.ToArray();
             return arrayDoc;
         }
+        public string[] getID_Doc_Sumber(int status, string[] idTerm)
+        {
+            connectionClass con = new connectionClass();
+            con.openConnection();
+            DataTable result;
+            string[] arrayDoc;
+            List<string> List_idDoc = new List<string>();
+            if (status == 1)
+            {
+                string queryTerm = "SELECT dk.\"idDokumen\",count(*) FROM" +
+                    " public.\"bobotTerm\" bt join \"Dokumen\" dk on (bt.\"idDokumen\"=dk.\"idDokumen\")" +
+                    " where dk.site_name='Tribunnews.com' and bt.\"id_Term\" in (" + string.Join(", ", idTerm) + ") group by dk.\"idDokumen\";";
+                result = con.getResult(queryTerm);
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    if (!List_idDoc.Contains(result.Rows[i]["idDokumen"]))
+                    {
+                        List_idDoc.Add("'" + result.Rows[i]["idDokumen"] + "'".ToString());
+                    }
+                }
+                arrayDoc = List_idDoc.ToArray();
+            }
+            else if (status == 2)
+            {
+                string queryTerm = "SELECT dk.\"idDokumen\",count(*) FROM" +
+                    " public.\"bobotTerm\" bt join \"Dokumen\" dk on (bt.\"idDokumen\"=dk.\"idDokumen\")" +
+                    " where dk.site_name='Detik.com' and bt.\"id_Term\" in (" + string.Join(", ", idTerm) + ") group by dk.\"idDokumen\";";
+                result = con.getResult(queryTerm);
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    if (!List_idDoc.Contains(result.Rows[i]["idDokumen"]))
+                    {
+                        List_idDoc.Add("'" + result.Rows[i]["idDokumen"] + "'".ToString());
+                    }
+                }
+                arrayDoc = List_idDoc.ToArray();
+            }
+            else
+            {
+                string queryTerm = "SELECT dk.\"idDokumen\",count(*) FROM" +
+                    " public.\"bobotTerm\" bt join \"Dokumen\" dk on (bt.\"idDokumen\"=dk.\"idDokumen\")" +
+                    " where dk.site_name='Liputan6.com' and bt.\"id_Term\" in (" + string.Join(", ", idTerm) + ") group by dk.\"idDokumen\";";
+                result = con.getResult(queryTerm);
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    if (!List_idDoc.Contains(result.Rows[i]["idDokumen"]))
+                    {
+                        List_idDoc.Add("'" + result.Rows[i]["idDokumen"] + "'".ToString());
+                    }
+                }
+                arrayDoc = List_idDoc.ToArray();
+            }
+            return arrayDoc;
+        }
 
         public string[] getQuery()
         {
@@ -285,35 +340,133 @@ namespace Site_Final_Mining.Class
             }
             return arrayDoc;
         }
-        public string[] getDate_Doc(string[] idDoc)
+        public string[] getDate_Doc(int status, string[] idDoc)
         {
             connectionClass con = new connectionClass();
             con.openConnection();
-            string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") order by  \"dateDoc\" desc;";
-            DataTable result = con.getResult(queryTerm);
-            string[] arrayDate = new string[result.Rows.Count];
-            string[] arrayDateAkhir = new string[result.Rows.Count];
-            List<string> List_dateDoc = new List<string>();
-            List<string> List_dateDocAkhir = new List<string>();
-            for (int i = 0; i < result.Rows.Count; i++)
+            string[] arrayDateAkhir;
+            if (status == 1) // semua ambil
             {
-                string temp = result.Rows[i]["dateDoc"].ToString();
-                if (temp.Length > 10)
+                string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") order by  \"dateDoc\" desc;";
+                DataTable result = con.getResult(queryTerm);
+                string[] arrayDate = new string[result.Rows.Count];
+                arrayDateAkhir = new string[result.Rows.Count];
+                List<string> List_dateDoc = new List<string>();
+                List<string> List_dateDocAkhir = new List<string>();
+
+                for (int i = 0; i < result.Rows.Count; i++)
                 {
-                    temp = temp.Substring(0, temp.Length - 1);
+                    string temp = result.Rows[i]["dateDoc"].ToString();
+                    if (temp.Length > 10)
+                    {
+                        temp = temp.Substring(0, temp.Length - 1);
+                    }
+                    List_dateDoc.Add(temp);
                 }
-                List_dateDoc.Add(temp);
+                arrayDate = List_dateDoc.OrderBy(x => DateTime.Parse(x)).ToArray();
+                for (int i = 0; i < arrayDate.Length; i++)
+                {
+                    List_dateDocAkhir.Add("'" + arrayDate[i] + "'");
+                }
+                arrayDateAkhir = List_dateDocAkhir.ToArray();
+                Console.WriteLine("=============ini urutannya");
+                for (int i = 0; i < arrayDateAkhir.Length; i++)
+                {
+                    Console.WriteLine(arrayDateAkhir[i]);
+                }
             }
-            arrayDate = List_dateDoc.OrderBy(x => DateTime.Parse(x)).ToArray();
-            for (int i = 0; i < arrayDate.Length; i++)
+            else if (status == 2) // ambil data tribun saja
             {
-                List_dateDocAkhir.Add("'" + arrayDate[i] + "'");
+                string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") and site_name='Tribunnews.com' " +
+                    "order by  \"dateDoc\" desc;";
+                DataTable result = con.getResult(queryTerm);
+                string[] arrayDate = new string[result.Rows.Count];
+                arrayDateAkhir = new string[result.Rows.Count];
+                List<string> List_dateDoc = new List<string>();
+                List<string> List_dateDocAkhir = new List<string>();
+
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    string temp = result.Rows[i]["dateDoc"].ToString();
+                    if (temp.Length > 10)
+                    {
+                        temp = temp.Substring(0, temp.Length - 1);
+                    }
+                    List_dateDoc.Add(temp);
+                }
+                arrayDate = List_dateDoc.OrderBy(x => DateTime.Parse(x)).ToArray();
+                for (int i = 0; i < arrayDate.Length; i++)
+                {
+                    List_dateDocAkhir.Add("'" + arrayDate[i] + "'");
+                }
+                arrayDateAkhir = List_dateDocAkhir.ToArray();
+                Console.WriteLine("=============ini urutannya");
+                for (int i = 0; i < arrayDateAkhir.Length; i++)
+                {
+                    Console.WriteLine(arrayDateAkhir[i]);
+                }
             }
-            arrayDateAkhir = List_dateDocAkhir.ToArray();
-            Console.WriteLine("=============ini urutannya");
-            for (int i = 0; i < arrayDateAkhir.Length; i++)
+            else if (status == 3) // ambil detik saja
             {
-                Console.WriteLine(arrayDateAkhir[i]);
+                string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") and site_name='Detik.com'" +
+                    " order by  \"dateDoc\" desc;";
+                DataTable result = con.getResult(queryTerm);
+                string[] arrayDate = new string[result.Rows.Count];
+                arrayDateAkhir = new string[result.Rows.Count];
+                List<string> List_dateDoc = new List<string>();
+                List<string> List_dateDocAkhir = new List<string>();
+
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    string temp = result.Rows[i]["dateDoc"].ToString();
+                    if (temp.Length > 10)
+                    {
+                        temp = temp.Substring(0, temp.Length - 1);
+                    }
+                    List_dateDoc.Add(temp);
+                }
+                arrayDate = List_dateDoc.OrderBy(x => DateTime.Parse(x)).ToArray();
+                for (int i = 0; i < arrayDate.Length; i++)
+                {
+                    List_dateDocAkhir.Add("'" + arrayDate[i] + "'");
+                }
+                arrayDateAkhir = List_dateDocAkhir.ToArray();
+                Console.WriteLine("=============ini urutannya");
+                for (int i = 0; i < arrayDateAkhir.Length; i++)
+                {
+                    Console.WriteLine(arrayDateAkhir[i]);
+                }
+            }
+            else // ambil liputan6 saja
+            {
+                string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") and site_name='Liputan6.com'" +
+                    "order by  \"dateDoc\" desc;";
+                DataTable result = con.getResult(queryTerm);
+                string[] arrayDate = new string[result.Rows.Count];
+                arrayDateAkhir = new string[result.Rows.Count];
+                List<string> List_dateDoc = new List<string>();
+                List<string> List_dateDocAkhir = new List<string>();
+
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    string temp = result.Rows[i]["dateDoc"].ToString();
+                    if (temp.Length > 10)
+                    {
+                        temp = temp.Substring(0, temp.Length - 1);
+                    }
+                    List_dateDoc.Add(temp);
+                }
+                arrayDate = List_dateDoc.OrderBy(x => DateTime.Parse(x)).ToArray();
+                for (int i = 0; i < arrayDate.Length; i++)
+                {
+                    List_dateDocAkhir.Add("'" + arrayDate[i] + "'");
+                }
+                arrayDateAkhir = List_dateDocAkhir.ToArray();
+                Console.WriteLine("=============ini urutannya");
+                for (int i = 0; i < arrayDateAkhir.Length; i++)
+                {
+                    Console.WriteLine(arrayDateAkhir[i]);
+                }
             }
             return arrayDateAkhir;
         }
@@ -501,6 +654,247 @@ namespace Site_Final_Mining.Class
                 }
             }
         }
+        public void run_onSumber(int status, string query)
+        {
+            List<double> semuaTF_IDFQuery = new List<double>();
+            List<double> semuaTF_IDFQuery_toPembilang = new List<double>();
+            double[] arrayQuery_TF_IDF;
+            double[] arrayQuery_TF_IDF_toPembilang;
+            double hasilPembilangPER_doc = 0;
+            double hasilPenyebutPER_doc = 0;
+            getFrekuensi_fromQuery(getDokumen(query));
+            if (status == 1)
+            {
+                if (queryArray.Length == 0)
+                {
+                    string argumen = "tidak ada dokumen yang mengandung kata pada setiap query";
+                }
+                else
+                {
+                    string[] idTerm = getID_Term(getQuery());
+                    string[] idDocTerlibat = getID_Doc_Sumber(1, idTerm);
+                    List<double> tempPembilang = new List<double>();
+                    List<double> tempPenyebut = new List<double>();
+                    List<double> ListpanjangQuery = new List<double>();
+                    for (int i = 0; i < queryArray.Length; i++)
+                    {
+                        double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
+                        hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
+                        Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali & hasil TF-IDFnya: " + hasil_TF_IDF_Query);
+                        semuaTF_IDFQuery.Add(Math.Round(Math.Pow(hasil_TF_IDF_Query, 2), 5));//panjang query
+                        semuaTF_IDFQuery_toPembilang.Add(hasil_TF_IDF_Query);
+                    }
+                    arrayQuery_TF_IDF = semuaTF_IDFQuery.ToArray();
+                    arrayQuery_TF_IDF_toPembilang = semuaTF_IDFQuery_toPembilang.ToArray();
+                    Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
+                    Console.WriteLine("");
+                    for (int fer = 0; fer < idDocTerlibat.Length; fer++)
+                    {
+                        double temp_TF_IDF_doc_toQuery = 0;
+                        double temp_TF_IDF_doc_toQuery_penyebut = 0;
+                        //hitung pembilang
+                        for (int ry = 0; ry < idTerm.Length; ry++)
+                        {
+                            temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[fer], idTerm[ry]);
+                            Console.WriteLine(idDocTerlibat[fer] + ", " + idTerm[ry] + " : " + temp_TF_IDF_doc_toQuery);
+                            tempPembilang.Add(temp_TF_IDF_doc_toQuery * arrayQuery_TF_IDF_toPembilang[ry]);
+                        }
+                        hasilPembilangPER_doc = tempPembilang.Sum();
+                        tempPembilang.Clear();
+                        //hitung penyebut atu panjang vector
+                        for (int wr = 0; wr < idTerm.Length; wr++)
+                        {
+                            //hitung panjang vector doc
+                            temp_TF_IDF_doc_toQuery_penyebut = cariTF_IDF(idDocTerlibat[fer], idTerm[wr]);
+                            tempPenyebut.Add(Math.Round(Math.Pow(temp_TF_IDF_doc_toQuery_penyebut, 2), 5));
+                        }
+                        double[] akhirPenyebut = tempPenyebut.ToArray();
+                        tempPenyebut.Clear();
+                        //hitung panjang vector query
+                        double akhirPanjangQuery = Math.Round(Math.Sqrt(arrayQuery_TF_IDF.Sum()), 5);
+                        hasilPenyebutPER_doc = Math.Round(Math.Sqrt(akhirPenyebut.Sum()), 5);//menentukan panjang vector doc
+                        Console.WriteLine("Panjang Q = " + akhirPanjangQuery);
+                        Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[fer] + " = " + hasilPembilangPER_doc);
+                        Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[fer] + " = " + hasilPenyebutPER_doc);
+                        double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (akhirPanjangQuery * hasilPenyebutPER_doc), 5);
+                        Console.WriteLine("Similarity Doc id " + idDocTerlibat[fer] + " dengan Query = " + hasilSimilarity);
+                        Console.WriteLine("=====================================>>>.................");
+                        Console.WriteLine("");
+                        semuaTF_IDFQuery.Clear();
+                        if (hasilSimilarity >= 0.8)
+                        {
+                            if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
+                            {
+                                ListHasil_Akhir.Add(idDocTerlibat[fer]);
+                            }
+                        }
+                        arrayHasil_Akhir = ListHasil_Akhir.ToArray();
+                        for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
+                        {
+                            if (idDocTerlibat.Length - 1 == fer)
+                            {
+                                Console.WriteLine("Id Doc yang masuk :");
+                                Console.WriteLine(arrayHasil_Akhir[ferry]);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (status == 2)
+            {
+                if (queryArray.Length == 0)
+                {
+                    string argumen = "tidak ada dokumen yang mengandung kata pada setiap query";
+                }
+                else
+                {
+                    string[] idTerm = getID_Term(getQuery());
+                    string[] idDocTerlibat = getID_Doc_Sumber(2, idTerm);
+                    List<double> tempPembilang = new List<double>();
+                    List<double> tempPenyebut = new List<double>();
+                    List<double> ListpanjangQuery = new List<double>();
+                    for (int i = 0; i < queryArray.Length; i++)
+                    {
+                        double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
+                        hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
+                        Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali & hasil TF-IDFnya: " + hasil_TF_IDF_Query);
+                        semuaTF_IDFQuery.Add(Math.Round(Math.Pow(hasil_TF_IDF_Query, 2), 5));//panjang query
+                        semuaTF_IDFQuery_toPembilang.Add(hasil_TF_IDF_Query);
+                    }
+                    arrayQuery_TF_IDF = semuaTF_IDFQuery.ToArray();
+                    arrayQuery_TF_IDF_toPembilang = semuaTF_IDFQuery_toPembilang.ToArray();
+                    Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
+                    Console.WriteLine("");
+                    for (int fer = 0; fer < idDocTerlibat.Length; fer++)
+                    {
+                        double temp_TF_IDF_doc_toQuery = 0;
+                        double temp_TF_IDF_doc_toQuery_penyebut = 0;
+                        //hitung pembilang
+                        for (int ry = 0; ry < idTerm.Length; ry++)
+                        {
+                            temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[fer], idTerm[ry]);
+                            Console.WriteLine(idDocTerlibat[fer] + ", " + idTerm[ry] + " : " + temp_TF_IDF_doc_toQuery);
+                            tempPembilang.Add(temp_TF_IDF_doc_toQuery * arrayQuery_TF_IDF_toPembilang[ry]);
+                        }
+                        hasilPembilangPER_doc = tempPembilang.Sum();
+                        tempPembilang.Clear();
+                        //hitung penyebut atu panjang vector
+                        for (int wr = 0; wr < idTerm.Length; wr++)
+                        {
+                            //hitung panjang vector doc
+                            temp_TF_IDF_doc_toQuery_penyebut = cariTF_IDF(idDocTerlibat[fer], idTerm[wr]);
+                            tempPenyebut.Add(Math.Round(Math.Pow(temp_TF_IDF_doc_toQuery_penyebut, 2), 5));
+                        }
+                        double[] akhirPenyebut = tempPenyebut.ToArray();
+                        tempPenyebut.Clear();
+                        //hitung panjang vector query
+                        double akhirPanjangQuery = Math.Round(Math.Sqrt(arrayQuery_TF_IDF.Sum()), 5);
+                        hasilPenyebutPER_doc = Math.Round(Math.Sqrt(akhirPenyebut.Sum()), 5);//menentukan panjang vector doc
+                        Console.WriteLine("Panjang Q = " + akhirPanjangQuery);
+                        Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[fer] + " = " + hasilPembilangPER_doc);
+                        Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[fer] + " = " + hasilPenyebutPER_doc);
+                        double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (akhirPanjangQuery * hasilPenyebutPER_doc), 5);
+                        Console.WriteLine("Similarity Doc id " + idDocTerlibat[fer] + " dengan Query = " + hasilSimilarity);
+                        Console.WriteLine("=====================================>>>.................");
+                        Console.WriteLine("");
+                        semuaTF_IDFQuery.Clear();
+                        if (hasilSimilarity >= 0.8)
+                        {
+                            if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
+                            {
+                                ListHasil_Akhir.Add(idDocTerlibat[fer]);
+                            }
+                        }
+                        arrayHasil_Akhir = ListHasil_Akhir.ToArray();
+                        for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
+                        {
+                            if (idDocTerlibat.Length - 1 == fer)
+                            {
+                                Console.WriteLine("Id Doc yang masuk :");
+                                Console.WriteLine(arrayHasil_Akhir[ferry]);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (queryArray.Length == 0)
+                {
+                    string argumen = "tidak ada dokumen yang mengandung kata pada setiap query";
+                }
+                else
+                {
+                    string[] idTerm = getID_Term(getQuery());
+                    string[] idDocTerlibat = getID_Doc_Sumber(3, idTerm);
+                    List<double> tempPembilang = new List<double>();
+                    List<double> tempPenyebut = new List<double>();
+                    List<double> ListpanjangQuery = new List<double>();
+                    for (int i = 0; i < queryArray.Length; i++)
+                    {
+                        double TF_IDF_Query = Convert.ToDouble(cekKetersediaan_Term(queryArray[i]));
+                        hasil_TF_IDF_Query = count_TF_IDF_Query(TF_IDF_Query, Convert.ToDouble(frekuensiArray[i]));
+                        Console.WriteLine("kata '" + queryArray[i] + "' pd query muncul " + frekuensiArray[i] + " kali & hasil TF-IDFnya: " + hasil_TF_IDF_Query);
+                        semuaTF_IDFQuery.Add(Math.Round(Math.Pow(hasil_TF_IDF_Query, 2), 5));//panjang query
+                        semuaTF_IDFQuery_toPembilang.Add(hasil_TF_IDF_Query);
+                    }
+                    arrayQuery_TF_IDF = semuaTF_IDFQuery.ToArray();
+                    arrayQuery_TF_IDF_toPembilang = semuaTF_IDFQuery_toPembilang.ToArray();
+                    Console.WriteLine("Dokument Yang Terlibat Pada Query Ada " + idDocTerlibat.Length + ", yaitu: ");
+                    Console.WriteLine("");
+                    for (int fer = 0; fer < idDocTerlibat.Length; fer++)
+                    {
+                        double temp_TF_IDF_doc_toQuery = 0;
+                        double temp_TF_IDF_doc_toQuery_penyebut = 0;
+                        //hitung pembilang
+                        for (int ry = 0; ry < idTerm.Length; ry++)
+                        {
+                            temp_TF_IDF_doc_toQuery = cariTF_IDF(idDocTerlibat[fer], idTerm[ry]);
+                            Console.WriteLine(idDocTerlibat[fer] + ", " + idTerm[ry] + " : " + temp_TF_IDF_doc_toQuery);
+                            tempPembilang.Add(temp_TF_IDF_doc_toQuery * arrayQuery_TF_IDF_toPembilang[ry]);
+                        }
+                        hasilPembilangPER_doc = tempPembilang.Sum();
+                        tempPembilang.Clear();
+                        //hitung penyebut atu panjang vector
+                        for (int wr = 0; wr < idTerm.Length; wr++)
+                        {
+                            //hitung panjang vector doc
+                            temp_TF_IDF_doc_toQuery_penyebut = cariTF_IDF(idDocTerlibat[fer], idTerm[wr]);
+                            tempPenyebut.Add(Math.Round(Math.Pow(temp_TF_IDF_doc_toQuery_penyebut, 2), 5));
+                        }
+                        double[] akhirPenyebut = tempPenyebut.ToArray();
+                        tempPenyebut.Clear();
+                        //hitung panjang vector query
+                        double akhirPanjangQuery = Math.Round(Math.Sqrt(arrayQuery_TF_IDF.Sum()), 5);
+                        hasilPenyebutPER_doc = Math.Round(Math.Sqrt(akhirPenyebut.Sum()), 5);//menentukan panjang vector doc
+                        Console.WriteLine("Panjang Q = " + akhirPanjangQuery);
+                        Console.WriteLine("hasil total pembilang id Doc " + idDocTerlibat[fer] + " = " + hasilPembilangPER_doc);
+                        Console.WriteLine("hasil total penyebut id Doc  " + idDocTerlibat[fer] + " = " + hasilPenyebutPER_doc);
+                        double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (akhirPanjangQuery * hasilPenyebutPER_doc), 5);
+                        Console.WriteLine("Similarity Doc id " + idDocTerlibat[fer] + " dengan Query = " + hasilSimilarity);
+                        Console.WriteLine("=====================================>>>.................");
+                        Console.WriteLine("");
+                        semuaTF_IDFQuery.Clear();
+                        if (hasilSimilarity >= 0.8)
+                        {
+                            if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
+                            {
+                                ListHasil_Akhir.Add(idDocTerlibat[fer]);
+                            }
+                        }
+                        arrayHasil_Akhir = ListHasil_Akhir.ToArray();
+                        for (int ferry = 0; ferry < arrayHasil_Akhir.Length; ferry++)
+                        {
+                            if (idDocTerlibat.Length - 1 == fer)
+                            {
+                                Console.WriteLine("Id Doc yang masuk :");
+                                Console.WriteLine(arrayHasil_Akhir[ferry]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         public bool getStatus_Search()
         {
             bool status = false;
@@ -520,7 +914,22 @@ namespace Site_Final_Mining.Class
         }
         public string[] getdateDoc_akhir()
         {
-            arrayHasilDate = getDate_Doc(getDoc());
+            arrayHasilDate = getDate_Doc(1,getDoc());
+            return arrayHasilDate;
+        }
+        public string[] getdateDoc_akhir_Tribun()
+        {
+            arrayHasilDate = getDate_Doc(2,getDoc());
+            return arrayHasilDate;
+        }
+        public string[] getdateDoc_akhir_Detik()
+        {
+            arrayHasilDate = getDate_Doc(3,getDoc());
+            return arrayHasilDate;
+        }
+        public string[] getdateDoc_akhir_Liputan6()
+        {
+            arrayHasilDate = getDate_Doc(4,getDoc());
             return arrayHasilDate;
         }
         public string[] getDatePure()
