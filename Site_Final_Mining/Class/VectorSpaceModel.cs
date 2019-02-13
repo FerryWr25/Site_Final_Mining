@@ -569,7 +569,7 @@ namespace Site_Final_Mining.Class
             }
 
         }
-        public void run(string query)
+        public void run(string [] query)
         {
             List<double> semuaTF_IDFQuery = new List<double>();
             List<double> semuaTF_IDFQuery_toPembilang = new List<double>();
@@ -577,7 +577,7 @@ namespace Site_Final_Mining.Class
             double[] arrayQuery_TF_IDF_toPembilang;
             double hasilPembilangPER_doc = 0;
             double hasilPenyebutPER_doc = 0;
-            getFrekuensi_fromQuery(getDokumen(query));
+            getFrekuensi_fromQuery(query);
             if (queryArray.Length == 0)
             {
                 string status = "tidak ada dokumen yang mengandung kata pada setiap query";

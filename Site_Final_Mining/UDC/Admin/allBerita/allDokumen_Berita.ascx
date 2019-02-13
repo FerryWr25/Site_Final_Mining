@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="chart">
+                            <div class="chart" id="grafik" runat="server">
                                 <!-- timeFrame Chart Canvas -->
                                 <canvas id="barChart" style="height: 290px;"></canvas>
                             </div>

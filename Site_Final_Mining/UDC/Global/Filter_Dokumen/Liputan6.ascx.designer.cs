@@ -13,6 +13,15 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen {
     public partial class Liputan6 {
         
         /// <summary>
+        /// judul control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl judul;
+        
+        /// <summary>
         /// tanggal control.
         /// </summary>
         /// <remarks>
@@ -22,22 +31,76 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden tanggal;
         
         /// <summary>
-        /// datepicker control.
+        /// groupBtn_showAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox datepicker;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupBtn_showAll;
         
         /// <summary>
-        /// cari_berita control.
+        /// asa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cari_berita;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden asa;
+        
+        /// <summary>
+        /// btnShowALL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowALL;
+        
+        /// <summary>
+        /// groupFilter_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupFilter_date;
+        
+        /// <summary>
+        /// Drop_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Drop_Date;
+        
+        /// <summary>
+        /// btn_Drop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_Drop;
+        
+        /// <summary>
+        /// query control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox query;
+        
+        /// <summary>
+        /// btnSubmit_Query control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit_Query;
         
         /// <summary>
         /// tabelBerita control.
@@ -47,5 +110,14 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView tabelBerita;
+        
+        /// <summary>
+        /// grafik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl grafik;
     }
 }

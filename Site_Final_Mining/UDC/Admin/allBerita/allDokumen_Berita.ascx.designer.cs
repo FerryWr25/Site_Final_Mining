@@ -110,5 +110,14 @@ namespace Site_Final_Mining.UDC.Admin.allBerita {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView tabelBerita;
+        
+        /// <summary>
+        /// grafik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl grafik;
     }
 }

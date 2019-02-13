@@ -128,7 +128,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             Session["dataGrafik"] = hasilGrafik;
             loadChartSearch(hasilGrafik);
         }
-        private void runSearch(string queryNya)
+        private void runSearch(string [] queryNya)
         {
             Session["showAll_doc"] = null;
             status_search = true;
@@ -203,16 +203,18 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
 
         protected void submitQuery_click(object sender, EventArgs e)
         {
-            Session["query"] = query.Text;
-            runSearch(Session["query"].ToString());
+            //proses untuk menjalankan TALA dulu, biar dikembalikan ke kata aslinya
+            string[] data_query = tala.runStemming_Tala_on_Array(query.Text);
+            Session["query"] = data_query as string[];
+            runSearch(Session["query"] as string[]);
             status_search = true;
         }
 
         protected void readmore_click(object sender, EventArgs e)
         {
-
             LinkButton btn = ((LinkButton)sender);
-            Welcome_Here_Member_ parent = (Welcome_Here_Member_)this.Page;
+            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
+            set.InsertLog(email, btn.CommandArgument, btn.CommandName);
             parent.readMore_Click(btn.CommandArgument);
         }
         private string[] getLabel_SumbuX(string[] data)
