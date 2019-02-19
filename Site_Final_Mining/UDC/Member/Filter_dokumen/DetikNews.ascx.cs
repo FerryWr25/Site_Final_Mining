@@ -25,17 +25,18 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         VectorSpaceModel vsm = new VectorSpaceModel();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             this.set = new SetLog();
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
             queryTest = Session["query"].ToString();
+            string[] dataGrafik = Session["dataGrafik"] as string[];
+            string[] data_drop = Session["filterDate"] as string[];
             if (queryTest.Equals(""))
             {
                 showAll_Data_First();
-
             }
             else
             {
@@ -46,15 +47,17 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     Drop_Date.DataSource = Session["filterDate"];
                     Drop_Date.DataBind();
                     string[] id = Session["idDoc"] as string[];
-                    if (id!=null)
+
+                    if (id != null && dataGrafik != null)
                     {
                         setTable(id);
+                        setDropDown_Tanggal(data_drop);
+                        setGrafik(dataGrafik);
                         grafik.Visible = true;
-                        setGrafik();
+                        loadChartSearch(Session["dataGrafik"] as string[]);
                     }
-                   
-                }
 
+                }
             }
             email = Session["Member"].ToString();
         }
@@ -106,8 +109,6 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         }
         protected void filterByTime_klik(object sender, EventArgs e)
         {
-            Drop_Date.DataSource = Session["filterDate"];
-            Drop_Date.DataBind();
             string search = "date like " + "'%" + Drop_Date.SelectedItem.Value + "%'";
             DataTable sessionDoc = Session["showAll_doc"] as DataTable;
             DataRow[] fer = sessionDoc.Select(search);
@@ -122,13 +123,13 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             Session["dataGrafik"] = hasilGrafik;
             loadChartSearch(hasilGrafik);
         }
-        private void runSearch(string [] queryNya)
+        private void runSearch(string[] queryNya)
         {
             Session["showAll_doc"] = null;
             status_search = true;
             tabelBerita.DataSource = null;
             doc_Semua = null;
-            vsm.run(queryNya);
+            vsm.run_onSumber(2, queryNya);
             string[] id = vsm.getDoc();
             Session["idDoc"] = id;
             if (vsm.getStatus_Search() == false)
@@ -159,12 +160,22 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 {
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
-                    string[] hasilDate = vsm.getDatePure();
-                    Session["filterDate"] = hasilDate as Array;
-                    Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Detik()) as Array;
-                    setGrafik();
-                    Drop_Date.DataSource = Session["filterDate"];
-                    Drop_Date.DataBind();
+                    string[] hasilDate = vsm.getDatePure("Detik.com");
+                    Session["filterDate"] = hasilDate as string[];
+                    if (Session["dataGrafik"].Equals(""))
+                    {
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Detik()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    else
+                    {
+                        Session["dataGrafik"] = "";
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Detik()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    setDropDown_Tanggal(hasilDate);
                     groupBtn_showAll.Visible = true;
                     groupFilter_date.Visible = true;
                     judul.Attributes["class"] = "col-md-3";
@@ -174,6 +185,14 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 }
             }
         }
+
+        public void setDropDown_Tanggal(string[] data)
+        {
+            data = Session["filterDate"] as string[];
+            Drop_Date.DataSource = data;
+            Drop_Date.DataBind();
+            groupFilter_date.Visible = true;
+        }
         private void setTable(string[] id)
         {
             string search = "id in (" + string.Join(", ", id) + ") and site_name = 'Detik.com'";
@@ -182,13 +201,9 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             tabelBerita.DataSource = konten;
             tabelBerita.DataBind();
         }
-        private void setGrafik()
+        private void setGrafik(string[] data)
         {
-            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
-            Array SessionGrrafik = Session["dataGrafik"] as Array;
-            string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
-            Session["dataGrafik"] = hasilGrafik;
-            this.loadChartSearch(hasilGrafik);
+            this.loadChartSearch(data);
         }
 
         protected void submitQuery_click(object sender, EventArgs e)

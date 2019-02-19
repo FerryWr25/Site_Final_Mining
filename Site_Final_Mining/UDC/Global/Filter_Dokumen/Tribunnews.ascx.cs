@@ -157,7 +157,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
                 {
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
-                    string[] hasilDate = vsm.getDatePure();
+                    string[] hasilDate = vsm.getDatePure("Tribunnews.com");
                     Session["filterDate"] = hasilDate as Array;
                     Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Tribun()) as Array;
                     setGrafik();

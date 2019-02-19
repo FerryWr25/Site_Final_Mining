@@ -36,11 +36,11 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             //tabelBerita.DataSource = displayJson();   
             //tabelBerita.DataBind();
             queryTest = Session["query"].ToString();
+            string[] dataGrafik = Session["dataGrafik"] as string[];
+            string[] data_drop = Session["filterDate"] as string[];
             if (queryTest.Equals(""))
             {
-                status_showAll = true;
                 showAll_Data_First();
-
             }
             else
             {
@@ -51,15 +51,17 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     Drop_Date.DataSource = Session["filterDate"];
                     Drop_Date.DataBind();
                     string[] id = Session["idDoc"] as string[];
-                    if (id != null)
+
+                    if (id != null && dataGrafik != null)
                     {
                         setTable(id);
+                        setDropDown_Tanggal(data_drop);
+                        setGrafik(dataGrafik);
                         grafik.Visible = true;
-                        setGrafik();
+                        loadChartSearch(Session["dataGrafik"] as string[]);
                     }
 
                 }
-
             }
             email = Session["Member"].ToString();
         }
@@ -163,18 +165,24 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 }
                 else
                 {
-                    string search = "id in (" + string.Join(", ", id) + ")";
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
-                    string[] hasilDate = vsm.getDatePure();
-                    Session["filterDate"] = hasilDate as Array;
-                    Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()) as Array;
-                    Session["dataGrafik_Tribun"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Tribun()) as Array;
-                    Session["dataGrafik_Detik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Detik()) as Array;
-                    Session["dataGrafik_liputan6"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()) as Array;
-                    setGrafik();
-                    Drop_Date.DataSource = Session["filterDate"];
-                    Drop_Date.DataBind();
+                    string[] hasilDate = vsm.getDatePure("null");
+                    Session["filterDate"] = hasilDate as string[];
+                    if (Session["dataGrafik"].Equals(""))
+                    {
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    else
+                    {
+                        Session["dataGrafik"] = "";
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    setDropDown_Tanggal(hasilDate);
                     groupBtn_showAll.Visible = true;
                     groupFilter_date.Visible = true;
                     judul.Attributes["class"] = "col-md-3";
@@ -184,6 +192,13 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 }
             }
         }
+        public void setDropDown_Tanggal(string[] data)
+        {
+            data = Session["filterDate"] as string[];
+            Drop_Date.DataSource = data;
+            Drop_Date.DataBind();
+            groupFilter_date.Visible = true;
+        }
         private void setTable(string[] id)
         {
             string search = "id in (" + string.Join(", ", id) + ")";
@@ -192,13 +207,9 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             tabelBerita.DataSource = konten;
             tabelBerita.DataBind();
         }
-        private void setGrafik()
+        private void setGrafik(string[] data)
         {
-            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
-            Array SessionGrrafik = Session["dataGrafik"] as Array;
-            string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
-            Session["dataGrafik"] = hasilGrafik;
-            this.loadChartSearch(hasilGrafik);
+            this.loadChartSearch(data);
         }
 
         protected void submitQuery_click(object sender, EventArgs e)

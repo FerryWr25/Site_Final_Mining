@@ -136,7 +136,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
                 {
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
-                    string[] hasilDate = vsm.getDatePure();
+                    string[] hasilDate = vsm.getDatePure("null");
                     Session["filterDate"] = hasilDate as Array;
                     Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Liputan6()) as Array;
                     setGrafik();

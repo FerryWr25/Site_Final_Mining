@@ -470,12 +470,20 @@ namespace Site_Final_Mining.Class
             }
             return arrayDateAkhir;
         }
-        public string[] getDate_PURE(string[] idDoc)
+        public string[] getDate_PURE(string[] idDoc, string sumber)
         {
             List<string> List_dateDoc = new List<string>();
             connectionClass con = new connectionClass();
+            string queryTerm;
+            if (!sumber.Equals("null"))
+            {
+               queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") " +
+                " and site_name='" + sumber + "' order by \"dateDoc\" desc;";
+            } else
+            {
+                queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") order by \"dateDoc\" desc;";
+            }
             con.openConnection();
-            string queryTerm = "SELECT  \"dateDoc\"  FROM public.\"Dokumen\" where \"idDokumen\" in (" + string.Join(", ", idDoc) + ") order by  \"dateDoc\" desc;";
             DataTable result = con.getResult(queryTerm);
             string[] arrayDate = new string[result.Rows.Count];
             for (int i = 0; i < result.Rows.Count; i++)
@@ -485,7 +493,11 @@ namespace Site_Final_Mining.Class
                 {
                     temp = temp.Substring(0, temp.Length - 1);
                 }
-                List_dateDoc.Add(temp);
+                if (!List_dateDoc.Contains(temp))
+                {
+                    List_dateDoc.Add(temp);
+                }
+
             }
             arrayHasilDatePure = List_dateDoc.ToArray();
             return arrayHasilDatePure;
@@ -541,7 +553,7 @@ namespace Site_Final_Mining.Class
                     double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (hasilAkhir_Penyebutquery * hasilPenyebutPER_doc), 5);
                     Console.WriteLine("Nilai Similarity Doc id " + idDocTerlibat[i] + " dengan Query = " + hasilSimilarity);
 
-                    if (hasilSimilarity >= 0.5)
+                    if (hasilSimilarity >= 0.8)
                     {
                         if (!ListHasil_Akhir.Contains(idDocTerlibat[i]))
                         {
@@ -569,7 +581,7 @@ namespace Site_Final_Mining.Class
             }
 
         }
-        public void run(string [] query)
+        public void run(string[] query)
         {
             List<double> semuaTF_IDFQuery = new List<double>();
             List<double> semuaTF_IDFQuery_toPembilang = new List<double>();
@@ -654,7 +666,7 @@ namespace Site_Final_Mining.Class
                 }
             }
         }
-        public void run_onSumber(int status, string query)
+        public void run_onSumber(int status, string[] query)
         {
             List<double> semuaTF_IDFQuery = new List<double>();
             List<double> semuaTF_IDFQuery_toPembilang = new List<double>();
@@ -662,7 +674,7 @@ namespace Site_Final_Mining.Class
             double[] arrayQuery_TF_IDF_toPembilang;
             double hasilPembilangPER_doc = 0;
             double hasilPenyebutPER_doc = 0;
-            getFrekuensi_fromQuery(getDokumen(query));
+            getFrekuensi_fromQuery(query);
             if (status == 1)
             {
                 if (queryArray.Length == 0)
@@ -914,27 +926,27 @@ namespace Site_Final_Mining.Class
         }
         public string[] getdateDoc_akhir()
         {
-            arrayHasilDate = getDate_Doc(1,getDoc());
+            arrayHasilDate = getDate_Doc(1, getDoc());
             return arrayHasilDate;
         }
         public string[] getdateDoc_akhir_Tribun()
         {
-            arrayHasilDate = getDate_Doc(2,getDoc());
+            arrayHasilDate = getDate_Doc(2, getDoc());
             return arrayHasilDate;
         }
         public string[] getdateDoc_akhir_Detik()
         {
-            arrayHasilDate = getDate_Doc(3,getDoc());
+            arrayHasilDate = getDate_Doc(3, getDoc());
             return arrayHasilDate;
         }
         public string[] getdateDoc_akhir_Liputan6()
         {
-            arrayHasilDate = getDate_Doc(4,getDoc());
+            arrayHasilDate = getDate_Doc(4, getDoc());
             return arrayHasilDate;
         }
-        public string[] getDatePure()
+        public string[] getDatePure(string sumber)
         {
-            return arrayHasilDatePure = getDate_PURE(getDoc());
+            return arrayHasilDatePure = getDate_PURE(getDoc(), sumber);
         }
     }
 }

@@ -31,6 +31,8 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
             queryTest = Session["query"].ToString();
+            string[] dataGrafik = Session["dataGrafik"] as string[];
+            string[] data_drop = Session["filterDate"] as string[];
             if (queryTest.Equals(""))
             {
                 showAll_Data_First();
@@ -44,11 +46,16 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     Drop_Date.DataSource = Session["filterDate"];
                     Drop_Date.DataBind();
                     string[] id = Session["idDoc"] as string[];
-                    if (id != null)
+
+                    if (id != null && dataGrafik != null)
                     {
                         setTable(id);
-                        setGrafik();
+                        setDropDown_Tanggal(data_drop);
+                        setGrafik(dataGrafik);
+                        grafik.Visible = true;
+                        loadChartSearch(Session["dataGrafik"] as string[]);
                     }
+
                 }
             }
             email = Session["Member"].ToString();
@@ -100,8 +107,6 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         }
         protected void filterByTime_klik(object sender, EventArgs e)
         {
-            Drop_Date.DataSource = Session["filterDate"];
-            Drop_Date.DataBind();
             string search = "date like " + "'%" + Drop_Date.SelectedItem.Value + "%'";
             DataTable sessionDoc = Session["showAll_doc"] as DataTable;
             DataRow[] fer = sessionDoc.Select(search);
@@ -122,7 +127,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             status_search = true;
             tabelBerita.DataSource = null;
             doc_Semua = null;
-            vsm.run(queryNya);
+            vsm.run_onSumber(3, queryNya);
             string[] id = vsm.getDoc();
             Session["idDoc"] = id;
             if (vsm.getStatus_Search() == false)
@@ -153,12 +158,22 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 {
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
-                    string[] hasilDate = vsm.getDatePure();
-                    Session["filterDate"] = hasilDate as Array;
-                    Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Liputan6()) as Array;
-                    setGrafik();
-                    Drop_Date.DataSource = Session["filterDate"];
-                    Drop_Date.DataBind();
+                    string[] hasilDate = vsm.getDatePure("Liputan6.com");
+                    Session["filterDate"] = hasilDate as string[];
+                    if (Session["dataGrafik"].Equals(""))
+                    {
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Liputan6()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    else
+                    {
+                        Session["dataGrafik"] = "";
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Liputan6()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    setDropDown_Tanggal(hasilDate);
                     groupBtn_showAll.Visible = true;
                     groupFilter_date.Visible = true;
                     judul.Attributes["class"] = "col-md-3";
@@ -168,6 +183,13 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 }
             }
         }
+        public void setDropDown_Tanggal(string[] data)
+        {
+            data = Session["filterDate"] as string[];
+            Drop_Date.DataSource = data;
+            Drop_Date.DataBind();
+            groupFilter_date.Visible = true;
+        }
         private void setTable(string[] id)
         {
             string search = "id in (" + string.Join(", ", id) + ") and site_name = 'Liputan6.com'";
@@ -176,6 +198,11 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             tabelBerita.DataSource = konten;
             tabelBerita.DataBind();
         }
+        private void setGrafik(string[] data)
+        {
+            this.loadChartSearch(data);
+        }
+
         private void setGrafik()
         {
             DataTable sessionDoc = Session["showAll_doc"] as DataTable;
