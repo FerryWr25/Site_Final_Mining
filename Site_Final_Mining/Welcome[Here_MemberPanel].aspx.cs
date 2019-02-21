@@ -209,6 +209,7 @@ namespace Site_Final_Mining
             Session["dataLiputan6"] = "";
             Session["filterDate"] = "";
             Session["dataGrafik"] = "";
+            Session["status_filter"] = "";
             Control allberita = Page.LoadControl("~/UDC/Member/Filter_dokumen/AllBerita.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(allberita);
@@ -221,8 +222,10 @@ namespace Site_Final_Mining
             changeActiveMenu("liputan6");
             Session["query"] = "";
             Session["idDoc"] = "";
-            Session["filterDate"] = "";
             Session["dataGrafik"] = "";
+            Session["filterDate"] = "";
+            Session["filterDokumen"] = "";
+            Session["status_filter"] = "";
             Control liputan6 = Page.LoadControl("~/UDC/Member/Filter_dokumen/Liputan6.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(liputan6);
@@ -234,8 +237,10 @@ namespace Site_Final_Mining
             changeActiveMenu("detik");
             Session["query"] = "";
             Session["idDoc"] = "";
-            Session["filterDate"] = "";
             Session["dataGrafik"] = "";
+            Session["filterDate"] = "";
+            Session["filterDokumen"] = "";
+            Session["status_filter"] = "";
             Control detik = Page.LoadControl("~/UDC/Member/Filter_dokumen/DetikNews.ascx");
             Content_Member.Controls.Clear();
             Content_Member.Controls.Add(detik);

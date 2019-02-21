@@ -38,9 +38,11 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             queryTest = Session["query"].ToString();
             string[] dataGrafik = Session["dataGrafik"] as string[];
             string[] data_drop = Session["filterDate"] as string[];
+            string status_filter = Session["status_filter"].ToString();
             if (queryTest.Equals(""))
             {
                 showAll_Data_First();
+                setButton_Header(3);
             }
             else
             {
@@ -55,16 +57,62 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     if (id != null && dataGrafik != null)
                     {
                         setTable(id);
-                        setDropDown_Tanggal(data_drop);
+                        setDropDown_Tanggal();
                         setGrafik(dataGrafik);
+                        setButton_Header(1);
                         grafik.Visible = true;
                         loadChartSearch(Session["dataGrafik"] as string[]);
                     }
 
                 }
             }
+            if (!status_filter.Equals(""))
+            {
+                DataTable data = Session["filterDokumen"] as DataTable;
+                settable_Filter(data);
+            }
             email = Session["Member"].ToString();
         }
+
+        public void setButton_Header(int status)
+        {
+            if (status == 1)//setelah pencarian
+            {
+                penjelasan.Text = "Dokumen Hasil Pencarian '" + string.Join(" ", Session["query"] as string[]).ToString() + "'";
+                judul.Attributes["class"] = "col-md-5";
+                groupFilter_date.Attributes["class"] = "col-md-4";
+                cari_Lagi.Attributes["class"] = "col-md-3";
+                groupFilter_date.Visible = true;
+                cari_Lagi.Visible = true;
+                groupBtn_showAll.Visible = false;
+                query_search.Visible = false;
+
+            }
+            else if (status == 2)//setelah filter klik
+            {
+                penjelasan.Text = "Hasil Dokumen Filter Dokumen tanggal " + Drop_Date.SelectedItem.Value;
+                judul.Attributes["class"] = "col-md-3";
+                groupBtn_showAll.Attributes["class"] = "col-md-3";
+                cari_Lagi.Attributes["class"] = "col-md-2";
+                groupFilter_date.Attributes["class"] = "col-md-4";
+                groupFilter_date.Visible = true;
+                cari_Lagi.Visible = true;
+                groupBtn_showAll.Visible = true;
+                query_search.Visible = false;
+
+            }
+            else //sebelum pencarian
+            {
+                penjelasan.Text = "Semua Dokumen Berita";
+                judul.Attributes["class"] = "col-md-8";
+                groupFilter_date.Visible = false;
+                cari_Lagi.Visible = false;
+                groupBtn_showAll.Visible = false;
+                query_search.Visible = true;
+                query_search.Attributes["class"] = "col-md-4";
+            }
+        }
+
         public void showAll_Data_First()
         {
             doc_Semua = displayJson().Select();
@@ -76,8 +124,16 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             groupFilter_date.Visible = false;
             grafik.Visible = false;
             judul.Attributes["class"] = "col-md-8";
+           
         }
-
+        protected void pencarian_lain_click(object sender, EventArgs e)
+        {
+            Session["query"] = "";
+            showAll_Data_First();
+            setButton_Header(3);
+            Session.Remove("showAll_doc");
+            Session.Remove("filterDate");
+        }
         public DataTable displayJson()
         {
             StreamReader fer = new StreamReader(Server.MapPath("~/dokumenBerita/konten.json"));
@@ -102,34 +158,35 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
 
         protected void show_all_klik(object sender, EventArgs e)
         {
-            status_showAll = true;
-            DataRow[] fer = displayJson().Select();
-            Session["showAll_doc"] = fer.CopyToDataTable() as DataTable;
-            tabelBerita.DataSource = Session["showAll_doc"] as DataTable;
-            tabelBerita.DataBind();
+            string[] id = Session["idDoc"] as string[];
+            setTable(id);
             query.Text = "";
-            Session.Remove("showAll_doc");
-            Session.Remove("filterDate");
-            grafik.Visible = false;
+            grafik.Visible = true;
         }
+        public void settable_Filter(DataTable data)
+        {
+            tabelBerita.DataSource = data;
+            tabelBerita.DataBind();
+        }
+
         protected void filterByTime_klik(object sender, EventArgs e)
         {
-            Drop_Date.DataSource = Session["filterDate"];
-            Drop_Date.DataBind();
+            setButton_Header(2);
+            Session["status_filter"] = "on";
             string search = "date like " + "'%" + Drop_Date.SelectedItem.Value + "%'";
             DataTable sessionDoc = Session["showAll_doc"] as DataTable;
             DataRow[] fer = sessionDoc.Select(search);
-            tabelBerita.DataSource = fer.CopyToDataTable();
-            tabelBerita.DataBind();
-            groupBtn_showAll.Visible = true;
+            Session["filterDokumen"] = fer.CopyToDataTable() as DataTable;
+            settable_Filter(fer.CopyToDataTable());
             groupFilter_date.Visible = true;
-            judul.Attributes["class"] = "col-md-3";
             grafik.Visible = true;
             Array SessionGrrafik = Session["dataGrafik"] as Array;
             string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
             Session["dataGrafik"] = hasilGrafik;
             loadChartSearch(hasilGrafik);
         }
+
+
         private void runSearch(string [] queryNya)
         {
             Session["showAll_doc"] = null;
@@ -158,6 +215,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query di semua situs berita";
                     tabelBerita.DataBind();
                     Session["idDoc"] = null;
+                    Session["dataGrafik"] = "";
                     groupBtn_showAll.Visible = false;
                     groupFilter_date.Visible = false;
                     grafik.Visible = false;
@@ -182,19 +240,17 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                         string[] dataGrafik = Session["dataGrafik"] as string[];
                         setGrafik(dataGrafik);
                     }
-                    setDropDown_Tanggal(hasilDate);
-                    groupBtn_showAll.Visible = true;
-                    groupFilter_date.Visible = true;
-                    judul.Attributes["class"] = "col-md-3";
+                    setDropDown_Tanggal();
+                    setButton_Header(1);
                     grafik.Visible = true;
                     status_search = true;
 
                 }
             }
         }
-        public void setDropDown_Tanggal(string[] data)
+        public void setDropDown_Tanggal()
         {
-            data = Session["filterDate"] as string[];
+            string []data = Session["filterDate"] as string[];
             Drop_Date.DataSource = data;
             Drop_Date.DataBind();
             groupFilter_date.Visible = true;

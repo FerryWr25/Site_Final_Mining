@@ -120,6 +120,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             groupFilter_date.Visible = false;
             grafik.Visible = false;
             judul.Attributes["class"] = "col-md-8";
+          
         }
         protected void nextView(object sender, GridViewPageEventArgs fer)
         {
@@ -146,6 +147,8 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             Session["query"] = "";
             showAll_Data_First();
             setButton_Header(3);
+            Session.Remove("showAll_doc");
+            Session.Remove("filterDate");
         }
 
         protected void show_all_klik(object sender, EventArgs e)
@@ -153,8 +156,6 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             string[] id = Session["idDoc"] as string[];
             setTable(id);
             query.Text = "";
-            Session.Remove("showAll_doc");
-            Session.Remove("filterDate");
             grafik.Visible = true;
         }
         protected void filterByTime_klik(object sender, EventArgs e)
@@ -167,7 +168,6 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
             Session["filterDokumen"] = fer.CopyToDataTable() as DataTable;
             settable_Filter(fer.CopyToDataTable());
             groupFilter_date.Visible = true;
-            judul.Attributes["class"] = "col-md-3";
             grafik.Visible = true;
             Array SessionGrrafik = Session["dataGrafik"] as Array;
             string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
@@ -196,7 +196,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                 tabelBerita.EmptyDataText = "Tidak ada berita yang mengandung kata pada setiap query pada situs Tribunnews.com";
                 tabelBerita.DataBind();
                 Session["idDoc"] = null;
-                Session["dataGrafik"] = null;
+                Session["dataGrafik"] = "";
                 groupBtn_showAll.Visible = false;
                 groupFilter_date.Visible = false;
                 grafik.Visible = false;
@@ -210,11 +210,12 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                     tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query pada situs Tribunnews.com";
                     tabelBerita.DataBind();
                     Session["idDoc"] = null;
-                    Session["dataGrafik"] = null;
+                    Session["dataGrafik"] = "";
                     groupBtn_showAll.Visible = false;
                     groupFilter_date.Visible = false;
                     grafik.Visible = false;
                     judul.Attributes["class"] = "col-md-8";
+                    setButton_Header(3);
                 }
                 else
                 {

@@ -22,6 +22,15 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl judul;
         
         /// <summary>
+        /// penjelasan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label penjelasan;
+        
+        /// <summary>
         /// tanggal control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,33 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden tanggal;
+        
+        /// <summary>
+        /// cari_Lagi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cari_Lagi;
+        
+        /// <summary>
+        /// btn_cariLagi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden btn_cariLagi;
+        
+        /// <summary>
+        /// btn_cari_Lagi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_cari_Lagi;
         
         /// <summary>
         /// groupBtn_showAll control.
@@ -83,6 +119,15 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btn_Drop;
+        
+        /// <summary>
+        /// query_search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl query_search;
         
         /// <summary>
         /// query control.
