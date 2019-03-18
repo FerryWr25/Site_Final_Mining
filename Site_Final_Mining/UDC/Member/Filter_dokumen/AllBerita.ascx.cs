@@ -280,7 +280,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         protected void readmore_click(object sender, EventArgs e)
         {
             LinkButton btn = ((LinkButton)sender);
-            Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
+            Welcome_Here_Member_ parent = (Welcome_Here_Member_)this.Page;
             set.InsertLog(email, btn.CommandArgument, btn.CommandName);
             parent.readMore_Click(btn.CommandArgument);
         }

@@ -31,6 +31,7 @@ namespace Site_Final_Mining.Class
         string[] arrayHasil_Akhir;
         string[] arrayHasilDate;
         string[] arrayHasilDatePure;
+        double minimum_cosine_similarity = 0.788;
 
         public string getIDF_Term(string term)
         {
@@ -553,7 +554,7 @@ namespace Site_Final_Mining.Class
                     double hasilSimilarity = Math.Round(hasilPembilangPER_doc / (hasilAkhir_Penyebutquery * hasilPenyebutPER_doc), 5);
                     Console.WriteLine("Nilai Similarity Doc id " + idDocTerlibat[i] + " dengan Query = " + hasilSimilarity);
 
-                    if (hasilSimilarity >= 0.8)
+                    if (hasilSimilarity >= minimum_cosine_similarity )
                     {
                         if (!ListHasil_Akhir.Contains(idDocTerlibat[i]))
                         {
@@ -647,7 +648,7 @@ namespace Site_Final_Mining.Class
                     Console.WriteLine("=====================================>>>.................");
                     Console.WriteLine("");
                     semuaTF_IDFQuery.Clear();
-                    if (hasilSimilarity >= 0.8)
+                    if (hasilSimilarity >= minimum_cosine_similarity )
                     {
                         if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
                         {
@@ -733,7 +734,7 @@ namespace Site_Final_Mining.Class
                         Console.WriteLine("=====================================>>>.................");
                         Console.WriteLine("");
                         semuaTF_IDFQuery.Clear();
-                        if (hasilSimilarity >= 0.8)
+                        if (hasilSimilarity >= minimum_cosine_similarity )
                         {
                             if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
                             {
@@ -810,7 +811,7 @@ namespace Site_Final_Mining.Class
                         Console.WriteLine("=====================================>>>.................");
                         Console.WriteLine("");
                         semuaTF_IDFQuery.Clear();
-                        if (hasilSimilarity >= 0.8)
+                        if (hasilSimilarity >= minimum_cosine_similarity )
                         {
                             if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
                             {
@@ -887,7 +888,7 @@ namespace Site_Final_Mining.Class
                         Console.WriteLine("=====================================>>>.................");
                         Console.WriteLine("");
                         semuaTF_IDFQuery.Clear();
-                        if (hasilSimilarity >= 0.8)
+                        if (hasilSimilarity >= minimum_cosine_similarity )
                         {
                             if (!ListHasil_Akhir.Contains(idDocTerlibat[fer]))
                             {

@@ -58,16 +58,15 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
                         setButton_Header(1);
                         grafik.Visible = true;
                         loadChartSearch(Session["dataGrafik"] as string[]);
+                        DataTable datafilter = Session["filterDokumen"] as DataTable;
+                        if (datafilter != null)
+                        {
+                            settable_Filter(datafilter);
+                        }
                     }
-
                 }
             }
-            if (!status_filter.Equals(""))
-            {
-                DataTable data = Session["filterDokumen"] as DataTable;
-                settable_Filter(data);
-                setDropDown_Tanggal();
-            }
+           
             email = Session["Member"].ToString();
         }
         public void setButton_Header(int status)
@@ -109,6 +108,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         }
         protected void pencarian_lain_click(object sender, EventArgs e)
         {
+            tabelBerita.PageIndex = 0;
             Session["query"] = "";
             showAll_Data_First();
             setButton_Header(3);
@@ -130,18 +130,22 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         }
         protected void nextView(object sender, GridViewPageEventArgs fer)
         {
-
+            DataTable data = Session["filterDokumen"] as DataTable;
             sessionDoc = Session["showAll_doc"] as DataTable;
-            tabelBerita.DataSource = sessionDoc;
-            this.tabelBerita.PageIndex = fer.NewPageIndex;
+            if (Session["status_filter"].ToString().Equals(""))
+            {
+                tabelBerita.DataSource = sessionDoc;
+                this.tabelBerita.PageIndex = fer.NewPageIndex;
+            }
+            else
+            {
+                setButton_Header(2);
+                tabelBerita.DataSource = data;
+                this.tabelBerita.PageIndex = fer.NewPageIndex;
+            }
             tabelBerita.DataBind();
-
-
         }
-        private bool getStatus_runNextView()
-        {
-            return status_search;
-        }
+        
         public DataTable displayJson()
         {
             StreamReader fer = new StreamReader(Server.MapPath("~/dokumenBerita/konten.json"));
@@ -152,31 +156,41 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
 
         protected void show_all_klik(object sender, EventArgs e)
         {
+            Session["status_filter"] = "";
+            tabelBerita.PageIndex = 0;
             string[] id = Session["idDoc"] as string[];
             setTable(id);
             query.Text = "";
             grafik.Visible = true;
         }
-        public void settable_Filter(DataTable data)
-        {
-            tabelBerita.DataSource = data;
-            tabelBerita.DataBind();
-        }
         protected void filterByTime_klik(object sender, EventArgs e)
         {
+            tabelBerita.DataSource = null;
+            tabelBerita.PageIndex = 0;
             setButton_Header(2);
             Session["status_filter"] = "on";
-            string search = "date like " + "'%" + Drop_Date.SelectedItem.Value + "%'";
-            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
-            DataRow[] fer = sessionDoc.Select(search);
-            Session["filterDokumen"] = fer.CopyToDataTable() as DataTable;
-            settable_Filter(fer.CopyToDataTable());
+            run_filterDate(Drop_Date.SelectedItem.Value);
             groupFilter_date.Visible = true;
             grafik.Visible = true;
             Array SessionGrrafik = Session["dataGrafik"] as Array;
             string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
             Session["dataGrafik"] = hasilGrafik;
             loadChartSearch(hasilGrafik);
+        }
+        private void run_filterDate(string date)
+        {
+            string search = "date like " + "'%" + date + "%'";
+            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
+            DataRow[] fer = sessionDoc.Select(search);
+            Session["filterDokumen"] = fer.CopyToDataTable() as DataTable;
+            settable_Filter(Session["filterDokumen"] as DataTable);
+        }
+
+        public void settable_Filter(DataTable data)
+        {
+            tabelBerita.DataSource = null;
+            tabelBerita.DataSource = data;
+            tabelBerita.DataBind();
         }
         private void runSearch(string[] queryNya)
         {
@@ -263,6 +277,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
 
         protected void submitQuery_click(object sender, EventArgs e)
         {
+            tabelBerita.PageIndex = 0;
             string[] data_query = tala.runStemming_Tala_on_Array(query.Text);
             Session["query"] = data_query as string[];
             runSearch(Session["query"] as string[]);
