@@ -130,18 +130,19 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         }
         protected void nextView(object sender, GridViewPageEventArgs fer)
         {
-            setButton_Header(2);
             DataTable data = Session["filterDokumen"] as DataTable;
             sessionDoc = Session["showAll_doc"] as DataTable;
             if (Session["status_filter"].ToString().Equals(""))
             {
                 tabelBerita.DataSource = sessionDoc;
+                this.tabelBerita.PageIndex = fer.NewPageIndex;
             }
             else
             {
+                setButton_Header(2);
                 tabelBerita.DataSource = data;
+                this.tabelBerita.PageIndex = fer.NewPageIndex;
             }
-            this.tabelBerita.PageIndex = fer.NewPageIndex;
             tabelBerita.DataBind();
         }
         
@@ -156,6 +157,7 @@ namespace Site_Final_Mining.UDC.Member.Filter_dokumen
         protected void show_all_klik(object sender, EventArgs e)
         {
             Session["status_filter"] = "";
+            tabelBerita.PageIndex = 0;
             string[] id = Session["idDoc"] as string[];
             setTable(id);
             query.Text = "";
