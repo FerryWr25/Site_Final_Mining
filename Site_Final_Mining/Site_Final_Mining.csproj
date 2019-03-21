@@ -1776,7 +1776,7 @@
     <Content Include="Other_component\dist\js\pages\dashboard2TP.js" />
     <Content Include="Other_component\fastclick\lib\fastclick.js" />
     <Content Include="Other_component\frontPage\css\creative.css" />
-    <Content Include="Other_component\frontPage\css\creative.min.css" />
+    <Content Include="Other_component\frontPage\css\creative.min2.css" />
     <Content Include="Other_component\frontPage\img\ff.png" />
     <Content Include="Other_component\frontPage\js\creative.js" />
     <Content Include="Other_component\frontPage\js\creative.min.js" />

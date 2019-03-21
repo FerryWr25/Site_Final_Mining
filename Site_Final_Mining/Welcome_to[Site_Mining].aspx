@@ -13,7 +13,7 @@
     <link href="Other_component/frontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="Other_component/frontPage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link href="Other_component/frontPage/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" />
-    <link href="Other_component/frontPage/css/creative.min.css" rel="stylesheet" />
+    <link href="Other_component/frontPage/css/creative.min2.css" rel="stylesheet" />
     <!-- Script -->
 
     <!-- Font Awesome -->
