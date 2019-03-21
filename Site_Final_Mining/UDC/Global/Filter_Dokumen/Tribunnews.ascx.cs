@@ -26,17 +26,21 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.set = new SetLog();
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/admin-lte/css/adminLTE.min.css") + "\" />"));
             //tabelBerita.DataSource = displayJson();
             //tabelBerita.DataBind();
             queryTest = Session["query"].ToString();
+            string[] dataGrafik = Session["dataGrafik"] as string[];
+            string[] data_drop = Session["filterDate"] as string[];
+            string status_filter = Session["status_filter"].ToString();
+            email = Session["Admin"].ToString();
             if (queryTest.Equals(""))
             {
                 showAll_Data_First();
+                setButton_Header(3);
             }
-            else
+            else if (!queryTest.Equals(""))
             {
                 status_search = true;
                 judul.Attributes["class"] = "col-md-3";
@@ -45,17 +49,63 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
                     Drop_Date.DataSource = Session["filterDate"];
                     Drop_Date.DataBind();
                     string[] id = Session["idDoc"] as string[];
-                    if (id != null)
+
+                    if (id != null && dataGrafik != null)
                     {
                         setTable(id);
+                        setDropDown_Tanggal(data_drop);
+                        setGrafik(dataGrafik);
+                        setButton_Header(1);
                         grafik.Visible = true;
-                        setGrafik();
+                        loadChartSearch(Session["dataGrafik"] as string[]);
+                        DataTable datafilter = Session["filterDokumen"] as DataTable;
+                        if (datafilter != null)
+                        {
+                            settable_Filter(datafilter);
+                        }
                     }
-
                 }
-
             }
         }
+        public void setButton_Header(int status)
+        {
+            if (status == 1)//setelah pencarian
+            {
+                penjelasan.Text = "Dokumen Hasil Pencarian '" + string.Join(" ", Session["query"] as string[]).ToString() + "'";
+                judul.Attributes["class"] = "col-md-5";
+                groupFilter_date.Attributes["class"] = "col-md-4";
+                cari_Lagi.Attributes["class"] = "col-md-3";
+                groupFilter_date.Visible = true;
+                cari_Lagi.Visible = true;
+                groupBtn_showAll.Visible = false;
+                query_search.Visible = false;
+
+            }
+            else if (status == 2)//setelah filter klik
+            {
+                penjelasan.Text = "Hasil Dokumen Filter Dokumen tanggal " + Drop_Date.SelectedItem.Value;
+                judul.Attributes["class"] = "col-md-3";
+                groupBtn_showAll.Attributes["class"] = "col-md-3";
+                cari_Lagi.Attributes["class"] = "col-md-2";
+                groupFilter_date.Attributes["class"] = "col-md-4";
+                groupFilter_date.Visible = true;
+                cari_Lagi.Visible = true;
+                groupBtn_showAll.Visible = true;
+                query_search.Visible = false;
+
+            }
+            else //sebelum pencarian
+            {
+                penjelasan.Text = "Semua Dokumen Berita";
+                judul.Attributes["class"] = "col-md-8";
+                groupFilter_date.Visible = false;
+                cari_Lagi.Visible = false;
+                groupBtn_showAll.Visible = false;
+                query_search.Visible = true;
+                query_search.Attributes["class"] = "col-md-4";
+            }
+        }
+
         public void showAll_Data_First()
         {
             string search = "site_name = 'Tribunnews.com' ";
@@ -69,20 +119,26 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             grafik.Visible = false;
             judul.Attributes["class"] = "col-md-8";
         }
+
         protected void nextView(object sender, GridViewPageEventArgs fer)
         {
 
+            DataTable data = Session["filterDokumen"] as DataTable;
             sessionDoc = Session["showAll_doc"] as DataTable;
-            tabelBerita.DataSource = sessionDoc;
-            this.tabelBerita.PageIndex = fer.NewPageIndex;
+            if (Session["status_filter"].ToString().Equals(""))
+            {
+                tabelBerita.DataSource = sessionDoc;
+                this.tabelBerita.PageIndex = fer.NewPageIndex;
+            }
+            else
+            {
+                setButton_Header(2);
+                tabelBerita.DataSource = data;
+                this.tabelBerita.PageIndex = fer.NewPageIndex;
+            }
             tabelBerita.DataBind();
-
-
         }
-        private bool getStatus_runNextView()
-        {
-            return status_search;
-        }
+
         public DataTable displayJson()
         {
             StreamReader fer = new StreamReader(Server.MapPath("~/dokumenBerita/konten.json"));
@@ -91,50 +147,72 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             return table;
         }
 
-        protected void show_all_klik(object sender, EventArgs e)
+        protected void pencarian_lain_click(object sender, EventArgs e)
         {
-            DataRow[] fer = displayJson().Select();
-            Session["showAll_doc"] = fer.CopyToDataTable() as DataTable;
-            tabelBerita.DataSource = Session["showAll_doc"] as DataTable;
-            tabelBerita.DataBind();
-            query.Text = "";
+            tabelBerita.PageIndex = 0;
+            Session["query"] = "";
+            showAll_Data_First();
+            setButton_Header(3);
             Session.Remove("showAll_doc");
             Session.Remove("filterDate");
-            grafik.Visible = false;
+        }
+
+        protected void show_all_klik(object sender, EventArgs e)
+        {
+            Session["status_filter"] = "";
+            tabelBerita.PageIndex = 0;
+            string[] id = Session["idDoc"] as string[];
+            setTable(id);
+            query.Text = "";
+            grafik.Visible = true;
         }
         protected void filterByTime_klik(object sender, EventArgs e)
         {
-            Drop_Date.DataSource = Session["filterDate"];
-            Drop_Date.DataBind();
-            string search = "date like " + "'%" + Drop_Date.SelectedItem.Value + "%'";
-            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
-            DataRow[] fer = sessionDoc.Select(search);
-            tabelBerita.DataSource = fer.CopyToDataTable();
-            tabelBerita.DataBind();
-            groupBtn_showAll.Visible = true;
+            tabelBerita.DataSource = null;
+            tabelBerita.PageIndex = 0;
+            setButton_Header(2);
+            Session["status_filter"] = "on";
+            run_filterDate(Drop_Date.SelectedItem.Value);
             groupFilter_date.Visible = true;
-            judul.Attributes["class"] = "col-md-3";
             grafik.Visible = true;
             Array SessionGrrafik = Session["dataGrafik"] as Array;
             string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
             Session["dataGrafik"] = hasilGrafik;
             loadChartSearch(hasilGrafik);
         }
+        private void run_filterDate(string date)
+        {
+            string search = "date like " + "'%" + date + "%'";
+            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
+            DataRow[] fer = sessionDoc.Select(search);
+            Session["filterDokumen"] = fer.CopyToDataTable() as DataTable;
+            settable_Filter(Session["filterDokumen"] as DataTable);
+        }
+
+        public void settable_Filter(DataTable data)
+        {
+            tabelBerita.DataSource = null;
+            tabelBerita.DataSource = data;
+            tabelBerita.DataBind();
+        }
+
         private void runSearch(string[] queryNya)
         {
+
             Session["showAll_doc"] = null;
             status_search = true;
             tabelBerita.DataSource = null;
             doc_Semua = null;
-            vsm.run(queryNya);
+            vsm.run_onSumber(1, queryNya);
             string[] id = vsm.getDoc();
             Session["idDoc"] = id;
             if (vsm.getStatus_Search() == false)
             {
                 tabelBerita.DataSource = null;
-                tabelBerita.EmptyDataText = "Tidak ada berita yang mengandung kata pada setiap query pada situs Detik.com";
+                tabelBerita.EmptyDataText = "Tidak ada berita yang mengandung kata pada setiap query pada situs Tribunnews.com";
                 tabelBerita.DataBind();
                 Session["idDoc"] = null;
+                Session["dataGrafik"] = "";
                 groupBtn_showAll.Visible = false;
                 groupFilter_date.Visible = false;
                 grafik.Visible = false;
@@ -145,32 +223,49 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
                 if (id.Length < 1)
                 {
                     tabelBerita.DataSource = null;
-                    tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query pada situs Detik.com";
+                    tabelBerita.EmptyDataText = "Tidak Ditemukan Dokumen yang Mempunyai Kemiripan Cukup dengan Query pada situs Tribunnews.com";
                     tabelBerita.DataBind();
                     Session["idDoc"] = null;
+                    Session["dataGrafik"] = "";
                     groupBtn_showAll.Visible = false;
                     groupFilter_date.Visible = false;
                     grafik.Visible = false;
                     judul.Attributes["class"] = "col-md-8";
+                    setButton_Header(3);
                 }
                 else
                 {
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
                     string[] hasilDate = vsm.getDatePure("Tribunnews.com");
-                    Session["filterDate"] = hasilDate as Array;
-                    Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Tribun()) as Array;
-                    setGrafik();
-                    Drop_Date.DataSource = Session["filterDate"];
-                    Drop_Date.DataBind();
-                    groupBtn_showAll.Visible = true;
-                    groupFilter_date.Visible = true;
-                    judul.Attributes["class"] = "col-md-3";
+                    Session["filterDate"] = hasilDate as string[];
+                    if (Session["dataGrafik"].Equals(""))
+                    {
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Tribun()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    else
+                    {
+                        Session["dataGrafik"] = "";
+                        Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Tribun()) as Array;
+                        string[] dataGrafik = Session["dataGrafik"] as string[];
+                        setGrafik(dataGrafik);
+                    }
+                    setDropDown_Tanggal(hasilDate);
+                    setButton_Header(1);
                     grafik.Visible = true;
                     status_search = true;
 
                 }
             }
+        }
+        public void setDropDown_Tanggal(string[] data)
+        {
+            data = Session["filterDate"] as string[];
+            Drop_Date.DataSource = data;
+            Drop_Date.DataBind();
+            groupFilter_date.Visible = true;
         }
         private void setTable(string[] id)
         {
@@ -180,17 +275,15 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             tabelBerita.DataSource = konten;
             tabelBerita.DataBind();
         }
-        private void setGrafik()
+        private void setGrafik(string[] data)
         {
-            DataTable sessionDoc = Session["showAll_doc"] as DataTable;
-            Array SessionGrrafik = Session["dataGrafik"] as Array;
-            string[] hasilGrafik = SessionGrrafik.OfType<object>().Select(o => o.ToString()).ToArray();
-            Session["dataGrafik"] = hasilGrafik;
-            this.loadChartSearch(hasilGrafik);
+            this.loadChartSearch(data);
         }
 
         protected void submitQuery_click(object sender, EventArgs e)
         {
+            //proses untuk menjalankan TALA dulu, biar dikembalikan ke kata aslinya
+            tabelBerita.PageIndex = 0;
             string[] data_query = tala.runStemming_Tala_on_Array(query.Text);
             Session["query"] = data_query as string[];
             runSearch(Session["query"] as string[]);
@@ -201,7 +294,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
         {
             LinkButton btn = ((LinkButton)sender);
             Welcome_Here_AdminPanel_ parent = (Welcome_Here_AdminPanel_)this.Page;
-            parent.readMoreDetik_Click(btn.CommandArgument);
+            parent.readMoreTribun_Click(btn.CommandArgument);
         }
         private string[] getLabel_SumbuX(string[] data)
         {

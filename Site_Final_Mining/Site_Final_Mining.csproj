@@ -186,6 +186,7 @@
     <Content Include="admin-lte\img\avatar2.png" />
     <Content Include="admin-lte\img\avatar3.png" />
     <Content Include="admin-lte\img\avatar5.png" />
+    <Content Include="admin-lte\img\awaw.png" />
     <Content Include="admin-lte\img\boxed-bg.jpg" />
     <Content Include="admin-lte\img\boxed-bg.png" />
     <Content Include="admin-lte\img\cc.jpg" />
@@ -268,7 +269,6 @@
     <Content Include="admin-lte\img\img_frontPage\team\2.jpg" />
     <Content Include="admin-lte\img\img_frontPage\team\3.jpg" />
     <Content Include="admin-lte\img\img_frontPage\vsmFront.png" />
-    <Content Include="admin-lte\img\lul.jpg" />
     <Content Include="admin-lte\img\photo1.png" />
     <Content Include="admin-lte\img\photo2.png" />
     <Content Include="admin-lte\img\photo3.jpg" />
@@ -1778,7 +1778,6 @@
     <Content Include="Other_component\frontPage\css\creative.css" />
     <Content Include="Other_component\frontPage\css\creative.min.css" />
     <Content Include="Other_component\frontPage\img\ff.png" />
-    <Content Include="Other_component\frontPage\img\header.jpg" />
     <Content Include="Other_component\frontPage\js\creative.js" />
     <Content Include="Other_component\frontPage\js\creative.min.js" />
     <Content Include="Other_component\frontPage\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -3779,6 +3778,7 @@
     <Content Include="UDC\Global\Filter_Dokumen\readMore_Liputan6.ascx" />
     <Content Include="UDC\Global\Filter_Dokumen\readMore_Tribun.ascx" />
     <Content Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx" />
+    <Content Include="UDC\Global\header_admin.ascx" />
     <Content Include="UDC\Global\Login.ascx" />
     <Content Include="UDC\Member\Dashboard.ascx" />
     <Content Include="UDC\Member\Filter_dokumen\AllBerita.ascx" />
@@ -4264,6 +4264,13 @@
     </Compile>
     <Compile Include="UDC\Global\Filter_Dokumen\Tribunnews.ascx.designer.cs">
       <DependentUpon>Tribunnews.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UDC\Global\header_admin.ascx.cs">
+      <DependentUpon>header_admin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UDC\Global\header_admin.ascx.designer.cs">
+      <DependentUpon>header_admin.ascx</DependentUpon>
     </Compile>
     <Compile Include="UDC\Global\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>

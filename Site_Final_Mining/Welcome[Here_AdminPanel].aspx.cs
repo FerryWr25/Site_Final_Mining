@@ -50,7 +50,6 @@ namespace Site_Final_Mining
                 profileImage1.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[0]["pathPhoto"].ToString();
                 profileImage2.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[1]["pathPhoto"].ToString();
                 profileImage3.Attributes["src"] = "admin-lte/img/" + MemberBaru.Rows[2]["pathPhoto"].ToString();
-                notif_jmlPendaftar.Text = pengguna.Rows[0]["get"].ToString();
                 if (MemberBaru.Rows[0]["nama"].ToString().Length > 15)
                 {
                     Nama1.Text = MemberBaru.Rows[0]["nama"].ToString().Remove(15);
@@ -319,6 +318,9 @@ namespace Site_Final_Mining
             Session["query"] = "";
             Session["idDoc"] = "";
             Session["dataGrafik"] = "";
+            Session["filterDate"] = "";
+            Session["filterDokumen"] = "";
+            Session["status_filter"] = "";
             Control tribunnews = Page.LoadControl("~/UDC/Global/Filter_Dokumen/Tribunnews.ascx");
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(tribunnews);
@@ -333,6 +335,9 @@ namespace Site_Final_Mining
             Session["dataTribun"] = "";
             Session["dataDetik"] = "";
             Session["dataLiputan6"] = "";
+            Session["filterDate"] = "";
+            Session["dataGrafik"] = "";
+            Session["status_filter"] = "";
             Control allberita = Page.LoadControl("~/UDC/Admin/allBerita/allDokumen_Berita.ascx");
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(allberita);
@@ -353,6 +358,10 @@ namespace Site_Final_Mining
             changeActiveMenu("liputan6");
             Session["query"] = "";
             Session["idDoc"] = "";
+            Session["dataGrafik"] = "";
+            Session["filterDate"] = "";
+            Session["filterDokumen"] = "";
+            Session["status_filter"] = "";
             Control liputan6 = Page.LoadControl("~/UDC/Global/Filter_Dokumen/Liputan6.ascx");
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(liputan6);
@@ -364,6 +373,10 @@ namespace Site_Final_Mining
             changeActiveMenu("detik");
             Session["query"] = "";
             Session["idDoc"] = "";
+            Session["dataGrafik"] = "";
+            Session["filterDate"] = "";
+            Session["filterDokumen"] = "";
+            Session["status_filter"] = "";
             Control detik = Page.LoadControl("~/UDC/Global/Filter_Dokumen/Detik.ascx");
             Content_Admin.Controls.Clear();
             Content_Admin.Controls.Add(detik);
