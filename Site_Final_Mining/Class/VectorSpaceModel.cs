@@ -215,9 +215,7 @@ namespace Site_Final_Mining.Class
             {
                 Console.WriteLine(queryArraySearch[i]);
             }
-
             return words;
-
         }
 
         public string[] getID_Term(string[] query)

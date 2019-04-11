@@ -62,6 +62,10 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
                         {
                             settable_Filter(datafilter);
                         }
+                        else
+                        {
+                            setTable(id);
+                        }
                     }
                 }
             }
@@ -156,6 +160,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
         protected void show_all_klik(object sender, EventArgs e)
         {
             Session["status_filter"] = "";
+            Session["filterDokumen"] = null;
             tabelBerita.PageIndex = 0;
             string[] id = Session["idDoc"] as string[];
             setTable(id);
