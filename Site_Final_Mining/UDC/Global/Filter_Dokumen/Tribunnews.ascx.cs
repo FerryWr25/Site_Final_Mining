@@ -23,6 +23,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
         DataRow[] hasilDoc, doc_Semua;
         string[] result_sumbuXX;
         VectorSpaceModel vsm = new VectorSpaceModel();
+        TimeCount tm = new TimeCount();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -413,6 +414,11 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             sumbuYY = sumbuY.ToArray();
             result_sumbuXX = getLabel_SumbuX(sumbuXX);
             // load javascript untuk grafik
+            string str1 = sumbuXX[0].Remove(sumbuXX[0].IndexOf("'"), 1);
+            string end_str1 = str1.Remove(str1.LastIndexOf("'"), 1);
+            string str2 = sumbuXX[sumbuXX.Length - 1].Remove(sumbuXX[sumbuXX.Length - 1].IndexOf("'"), 1);
+            string end_str2 = str2.Remove(str2.LastIndexOf("'"), 1);
+            string durasi = tm.runTime(end_str1, end_str2);
             var MainJS = "<script src=\"chart/js/Chart.min.js\"></script>";
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     MainJS, false);
@@ -428,7 +434,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             "{" +
             "labels: [" + string.Join(", ", result_sumbuXX) + "]," +
                 "datasets: [{" +
-                "label: 'Durasi Kejadian " + sumbuXX.Length + " hari' ," +
+                "label: '" + durasi + "' ," +
                    " data: [" +
                         "" + string.Join(", ", sumbuYY) + "" +
                     "]," +

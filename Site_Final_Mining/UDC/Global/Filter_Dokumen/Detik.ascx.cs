@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Site_Final_Mining.Class;
 using Site_Final_Mining.Model;
+using Site_Final_Mining.Model;
 
 namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
 {
@@ -23,6 +24,9 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
         DataRow[] hasilDoc, doc_Semua;
         string[] result_sumbuXX;
         VectorSpaceModel vsm = new VectorSpaceModel();
+        TimeCount tm = new TimeCount();
+        string[] array_durasi = null;
+        string durasi = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.Controls.Add(new LiteralControl("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + ResolveUrl("~/Content/MyStyleGrid.css") + "\" />"));
@@ -60,7 +64,8 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
                         if (datafilter != null)
                         {
                             settable_Filter(datafilter);
-                        } else
+                        }
+                        else
                         {
                             setTable(id);
                         }
@@ -161,9 +166,9 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             tabelBerita.PageIndex = 0;
             string[] id = Session["idDoc"] as string[];
             run_show_all_klik(id);
-            
+
         }
-        public void run_show_all_klik(string [] data)
+        public void run_show_all_klik(string[] data)
         {
             Session["filterDokumen"] = null;
             tabelBerita.DataSource = null;
@@ -239,8 +244,8 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
                 {
                     setTable(id);
                     Session["showAll_doc"] = konten as DataTable;
-                    string[] hasilDate = vsm.getDatePure("Detik.com");
-                    Session["filterDate"] = hasilDate as string[];
+                    array_durasi = vsm.getDatePure("Detik.com");
+                    Session["filterDate"] = array_durasi as string[];
                     if (Session["dataGrafik"].Equals(""))
                     {
                         Session["dataGrafik"] = tala.getFrekunsiKata_onArray(vsm.getdateDoc_akhir_Detik()) as Array;
@@ -410,6 +415,11 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             sumbuYY = sumbuY.ToArray();
             result_sumbuXX = getLabel_SumbuX(sumbuXX);
             // load javascript untuk grafik
+            string str1 = sumbuXX[0].Remove(sumbuXX[0].IndexOf("'"), 1);
+            string end_str1 = str1.Remove(str1.LastIndexOf("'"), 1);
+            string str2 = sumbuXX[sumbuXX.Length - 1].Remove(sumbuXX[sumbuXX.Length - 1].IndexOf("'"), 1);
+            string end_str2 = str2.Remove(str2.LastIndexOf("'"), 1);
+            string durasi = tm.runTime(end_str1, end_str2);
             var MainJS = "<script src=\"chart/js/Chart.min.js\"></script>";
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     MainJS, false);
@@ -425,7 +435,7 @@ namespace Site_Final_Mining.UDC.Global.Filter_Dokumen
             "{" +
             "labels: [" + string.Join(", ", result_sumbuXX) + "]," +
                 "datasets: [{" +
-                "label: 'Durasi Kejadian " + sumbuXX.Length + " hari' ," +
+                "label: '" + durasi + "' ," +
                    " data: [" +
                         "" + string.Join(", ", sumbuYY) + "" +
                     "]," +

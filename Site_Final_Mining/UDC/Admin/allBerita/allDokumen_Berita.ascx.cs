@@ -9,12 +9,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Site_Final_Mining.Class;
+using Site_Final_Mining.Model;
 
 namespace Site_Final_Mining.UDC.Admin.allBerita
 {
     public partial class allDokumen_Berita : System.Web.UI.UserControl
     {
         VectorSpaceModel vsm = new VectorSpaceModel();
+        TimeCount tm = new TimeCount();
         TALA tala = new TALA();
         public bool search = false;
         public bool status_search = false;
@@ -419,6 +421,11 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             sumbuYY = sumbuY.ToArray();
             result_sumbuXX = getLabel_SumbuX(sumbuXX);
             // load javascript untuk grafik
+            string str1 = sumbuXX[0].Remove(sumbuXX[0].IndexOf("'"), 1);
+            string end_str1 = str1.Remove(str1.LastIndexOf("'"), 1);
+            string str2 = sumbuXX[sumbuXX.Length - 1].Remove(sumbuXX[sumbuXX.Length - 1].IndexOf("'"), 1);
+            string end_str2 = str2.Remove(str2.LastIndexOf("'"), 1);
+            string durasi = tm.runTime(end_str1, end_str2);
             var MainJS = "<script src=\"chart/js/Chart.min.js\"></script>";
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     MainJS, false);
@@ -434,36 +441,7 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             "{" +
             "labels: [" + string.Join(", ", result_sumbuXX) + "]," +
                 "datasets: [{" +
-                "label: 'Durasi Kejadian " + sumbuXX.Length + " hari' ," +
-                   " data: [" +
-                        "" + string.Join(", ", sumbuYY) + "" +
-                    "]," +
-                    "backgroundColor: [" +
-                        "'rgba(51,51,255,0.6)'" +
-                    "]," +
-                    "borderWidth: 2," +
-                    "borderColor: '#0033cc'," +
-                    "hoverBorderWidth: 3," +
-                    "hoverBorderColor: 'red'" +
-                "}]" +
-            "}," +
-            "options:" +
-            "{" +
-            "title:" +
-                "{" +
-                "display: true," +
-                    "text: 'Grafik Durasi Kejadian Pencarian'," +
-                    "fontSize: 18" +
-                "}," +
-            "}" +
-        "});" +
-         "let ChartPopulation2 = new Chart(myChart, {" +
-            "type: 'line'," +
-            "data:" +
-            "{" +
-            "labels: [" + string.Join(", ", result_sumbuXX) + "]," +
-                "datasets: [{" +
-                "label: 'Durasi Kejadian " + sumbuXX.Length + " hari' ," +
+                "label: '" + durasi + "' ," +
                    " data: [" +
                         "" + string.Join(", ", sumbuYY) + "" +
                     "]," +
@@ -487,7 +465,6 @@ namespace Site_Final_Mining.UDC.Admin.allBerita
             "}" +
         "});" +
     "</script>";
-
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(),
                     DataJS, false);
         }

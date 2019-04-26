@@ -88,5 +88,34 @@ namespace Site_Final_Mining.Model
             DateTime tmp;
             return DateTime.TryParse(o, out tmp);
         }
+        public string getCount(int day)
+        {
+            int hasilBLN = day / 30;
+            int hasilDay = day % 30;
+            string bulan = "";
+            string hari = "";
+            string return_data = "";
+            if (hasilBLN > 0)
+            {
+                bulan = hasilBLN + "";
+                hari = hasilDay + "";
+                return_data = "Durasi kejadian " + bulan + " bulan " + hari + " hari";
+            }
+            else
+            {
+                hari = hasilDay + "";
+                return_data = "Durasi kejadian " + hari + " hari";
+            }
+            return return_data;
+        }
+        public string runTime(string strDate1, string strDate2)
+        {
+            string hasil = "";
+            DateTime date1 = Convert.ToDateTime(strDate1);
+            DateTime date2 = Convert.ToDateTime(strDate2);
+            TimeSpan timespan = date2.Subtract(date1);
+            string count = timespan.TotalDays.ToString();
+            return hasil = getCount(Convert.ToInt32(count));
+        }
     }
 }
